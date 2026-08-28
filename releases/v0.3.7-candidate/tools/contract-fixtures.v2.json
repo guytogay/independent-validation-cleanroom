@@ -1,0 +1,6815 @@
+{
+  "fixture_version": "2.0",
+  "ena_version": "v0.3.3",
+  "purpose": "Implementation-level deterministic regression corpus for validate_contracts.validate_case(): migrated v0.3.2 selftests + accumulated V2.x falsification corpus (provenance preserved) + implementation controls.",
+  "case_count": 164,
+  "cases": [
+    {
+      "id": "support-direct-pass",
+      "provenance": "DSH_MIGRATED_V032",
+      "kind": "MIGRATED",
+      "mode": "support",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "OTHER",
+          "subject": {
+            "kind": "TASK",
+            "id": "T1"
+          },
+          "scope": {
+            "host": "H1",
+            "task_scope": "T1"
+          },
+          "assertion": "Direct support applies to this host/task.",
+          "status": "ASSERTED"
+        },
+        "support": {
+          "support_id": "S1",
+          "claim_ref": "C1",
+          "evidence_refs": [
+            "E1"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1",
+            "task_scope": "T1"
+          },
+          "claimed_scope": {
+            "host": "H1",
+            "task_scope": "T1"
+          }
+        }
+      },
+      "expect": {
+        "ok": true,
+        "code": "SUPPORT_SCOPE_DIRECT_MATCH"
+      },
+      "rationale": "shipped v0.3.2 selftest carried forward unchanged"
+    },
+    {
+      "id": "support-transfer-required-fail",
+      "provenance": "DSH_MIGRATED_V032",
+      "kind": "MIGRATED",
+      "mode": "support",
+      "input": {
+        "claim": {
+          "claim_id": "C2",
+          "claim_type": "OTHER",
+          "subject": {
+            "kind": "HOST",
+            "id": "H2"
+          },
+          "scope": {
+            "host": "H2"
+          },
+          "assertion": "Evidence observed on H1 supports H2.",
+          "status": "ASSERTED"
+        },
+        "support": {
+          "support_id": "S2",
+          "claim_ref": "C2",
+          "evidence_refs": [
+            "E2"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H2"
+          }
+        }
+      },
+      "expect": {
+        "ok": false,
+        "code": "TRANSFER_EVIDENCE_REQUIRED"
+      },
+      "rationale": "shipped v0.3.2 selftest carried forward unchanged"
+    },
+    {
+      "id": "support-transfer-declared-pass",
+      "provenance": "DSH_MIGRATED_V032",
+      "kind": "MIGRATED",
+      "mode": "support",
+      "input": {
+        "claim": {
+          "claim_id": "C3",
+          "claim_type": "OTHER",
+          "subject": {
+            "kind": "HOST",
+            "id": "H2"
+          },
+          "scope": {
+            "host": "H2"
+          },
+          "assertion": "Transfer evidence supports H1 to H2 applicability.",
+          "status": "ASSERTED"
+        },
+        "support": {
+          "support_id": "S3",
+          "claim_ref": "C3",
+          "evidence_refs": [
+            "E3"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H2"
+          },
+          "transfer_basis": {
+            "required": true,
+            "type": "TRANSFER",
+            "evidence_refs": [
+              "E-TRANSFER-1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "ok": true,
+        "code": "SUPPORT_SCOPE_TRANSFER_DECLARED"
+      },
+      "rationale": "shipped v0.3.2 selftest carried forward unchanged"
+    },
+    {
+      "id": "support-derivative-independence-fail",
+      "provenance": "DSH_MIGRATED_V032",
+      "kind": "MIGRATED",
+      "mode": "support",
+      "input": {
+        "claim": {
+          "claim_id": "C4",
+          "claim_type": "OTHER",
+          "subject": {
+            "kind": "TASK",
+            "id": "T4"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "Three independent sources corroborate the claim.",
+          "status": "ASSERTED"
+        },
+        "support": {
+          "support_id": "S4",
+          "claim_ref": "C4",
+          "evidence_refs": [
+            "E-A",
+            "E-B",
+            "E-C"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          },
+          "independence_basis": {
+            "claimed_independent_count": 3,
+            "source_origins": [
+              "ORIGIN-A",
+              "ORIGIN-A",
+              "ORIGIN-A"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "ok": false,
+        "code": "INDEPENDENCE_OVERCLAIMED"
+      },
+      "rationale": "shipped v0.3.2 selftest carried forward unchanged"
+    },
+    {
+      "id": "support-independent-origins-pass",
+      "provenance": "DSH_MIGRATED_V032",
+      "kind": "MIGRATED",
+      "mode": "support",
+      "input": {
+        "claim": {
+          "claim_id": "C5",
+          "claim_type": "OTHER",
+          "subject": {
+            "kind": "TASK",
+            "id": "T5"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "Two independent sources corroborate the claim.",
+          "status": "ASSERTED"
+        },
+        "support": {
+          "support_id": "S5",
+          "claim_ref": "C5",
+          "evidence_refs": [
+            "E-A",
+            "E-B"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          },
+          "independence_basis": {
+            "claimed_independent_count": 2,
+            "source_origins": [
+              "ORIGIN-A",
+              "ORIGIN-B"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "ok": true,
+        "code": "SUPPORT_SCOPE_DIRECT_MATCH"
+      },
+      "rationale": "shipped v0.3.2 selftest carried forward unchanged"
+    },
+    {
+      "id": "obligation-material-pending-fail",
+      "provenance": "DSH_MIGRATED_V032",
+      "kind": "MIGRATED",
+      "mode": "obligation",
+      "input": {
+        "obligation": {
+          "obligation_id": "O1",
+          "materiality": "MATERIAL",
+          "trigger": {
+            "rule_ref": "R1",
+            "observed": true,
+            "evidence_refs": [
+              "E-TRIGGER"
+            ]
+          },
+          "status": "PENDING",
+          "required_before_claim_refs": [
+            "C-COMPLETE"
+          ]
+        }
+      },
+      "expect": {
+        "ok": false,
+        "code": "MATERIAL_OBLIGATION_BLOCKS_CLAIM"
+      },
+      "rationale": "shipped v0.3.2 selftest carried forward unchanged"
+    },
+    {
+      "id": "obligation-satisfied-without-evidence-fail",
+      "provenance": "DSH_MIGRATED_V032",
+      "kind": "MIGRATED",
+      "mode": "obligation",
+      "input": {
+        "obligation": {
+          "obligation_id": "O2",
+          "materiality": "MATERIAL",
+          "trigger": {
+            "rule_ref": "R2",
+            "observed": true
+          },
+          "status": "SATISFIED",
+          "closure_evidence_refs": []
+        }
+      },
+      "expect": {
+        "ok": false,
+        "code": "SATISFIED_WITHOUT_CLOSURE_EVIDENCE"
+      },
+      "rationale": "shipped v0.3.2 selftest carried forward unchanged"
+    },
+    {
+      "id": "obligation-satisfied-pass",
+      "provenance": "DSH_MIGRATED_V032",
+      "kind": "MIGRATED",
+      "mode": "obligation",
+      "input": {
+        "obligation": {
+          "obligation_id": "O3",
+          "materiality": "MATERIAL",
+          "trigger": {
+            "rule_ref": "R3",
+            "observed": true
+          },
+          "status": "SATISFIED",
+          "closure_evidence_refs": [
+            "E-CLOSE-1"
+          ]
+        }
+      },
+      "expect": {
+        "ok": true,
+        "code": "OBLIGATION_STATE_ACCEPTABLE"
+      },
+      "rationale": "shipped v0.3.2 selftest carried forward unchanged"
+    },
+    {
+      "id": "recovery-state-only-pass",
+      "provenance": "DSH_MIGRATED_V032",
+      "kind": "MIGRATED",
+      "mode": "recovery",
+      "input": {
+        "transition": {
+          "transition_id": "RT1",
+          "state_restore": {
+            "target_checkpoint": "CP1",
+            "result": "SUCCESS",
+            "evidence_refs": [
+              "E-RESTORE"
+            ]
+          },
+          "history_continuity": {
+            "status": "GAP_VISIBLE",
+            "known_gap": "post-checkpoint events unavailable"
+          },
+          "recovery_claim": {
+            "claim_ref": "C-RECOVERY-1",
+            "scope": "STATE_ONLY"
+          }
+        }
+      },
+      "expect": {
+        "ok": true,
+        "code": "STATE_ONLY_RECOVERY_SUPPORTED"
+      },
+      "rationale": "shipped v0.3.2 selftest carried forward unchanged"
+    },
+    {
+      "id": "recovery-full-history-fail",
+      "provenance": "DSH_MIGRATED_V032",
+      "kind": "MIGRATED",
+      "mode": "recovery",
+      "input": {
+        "transition": {
+          "transition_id": "RT2",
+          "state_restore": {
+            "target_checkpoint": "CP2",
+            "result": "SUCCESS"
+          },
+          "history_continuity": {
+            "status": "PARTIAL",
+            "known_gap": "some post-checkpoint events missing"
+          },
+          "recovery_claim": {
+            "claim_ref": "C-RECOVERY-2",
+            "scope": "STATE_AND_HISTORY"
+          }
+        }
+      },
+      "expect": {
+        "ok": false,
+        "code": "FULL_RECOVERY_REQUIRES_PRESERVED_HISTORY"
+      },
+      "rationale": "shipped v0.3.2 selftest carried forward unchanged"
+    },
+    {
+      "id": "P1-supported-with-refs",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-P1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "capability X verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-P1"
+          ]
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P2-asserted-ok",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-P2",
+          "claim_type": "OTHER",
+          "subject": {
+            "kind": "TASK",
+            "id": "T2"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "hypothesis",
+          "status": "ASSERTED"
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P3-authority-with-mandate",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-P3",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "capability_claims": [
+            "ENA-CAP-020"
+          ],
+          "authority_envelope": [
+            "approve stable admission"
+          ],
+          "mandate": {
+            "source": "USER_EXPLICIT_GRANT",
+            "expires_at": "2026-12-31"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P4-no-authority-ok",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-P4",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "capability_claims": [
+            "ENA-CAP-001"
+          ],
+          "authority_envelope": []
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P5-completion-satisfied",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-P5",
+          "claim_type": "WORKFLOW_COMPLETION",
+          "subject": {
+            "kind": "TASK",
+            "id": "T5"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "done",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-P5"
+          ],
+          "required_obligation_refs": [
+            "O-P5"
+          ]
+        },
+        "obligations": [
+          {
+            "obligation_id": "O-P5",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "rule_ref": "R",
+              "observed": true
+            },
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "E-CLOSE-P5"
+            ]
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P6-nonmaterial-obligation-ok",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-P6",
+          "claim_type": "WORKFLOW_COMPLETION",
+          "subject": {
+            "kind": "TASK",
+            "id": "T6"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "done",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-P6"
+          ],
+          "required_obligation_refs": [
+            "O-P6"
+          ]
+        },
+        "obligations": [
+          {
+            "obligation_id": "O-P6",
+            "materiality": "NON_MATERIAL",
+            "trigger": {
+              "rule_ref": "R",
+              "observed": true
+            },
+            "status": "PENDING"
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P7-recovery-with-history-evidence",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "transition": {
+          "transition_id": "RT-P7",
+          "state_restore": {
+            "target_checkpoint": "CP",
+            "result": "SUCCESS",
+            "evidence_refs": [
+              "E-STATE-P7"
+            ]
+          },
+          "history_continuity": {
+            "status": "PRESERVED",
+            "post_checkpoint_occurrence_delta_captured": true,
+            "evidence_refs": [
+              "E-HIST-P7"
+            ]
+          },
+          "recovery_claim": {
+            "claim_ref": "C-REC-P7",
+            "scope": "STATE_AND_HISTORY"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "UNKNOWN"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P8-recovery-state-only",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "transition": {
+          "transition_id": "RT-P8",
+          "state_restore": {
+            "target_checkpoint": "CP",
+            "result": "SUCCESS"
+          },
+          "history_continuity": {
+            "status": "GAP_VISIBLE",
+            "known_gap": "post-cp unknown"
+          },
+          "recovery_claim": {
+            "claim_ref": "C-REC-P8",
+            "scope": "STATE_ONLY"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P9-independence-distinct-roots",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S-P9",
+          "claim_ref": "C-P9",
+          "evidence_refs": [
+            "E-A",
+            "E-B"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          },
+          "independence_basis": {
+            "claimed_independent_count": 2,
+            "source_origins": [
+              "A",
+              "B"
+            ],
+            "root_provenance": [
+              "ROOT-A",
+              "ROOT-B"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "UNKNOWN"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P10-verified-with-e2",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-P10",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "capabilities": [
+            {
+              "id": "ENA-CAP-048",
+              "status": "VERIFIED_AVAILABLE",
+              "evidence_refs": [
+                {
+                  "ref": "E-TEST",
+                  "grade": "E2"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "A1-supported-zero-refs",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-A1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1",
+            "epoch": "E1"
+          },
+          "assertion": "I know capability X is VERIFIED_AVAILABLE.",
+          "status": "SUPPORTED",
+          "support_relation_refs": []
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "A2-verified-schema-pass-log",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-A2",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "capabilities": [
+            {
+              "id": "ENA-CAP-048",
+              "status": "VERIFIED_AVAILABLE",
+              "evidence_refs": [
+                {
+                  "ref": "schema-validation-PASS-log",
+                  "grade": "E1"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "A3-authority-restore-no-mandate",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-A3",
+          "agent": "me",
+          "host": "H1",
+          "runtime_instance": "clone-of-H1-after-restore",
+          "route": [
+            "r"
+          ],
+          "capability_claims": [
+            "ENA-CAP-020",
+            "ENA-CAP-037"
+          ],
+          "evidence_refs": [
+            "restore-completed-log",
+            "credential-valid"
+          ],
+          "authority_envelope": [
+            "approve stable admission",
+            "revoke leases"
+          ]
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "A4-completion-no-obligation-refs",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-A4",
+          "claim_type": "WORKFLOW_COMPLETION",
+          "subject": {
+            "kind": "TASK",
+            "id": "T4"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "Workflow complete.",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-A4"
+          ]
+        },
+        "obligations": [
+          {
+            "obligation_id": "O-A4",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "rule_ref": "R1",
+              "observed": true
+            },
+            "status": "PENDING"
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "A5-recovery-preserved-no-evidence",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "transition": {
+          "transition_id": "RT-A5",
+          "state_restore": {
+            "target_checkpoint": "CP",
+            "result": "SUCCESS",
+            "evidence_refs": [
+              "E-STATE-A5"
+            ]
+          },
+          "history_continuity": {
+            "status": "PRESERVED",
+            "post_checkpoint_occurrence_delta_captured": null,
+            "evidence_refs": []
+          },
+          "recovery_claim": {
+            "claim_ref": "C-REC-A5",
+            "scope": "STATE_AND_HISTORY"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "A6-independence-laundering",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S-A6",
+          "claim_ref": "C-A6",
+          "evidence_refs": [
+            "E-A",
+            "E-B",
+            "E-C"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          },
+          "independence_basis": {
+            "claimed_independent_count": 3,
+            "source_origins": [
+              "derived-A",
+              "derived-B",
+              "derived-C"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "A6b-independence-one-root",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S-A6b",
+          "claim_ref": "C-A6b",
+          "evidence_refs": [
+            "E-A",
+            "E-B",
+            "E-C"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          },
+          "independence_basis": {
+            "claimed_independent_count": 3,
+            "source_origins": [
+              "derived-A",
+              "derived-B",
+              "derived-C"
+            ],
+            "root_provenance": [
+              "ROOT-LOG",
+              "ROOT-LOG",
+              "ROOT-LOG"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "S1-supported-ref-to-empty-support",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "SECOND_ORDER",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-S1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-S1"
+          ]
+        },
+        "support_relations": [
+          {
+            "support_id": "S-S1",
+            "claim_ref": "C-S1",
+            "evidence_refs": [],
+            "support_status": "SUPPORTS"
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "S2-authority-mandate-restore",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "SECOND_ORDER",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-S2",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "authority_envelope": [
+            "revoke leases"
+          ],
+          "mandate": {
+            "source": "RESTORED_STATE",
+            "expires_at": "2027-01-01"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "S3-completion-with-open-obligation",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "SECOND_ORDER",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-S3",
+          "claim_type": "WORKFLOW_COMPLETION",
+          "subject": {
+            "kind": "TASK",
+            "id": "T3"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "done",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-S3"
+          ],
+          "required_obligation_refs": [
+            "O-S3"
+          ]
+        },
+        "obligations": [
+          {
+            "obligation_id": "O-S3",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "rule_ref": "R",
+              "observed": true
+            },
+            "status": "PENDING"
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "S4-recovery-history-same-evidence",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "SECOND_ORDER",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "transition": {
+          "transition_id": "RT-S4",
+          "state_restore": {
+            "target_checkpoint": "CP",
+            "result": "SUCCESS",
+            "evidence_refs": [
+              "E-SAME"
+            ]
+          },
+          "history_continuity": {
+            "status": "PRESERVED",
+            "post_checkpoint_occurrence_delta_captured": true,
+            "evidence_refs": [
+              "E-SAME"
+            ]
+          },
+          "recovery_claim": {
+            "claim_ref": "C-REC-S4",
+            "scope": "STATE_AND_HISTORY"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "S5-independence-count-vs-roots",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "SECOND_ORDER",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S-S5",
+          "claim_ref": "C-S5",
+          "evidence_refs": [
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          },
+          "independence_basis": {
+            "claimed_independent_count": 3,
+            "source_origins": [
+              "A",
+              "B",
+              "C"
+            ],
+            "root_provenance": [
+              "R1",
+              "R2"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "S6-verified-grade-e0",
+      "provenance": "DSH_HISTORICAL_V2",
+      "kind": "SECOND_ORDER",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-S6",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "capabilities": [
+            {
+              "id": "ENA-CAP-048",
+              "status": "VERIFIED_AVAILABLE",
+              "evidence_refs": [
+                {
+                  "ref": "self-assertion",
+                  "grade": "E0"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "A21-1-support-ref-unresolvable",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "ATTACK",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-A21-1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-DOES-NOT-EXIST"
+          ]
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "SUPPORTED claim points to nonexistent support_relation_ref; no registry supplied"
+    },
+    {
+      "id": "A21-2-obligation-ref-unresolvable",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "ATTACK",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-A21-2",
+          "claim_type": "WORKFLOW_COMPLETION",
+          "subject": {
+            "kind": "TASK",
+            "id": "T2"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "done",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-A21-2"
+          ],
+          "required_obligation_refs": [
+            "O-DOES-NOT-EXIST"
+          ]
+        },
+        "obligations": []
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Completion claim references obligation that does not exist in registry"
+    },
+    {
+      "id": "A21-3-grade-garbage",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "ATTACK",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-A21-3",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "capabilities": [
+            {
+              "id": "ENA-CAP-048",
+              "status": "VERIFIED_AVAILABLE",
+              "evidence_refs": [
+                {
+                  "ref": "E-x",
+                  "grade": "GARBAGE"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "grade='GARBAGE' bypasses C2 (all(g in E0,E1) is False -> passes)"
+    },
+    {
+      "id": "A21-3b-grade-out-of-range",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "ATTACK",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-A21-3b",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "capabilities": [
+            {
+              "id": "ENA-CAP-048",
+              "status": "VERIFIED_AVAILABLE",
+              "evidence_refs": [
+                {
+                  "ref": "E-y",
+                  "grade": "E9"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "grade='E9' (out of range) also passes C2"
+    },
+    {
+      "id": "A21-4-mandate-expired",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "ATTACK",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-A21-4",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "authority_envelope": [
+            "approve stable admission"
+          ],
+          "mandate": {
+            "source": "USER_EXPLICIT_GRANT",
+            "expires_at": "2020-01-01"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "expires_at in the past; C3 only checks non-empty"
+    },
+    {
+      "id": "A21-4b-mandate-malformed",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "ATTACK",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-A21-4b",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "authority_envelope": [
+            "revoke leases"
+          ],
+          "mandate": {
+            "source": "USER_EXPLICIT_GRANT",
+            "expires_at": "not-a-date"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "expires_at='not-a-date' unparseable; C3 passes (non-empty)"
+    },
+    {
+      "id": "A21-5-recovery-same-root",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "ATTACK",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "transition": {
+          "transition_id": "RT-A21-5",
+          "state_restore": {
+            "target_checkpoint": "CP",
+            "result": "SUCCESS",
+            "evidence_refs": [
+              "E-STATE"
+            ]
+          },
+          "history_continuity": {
+            "status": "PRESERVED",
+            "post_checkpoint_occurrence_delta_captured": true,
+            "evidence_refs": [
+              "E-HIST"
+            ]
+          },
+          "recovery_claim": {
+            "claim_ref": "C-REC-A21-5",
+            "scope": "STATE_AND_HISTORY"
+          }
+        },
+        "evidence_registry": {
+          "E-STATE": {
+            "root_provenance": "ROOT-LOG",
+            "derived_from": null
+          },
+          "E-HIST": {
+            "root_provenance": "ROOT-LOG",
+            "derived_from": "E-STATE"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "history evidence ref E-HIST is a derived copy of E-STATE (same root); C5 only string-compares"
+    },
+    {
+      "id": "A21-6-fabricated-roots",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "ATTACK",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S-A21-6",
+          "claim_ref": "C-A21-6",
+          "evidence_refs": [
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          },
+          "independence_basis": {
+            "claimed_independent_count": 3,
+            "source_origins": [
+              "A",
+              "B",
+              "C"
+            ],
+            "root_provenance": [
+              "MIRROR-1",
+              "MIRROR-2",
+              "MIRROR-3"
+            ]
+          }
+        },
+        "root_registry": {
+          "MIRROR-1": {
+            "actual_origin": "ACTUAL-ORIGIN"
+          },
+          "MIRROR-2": {
+            "actual_origin": "ACTUAL-ORIGIN"
+          },
+          "MIRROR-3": {
+            "actual_origin": "ACTUAL-ORIGIN"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "3 distinct root_provenance strings that are all mirrors of one actual origin; C6 counts strings"
+    },
+    {
+      "id": "A21-7-support-ref-registry-absent",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "ATTACK",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-A21-7",
+          "claim_type": "OTHER",
+          "subject": {
+            "kind": "TASK",
+            "id": "T7"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "done",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-ANY"
+          ]
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "no registry supplied at all; validator cannot resolve any ref; V2 silently passes"
+    },
+    {
+      "id": "A21-8-duplicate-support-id",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "ATTACK",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-A21-8",
+          "claim_type": "OTHER",
+          "subject": {
+            "kind": "TASK",
+            "id": "T8"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-DUP"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-DUP",
+            "claim_ref": "C-A21-8",
+            "evidence_refs": [
+              "E-a"
+            ],
+            "support_status": "SUPPORTS"
+          },
+          {
+            "support_id": "S-DUP",
+            "claim_ref": "C-A21-8",
+            "evidence_refs": [
+              "E-b"
+            ],
+            "support_status": "CONTRADICTS"
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "two different support relations share support_id S-DUP with contradictory support_status"
+    },
+    {
+      "id": "A21-9-applicability-mismatch",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "ATTACK",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-A21-9",
+          "claim_type": "OTHER",
+          "subject": {
+            "kind": "HOST",
+            "id": "H2"
+          },
+          "scope": {
+            "host": "H2"
+          },
+          "assertion": "H2 verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-A21-9"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-A21-9",
+            "claim_ref": "C-A21-9",
+            "evidence_refs": [
+              "E-9"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H2"
+            }
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "support resolves; observed_scope host=H1 but claim scope host=H2; no transfer basis; base validator would catch host mismatch, but hardened path must too"
+    },
+    {
+      "id": "P21-1-supported-resolvable",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-P21-1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-P21-1"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-P21-1",
+            "claim_ref": "C-P21-1",
+            "evidence_refs": [
+              "E-p1"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P21-2-completion-resolvable",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-P21-2",
+          "claim_type": "WORKFLOW_COMPLETION",
+          "subject": {
+            "kind": "TASK",
+            "id": "T2"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "done",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-P21-2"
+          ],
+          "required_obligation_refs": [
+            "O-P21-2"
+          ]
+        },
+        "obligations": [
+          {
+            "obligation_id": "O-P21-2",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "rule_ref": "R",
+              "observed": true
+            },
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "E-close"
+            ]
+          }
+        ],
+        "support_registry": [
+          {
+            "support_id": "S-P21-2",
+            "claim_ref": "C-P21-2",
+            "evidence_refs": [
+              "E-p2"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P21-3-grade-e2",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-P21-3",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "capabilities": [
+            {
+              "id": "ENA-CAP-048",
+              "status": "VERIFIED_AVAILABLE",
+              "evidence_refs": [
+                {
+                  "ref": "E-t",
+                  "grade": "E2"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P21-4-mandate-current",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-P21-4",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "authority_envelope": [
+            "approve stable admission"
+          ],
+          "mandate": {
+            "source": "USER_EXPLICIT_GRANT",
+            "expires_at": "2999-01-01"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P21-5-recovery-distinct-roots",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "transition": {
+          "transition_id": "RT-P21-5",
+          "state_restore": {
+            "target_checkpoint": "CP",
+            "result": "SUCCESS",
+            "evidence_refs": [
+              "E-STATE-P"
+            ]
+          },
+          "history_continuity": {
+            "status": "PRESERVED",
+            "post_checkpoint_occurrence_delta_captured": true,
+            "evidence_refs": [
+              "E-HIST-P"
+            ]
+          },
+          "recovery_claim": {
+            "claim_ref": "C-REC-P21-5",
+            "scope": "STATE_AND_HISTORY"
+          }
+        },
+        "evidence_registry": {
+          "E-STATE-P": {
+            "root_provenance": "ROOT-S",
+            "derived_from": null
+          },
+          "E-HIST-P": {
+            "root_provenance": "ROOT-H",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P21-6-independence-real-roots",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S-P21-6",
+          "claim_ref": "C-P21-6",
+          "evidence_refs": [
+            "E1",
+            "E2"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          },
+          "independence_basis": {
+            "claimed_independent_count": 2,
+            "source_origins": [
+              "A",
+              "B"
+            ],
+            "root_provenance": [
+              "R-A",
+              "R-B"
+            ]
+          }
+        },
+        "root_registry": {
+          "R-A": {
+            "actual_origin": "R-A"
+          },
+          "R-B": {
+            "actual_origin": "R-B"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P21-7-completion-nonmaterial",
+      "provenance": "DSH_HISTORICAL_V21",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-P21-7",
+          "claim_type": "WORKFLOW_COMPLETION",
+          "subject": {
+            "kind": "TASK",
+            "id": "T7"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "done",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-P21-7"
+          ],
+          "required_obligation_refs": [
+            "O-P21-7"
+          ]
+        },
+        "obligations": [
+          {
+            "obligation_id": "O-P21-7",
+            "materiality": "NON_MATERIAL",
+            "trigger": {
+              "rule_ref": "R",
+              "observed": true
+            },
+            "status": "PENDING"
+          }
+        ],
+        "support_registry": [
+          {
+            "support_id": "S-P21-7",
+            "claim_ref": "C-P21-7",
+            "evidence_refs": [
+              "E-p7"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "V22-P1-full-stack-composition",
+      "provenance": "DSH_HISTORICAL_V22",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V22P1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-V22P1"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-V22P1",
+            "claim_ref": "C-V22P1",
+            "evidence_refs": [
+              "E-V22P1"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ],
+        "evidence_registry": {
+          "E-V22P1": {
+            "root_provenance": "R-A",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "claim->support->evidence->root all resolve, applicable, valid"
+    },
+    {
+      "id": "V22-A1-support-ref-points-at-obligation",
+      "provenance": "DSH_HISTORICAL_V22",
+      "kind": "ATTACK",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V22A1",
+          "claim_type": "OTHER",
+          "subject": {
+            "kind": "TASK",
+            "id": "T1"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "SHARED-ID"
+          ]
+        },
+        "support_registry": [],
+        "obligations": [
+          {
+            "obligation_id": "SHARED-ID",
+            "materiality": "NON_MATERIAL",
+            "trigger": {
+              "rule_ref": "R",
+              "observed": false
+            },
+            "status": "PENDING"
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "support ref string collides with an obligation id; typed resolution must reject"
+    },
+    {
+      "id": "V22-A2-duplicate-obligation-id",
+      "provenance": "DSH_HISTORICAL_V22",
+      "kind": "ATTACK",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V22A2",
+          "claim_type": "WORKFLOW_COMPLETION",
+          "subject": {
+            "kind": "TASK",
+            "id": "T2"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "done",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-V22A2"
+          ],
+          "required_obligation_refs": [
+            "O-DUP"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-V22A2",
+            "claim_ref": "C-V22A2",
+            "evidence_refs": [
+              "E-a"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ],
+        "obligations": [
+          {
+            "obligation_id": "O-DUP",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "rule_ref": "R",
+              "observed": true
+            },
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "E-c"
+            ]
+          },
+          {
+            "obligation_id": "O-DUP",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "rule_ref": "R",
+              "observed": true
+            },
+            "status": "PENDING"
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "two obligations share an id with contradictory states"
+    },
+    {
+      "id": "V22-A3-mandate-expires-tomorrow-eval-today",
+      "provenance": "DSH_HISTORICAL_V22",
+      "kind": "ATTACK",
+      "mode": "case",
+      "eval_time": "2026-08-22",
+      "input": {
+        "binding": {
+          "binding_id": "B-V22A3",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "authority_envelope": [
+            "approve stable admission"
+          ],
+          "mandate": {
+            "source": "USER_EXPLICIT_GRANT",
+            "expires_at": "2026-08-21"
+          }
+        },
+        "eval_time": "2026-08-22"
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "mandate expires 2026-08-21; eval 2026-08-20 -> valid; eval 2026-08-22 -> expired (eval-time driven)"
+    },
+    {
+      "id": "V22-P3-mandate-expires-tomorrow-eval-today-valid",
+      "provenance": "DSH_HISTORICAL_V22",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-V22P3",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "authority_envelope": [
+            "approve stable admission"
+          ],
+          "mandate": {
+            "source": "USER_EXPLICIT_GRANT",
+            "expires_at": "2026-08-21"
+          }
+        },
+        "eval_time": "2026-08-20"
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "same mandate evaluated 2026-08-20 -> still valid (eval-time driven, not hardcoded)"
+    },
+    {
+      "id": "V22-A4-recovery-same-root-via-registry",
+      "provenance": "DSH_HISTORICAL_V22",
+      "kind": "ATTACK",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "transition": {
+          "transition_id": "RT-V22A4",
+          "state_restore": {
+            "target_checkpoint": "CP",
+            "result": "SUCCESS",
+            "evidence_refs": [
+              "E-ST"
+            ]
+          },
+          "history_continuity": {
+            "status": "PRESERVED",
+            "post_checkpoint_occurrence_delta_captured": true,
+            "evidence_refs": [
+              "E-HI"
+            ]
+          },
+          "recovery_claim": {
+            "claim_ref": "C-REC-V22A4",
+            "scope": "STATE_AND_HISTORY"
+          }
+        },
+        "evidence_registry": {
+          "E-ST": {
+            "root_provenance": "ROOT-X",
+            "derived_from": null
+          },
+          "E-HI": {
+            "root_provenance": "ROOT-X",
+            "derived_from": "E-ST"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "distinct ref strings, registry reveals same root -> blocked (composed V2.1 root check)"
+    },
+    {
+      "id": "V22-A5-independence-mirror-roots",
+      "provenance": "DSH_HISTORICAL_V22",
+      "kind": "ATTACK",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S-V22A5",
+          "claim_ref": "C-V22A5",
+          "evidence_refs": [
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          },
+          "independence_basis": {
+            "claimed_independent_count": 3,
+            "source_origins": [
+              "A",
+              "B",
+              "C"
+            ],
+            "root_provenance": [
+              "M1",
+              "M2",
+              "M3"
+            ]
+          }
+        },
+        "root_registry": {
+          "M1": {
+            "actual_origin": "ORIGIN"
+          },
+          "M2": {
+            "actual_origin": "ORIGIN"
+          },
+          "M3": {
+            "actual_origin": "ORIGIN"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "3 mirror roots, root registry reveals 1 origin -> overclaim blocked"
+    },
+    {
+      "id": "P1m-supported-with-refs",
+      "provenance": "DSH_HISTORICAL_V23_MIGRATED",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-P1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "capability X verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-P1"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-P1",
+            "claim_ref": "C-P1",
+            "evidence_refs": [
+              "E-P1m"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "P1 + support_registry: S-P1 resolves, carries evidence, scope applies"
+    },
+    {
+      "id": "P5m-completion-satisfied",
+      "provenance": "DSH_HISTORICAL_V23_MIGRATED",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-P5",
+          "claim_type": "WORKFLOW_COMPLETION",
+          "subject": {
+            "kind": "TASK",
+            "id": "T5"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "done",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-P5"
+          ],
+          "required_obligation_refs": [
+            "O-P5"
+          ]
+        },
+        "obligations": [
+          {
+            "obligation_id": "O-P5",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "rule_ref": "R",
+              "observed": true
+            },
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "E-CLOSE-P5"
+            ]
+          }
+        ],
+        "support_registry": [
+          {
+            "support_id": "S-P5",
+            "claim_ref": "C-P5",
+            "evidence_refs": [
+              "E-P5m"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "P5 + support_registry: S-P5 resolves with evidence; O-P5 satisfied with closure evidence"
+    },
+    {
+      "id": "P6m-nonmaterial-obligation-ok",
+      "provenance": "DSH_HISTORICAL_V23_MIGRATED",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-P6",
+          "claim_type": "WORKFLOW_COMPLETION",
+          "subject": {
+            "kind": "TASK",
+            "id": "T6"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "done",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-P6"
+          ],
+          "required_obligation_refs": [
+            "O-P6"
+          ]
+        },
+        "obligations": [
+          {
+            "obligation_id": "O-P6",
+            "materiality": "NON_MATERIAL",
+            "trigger": {
+              "rule_ref": "R",
+              "observed": true
+            },
+            "status": "PENDING"
+          }
+        ],
+        "support_registry": [
+          {
+            "support_id": "S-P6",
+            "claim_ref": "C-P6",
+            "evidence_refs": [
+              "E-P6m"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "P6 + support_registry: S-P6 resolves with evidence; O-P6 NON_MATERIAL PENDING does not block"
+    },
+    {
+      "id": "P7m-recovery-with-history-evidence",
+      "provenance": "DSH_HISTORICAL_V23_MIGRATED",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "transition": {
+          "transition_id": "RT-P7",
+          "state_restore": {
+            "target_checkpoint": "CP",
+            "result": "SUCCESS",
+            "evidence_refs": [
+              "E-STATE-P7"
+            ]
+          },
+          "history_continuity": {
+            "status": "PRESERVED",
+            "post_checkpoint_occurrence_delta_captured": true,
+            "evidence_refs": [
+              "E-HIST-P7"
+            ]
+          },
+          "recovery_claim": {
+            "claim_ref": "C-REC-P7",
+            "scope": "STATE_AND_HISTORY"
+          }
+        },
+        "evidence_registry": {
+          "E-STATE-P7": {
+            "root_provenance": "ROOT-S7",
+            "derived_from": null
+          },
+          "E-HIST-P7": {
+            "root_provenance": "ROOT-H7",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "P7 + evidence_registry: E-STATE-P7 and E-HIST-P7 register DISTINCT roots"
+    },
+    {
+      "id": "P9m-independence-distinct-roots",
+      "provenance": "DSH_HISTORICAL_V23_MIGRATED",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S-P9",
+          "claim_ref": "C-P9",
+          "evidence_refs": [
+            "E-A",
+            "E-B"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          },
+          "independence_basis": {
+            "claimed_independent_count": 2,
+            "source_origins": [
+              "A",
+              "B"
+            ],
+            "root_provenance": [
+              "ROOT-A",
+              "ROOT-B"
+            ]
+          }
+        },
+        "root_registry": {
+          "ROOT-A": {
+            "actual_origin": "ROOT-A"
+          },
+          "ROOT-B": {
+            "actual_origin": "ROOT-B"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "P9 + root_registry: ROOT-A/ROOT-B register DISTINCT actual origins; claimed 2 <= 2"
+    },
+    {
+      "id": "I01-support-target-mismatch",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "INDEPENDENT",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "agent-A"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "material claim",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S1",
+            "claim_ref": "C-OTHER",
+            "evidence_refs": [
+              "E1"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Resolved support relation targets another claim; borrowing another claim support must not endorse C1."
+    },
+    {
+      "id": "I02-recovery-empty-present-registry",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "INDEPENDENT",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "transition": {
+          "transition_id": "RT-I02",
+          "state_restore": {
+            "target_checkpoint": "CP",
+            "result": "SUCCESS",
+            "evidence_refs": [
+              "E-STATE"
+            ]
+          },
+          "history_continuity": {
+            "status": "PRESERVED",
+            "post_checkpoint_occurrence_delta_captured": true,
+            "evidence_refs": [
+              "E-HIST"
+            ]
+          },
+          "recovery_claim": {
+            "claim_ref": "C-REC-I02",
+            "scope": "STATE_AND_HISTORY"
+          }
+        },
+        "evidence_registry": {}
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Registry is present but both mandatory evidence refs are unresolved; this is broken evidence, not verified distinct provenance."
+    },
+    {
+      "id": "I03-independence-empty-present-root-registry",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "INDEPENDENT",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S-I03",
+          "claim_ref": "C-I03",
+          "evidence_refs": [
+            "E1",
+            "E2"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          },
+          "independence_basis": {
+            "claimed_independent_count": 2,
+            "source_origins": [
+              "A",
+              "B"
+            ],
+            "root_provenance": [
+              "R1",
+              "R2"
+            ]
+          }
+        },
+        "root_registry": {}
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Present-but-incomplete root registry must not fall back to raw root labels as verified origins."
+    },
+    {
+      "id": "I04-support-model-binding-mismatch",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "INDEPENDENT",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "agent-A"
+          },
+          "scope": {
+            "host": "H1",
+            "model_binding": "M2"
+          },
+          "assertion": "material claim",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "evidence_refs": [
+              "E1"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1",
+              "model_binding": "M1"
+            },
+            "claimed_scope": {
+              "host": "H1",
+              "model_binding": "M2"
+            }
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Model binding is an applicability boundary in the baseline contract; mismatch needs transfer evidence."
+    },
+    {
+      "id": "I05-support-missing-runtime-observation",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "INDEPENDENT",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "agent-A"
+          },
+          "scope": {
+            "host": "H1",
+            "runtime_instance": "R2"
+          },
+          "assertion": "material claim",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "evidence_refs": [
+              "E1"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1",
+              "runtime_instance": "R2"
+            }
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Claimed runtime instance is not observed; absence of observed applicability cannot be treated as a direct match."
+    },
+    {
+      "id": "I06-top-level-support-composes-legitimately",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "INDEPENDENT",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "agent-A"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "material claim",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support": {
+          "support_id": "S1",
+          "claim_ref": "C1",
+          "evidence_refs": [
+            "E1"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "The exact referenced support artifact is present as the top-level support object and passes the shipped support validator."
+    },
+    {
+      "id": "I07-unrelated-open-obligation-does-not-block-narrow-claim",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "INDEPENDENT",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "TASK_COMPLETION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "agent-A"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "material claim",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ],
+          "required_obligation_refs": [
+            "O-GOOD"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "evidence_refs": [
+              "E1"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ],
+        "obligations": [
+          {
+            "obligation_id": "O-GOOD",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "rule_ref": "R1",
+              "observed": true
+            },
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "E-CLOSE"
+            ]
+          },
+          {
+            "obligation_id": "O-OTHER",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "rule_ref": "R2",
+              "observed": true
+            },
+            "status": "PENDING",
+            "required_before_claim_refs": [
+              "C-OTHER"
+            ]
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "Core semantics explicitly allow narrower truthful completion; an unrelated obligation tied to another claim should not globally poison this claim."
+    },
+    {
+      "id": "I08-duplicate-support-id-same-status-ambiguous",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "INDEPENDENT",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "agent-A"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "material claim",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S1",
+            "claim_ref": "C-OTHER",
+            "evidence_refs": [
+              "E-OTHER"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          },
+          {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "evidence_refs": [
+              "E-RIGHT"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Duplicate IDs remain ambiguous even when support_status strings happen to match; resolution order must not decide truth."
+    },
+    {
+      "id": "I09-support-evidence-ref-unresolved",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "INDEPENDENT",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "agent-A"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "material claim",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "evidence_refs": [
+              "E-NOPE"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ],
+        "evidence_registry": {}
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "A support artifact carrying a nonempty but nonexistent evidence ref does not have resolvable evidence."
+    },
+    {
+      "id": "I10-verified-capability-evidence-ref-unresolved",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "INDEPENDENT",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-I10",
+          "agent": "agent-A",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "capabilities": [
+            {
+              "id": "ENA-CAP-X",
+              "status": "VERIFIED_AVAILABLE",
+              "evidence_refs": [
+                {
+                  "ref": "E-NOPE",
+                  "grade": "E5"
+                }
+              ]
+            }
+          ]
+        },
+        "evidence_registry": {}
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "A high self-declared grade cannot substitute for existence/resolution of the referenced evidence artifact."
+    },
+    {
+      "id": "I11-self-asserted-mandate-source",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "INDEPENDENT",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-I11",
+          "agent": "agent-A",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "authority_envelope": [
+            "approve consequential effect"
+          ],
+          "mandate": {
+            "source": "SELF_ASSERTED",
+            "expires_at": "2999-01-01"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "A source token that is explicitly self-asserted is not an authorizing mandate source merely because it is nonempty and not on a small denylist."
+    },
+    {
+      "id": "I12-transfer-evidence-ref-unresolved",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "INDEPENDENT",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "agent-A"
+          },
+          "scope": {
+            "host": "H2"
+          },
+          "assertion": "material claim",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "evidence_refs": [
+              "E1"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H2"
+            },
+            "transfer_basis": {
+              "required": true,
+              "type": "EQUIVALENCE",
+              "evidence_refs": [
+                "E-TRANSFER-NOPE"
+              ]
+            }
+          }
+        ],
+        "evidence_registry": {}
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Scope transfer is itself consequential evidence and its evidence refs must resolve; nonempty strings are insufficient."
+    },
+    {
+      "id": "I13-recovery-full-claim-without-state-evidence",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "INDEPENDENT",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "transition": {
+          "transition_id": "RT-I13",
+          "state_restore": {
+            "target_checkpoint": "CP",
+            "result": "SUCCESS",
+            "evidence_refs": []
+          },
+          "history_continuity": {
+            "status": "PRESERVED",
+            "post_checkpoint_occurrence_delta_captured": true,
+            "evidence_refs": [
+              "E-HIST"
+            ]
+          },
+          "recovery_claim": {
+            "claim_ref": "C-REC-I13",
+            "scope": "STATE_AND_HISTORY"
+          }
+        },
+        "evidence_registry": {
+          "E-HIST": {
+            "root_provenance": "RH"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "A consequential STATE_AND_HISTORY recovery claim needs positive evidence of state restoration as well as history continuity."
+    },
+    {
+      "id": "I14-supported-claim-only-partial-support",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "INDEPENDENT",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "agent-A"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "material claim",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "evidence_refs": [
+              "E1"
+            ],
+            "support_status": "PARTIAL",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "UNKNOWN"
+      },
+      "rationale": "PARTIAL support does not by itself establish a full SUPPORTED claim unless the assertion is explicitly narrowed to the supported envelope."
+    },
+    {
+      "id": "I15-root-registry-list-shape",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "INDEPENDENT",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S-I15",
+          "claim_ref": "C-I15",
+          "evidence_refs": [
+            "E1",
+            "E2"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          },
+          "independence_basis": {
+            "claimed_independent_count": 2,
+            "source_origins": [
+              "A",
+              "B"
+            ],
+            "root_provenance": [
+              "R1",
+              "R2"
+            ]
+          }
+        },
+        "root_registry": [
+          {
+            "id": "R1",
+            "actual_origin": "O1"
+          },
+          {
+            "id": "R2",
+            "actual_origin": "O2"
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "evaluate() accepts list-valued *_registry inputs generically; a plausible registry shape should not crash the machine contract."
+    },
+    {
+      "id": "I16-support-registry-dict-shape",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "INDEPENDENT",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "agent-A"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "material claim",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "evidence_refs": [
+              "E1"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "evaluate() accepts dict-valued *_registry inputs generically; registry representation differences should fail semantically, not raise AttributeError."
+    },
+    {
+      "id": "O01-legitimate-but-labeled-ATTACK",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "ORACLE_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-O1",
+          "claim_type": "OTHER",
+          "subject": {
+            "kind": "TASK",
+            "id": "T"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "hypothesis",
+          "status": "ASSERTED"
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "Expected verdict must derive from semantics, not from fixture kind label (ATTACK)."
+    },
+    {
+      "id": "O02-malformed-reusing-migrated-id",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "ORACLE_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-OM",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "agent-A"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "material claim",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Reusing a hard-coded migrated ID must not force expected OK; structure (no registries) decides the verdict."
+    },
+    {
+      "id": "O03-empty-registry-recovery-classifier",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "ORACLE_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "transition": {
+          "transition_id": "RT-O03",
+          "state_restore": {
+            "target_checkpoint": "CP",
+            "result": "SUCCESS",
+            "evidence_refs": [
+              "E-STATE"
+            ]
+          },
+          "history_continuity": {
+            "status": "PRESERVED",
+            "post_checkpoint_occurrence_delta_captured": true,
+            "evidence_refs": [
+              "E-HIST"
+            ]
+          },
+          "recovery_claim": {
+            "claim_ref": "C-REC-O03",
+            "scope": "STATE_AND_HISTORY"
+          }
+        },
+        "evidence_registry": {}
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Empty present evidence registry must not classify as sufficient-positive; the shared blind spot must not reappear in the oracle."
+    },
+    {
+      "id": "O04-top-level-support-classifier",
+      "provenance": "GPT56SOL_INDEPENDENT",
+      "kind": "ORACLE_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "agent-A"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "material claim",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support": {
+          "support_id": "S1",
+          "claim_ref": "C1",
+          "evidence_refs": [
+            "E1"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "Top-level support composition is legitimate; oracle and evaluator must agree on representation."
+    },
+    {
+      "id": "V24-P01-full-stack-supported",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24P1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1",
+            "runtime_instance": "R1"
+          },
+          "assertion": "capability X verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-V24P1"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-V24P1",
+            "claim_ref": "C-V24P1",
+            "evidence_refs": [
+              "E-V24P1"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1",
+              "runtime_instance": "R1"
+            },
+            "claimed_scope": {
+              "host": "H1",
+              "runtime_instance": "R1"
+            }
+          }
+        ],
+        "evidence_registry": {
+          "E-V24P1": {
+            "root_provenance": "R-A",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "legitimate positive control for I01 (support-target binding) and I09 (support evidence resolution)"
+    },
+    {
+      "id": "V24-P02-verified-capability-resolvable-evidence",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-V24P2",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "capabilities": [
+            {
+              "id": "ENA-CAP-X",
+              "status": "VERIFIED_AVAILABLE",
+              "evidence_refs": [
+                {
+                  "ref": "E-V24P2",
+                  "grade": "E2"
+                }
+              ]
+            }
+          ]
+        },
+        "evidence_registry": {
+          "E-V24P2": {
+            "root_provenance": "R-B",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "legitimate positive control for I10 (evidence existence on capability path)"
+    },
+    {
+      "id": "V24-P03-full-recovery-both-evidence",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "transition": {
+          "transition_id": "RT-V24P3",
+          "state_restore": {
+            "target_checkpoint": "CP",
+            "result": "SUCCESS",
+            "evidence_refs": [
+              "E-ST-V24P3"
+            ]
+          },
+          "history_continuity": {
+            "status": "PRESERVED",
+            "post_checkpoint_occurrence_delta_captured": true,
+            "evidence_refs": [
+              "E-HI-V24P3"
+            ]
+          },
+          "recovery_claim": {
+            "claim_ref": "C-REC-V24P3",
+            "scope": "STATE_AND_HISTORY"
+          }
+        },
+        "evidence_registry": {
+          "E-ST-V24P3": {
+            "root_provenance": "ROOT-S",
+            "derived_from": null
+          },
+          "E-HI-V24P3": {
+            "root_provenance": "ROOT-H",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "legitimate positive control for I02 (present-but-missing evidence) and I13 (state evidence)"
+    },
+    {
+      "id": "V24-P04-independence-resolvable-roots",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S-V24P4",
+          "claim_ref": "C-V24P4",
+          "evidence_refs": [
+            "E1",
+            "E2"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          },
+          "independence_basis": {
+            "claimed_independent_count": 2,
+            "source_origins": [
+              "A",
+              "B"
+            ],
+            "root_provenance": [
+              "R1",
+              "R2"
+            ]
+          }
+        },
+        "root_registry": [
+          {
+            "id": "R1",
+            "actual_origin": "O1"
+          },
+          {
+            "id": "R2",
+            "actual_origin": "O2"
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "legitimate positive control for I03 (root resolution) and I15 (list-form root registry)"
+    },
+    {
+      "id": "V24-P05-transfer-with-resolvable-evidence",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24P5",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H2"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-V24P5"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-V24P5",
+            "claim_ref": "C-V24P5",
+            "evidence_refs": [
+              "E-V24P5"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H2"
+            },
+            "transfer_basis": {
+              "required": true,
+              "type": "EQUIVALENCE",
+              "evidence_refs": [
+                "E-TR-V24P5"
+              ]
+            }
+          }
+        ],
+        "evidence_registry": {
+          "E-V24P5": {
+            "root_provenance": "R-C",
+            "derived_from": null
+          },
+          "E-TR-V24P5": {
+            "root_provenance": "R-C",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "legitimate positive control for I12 (transfer evidence resolution)"
+    },
+    {
+      "id": "V24-P06-full-applicability-envelope",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24P6",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1",
+            "runtime_instance": "R1",
+            "model_binding": "M1",
+            "route": "r1",
+            "configuration": "cfg1",
+            "epoch": "E1",
+            "time_interval": "T1",
+            "task_scope": "TS1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-V24P6"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-V24P6",
+            "claim_ref": "C-V24P6",
+            "evidence_refs": [
+              "E-V24P6"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1",
+              "runtime_instance": "R1",
+              "model_binding": "M1",
+              "route": "r1",
+              "configuration": "cfg1",
+              "epoch": "E1",
+              "time_interval": "T1",
+              "task_scope": "TS1"
+            },
+            "claimed_scope": {
+              "host": "H1",
+              "runtime_instance": "R1",
+              "model_binding": "M1",
+              "route": "r1",
+              "configuration": "cfg1",
+              "epoch": "E1",
+              "time_interval": "T1",
+              "task_scope": "TS1"
+            }
+          }
+        ],
+        "evidence_registry": {
+          "E-V24P6": {
+            "root_provenance": "R-D",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "legitimate positive control for I04/I05 (full applicability envelope, all dimensions observed)"
+    },
+    {
+      "id": "V24-P07-top-level-support",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24P7",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-V24P7"
+          ]
+        },
+        "support": {
+          "support_id": "S-V24P7",
+          "claim_ref": "C-V24P7",
+          "evidence_refs": [
+            "E-V24P7"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          }
+        },
+        "evidence_registry": {
+          "E-V24P7": {
+            "root_provenance": "R-E",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "legitimate positive control for I06 (top-level support representation composes)"
+    },
+    {
+      "id": "V24-P08-narrow-completion-unrelated-obligation",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24P8",
+          "claim_type": "WORKFLOW_COMPLETION",
+          "subject": {
+            "kind": "TASK",
+            "id": "T8"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "done",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-V24P8"
+          ],
+          "required_obligation_refs": [
+            "O-GOOD-V24P8"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-V24P8",
+            "claim_ref": "C-V24P8",
+            "evidence_refs": [
+              "E-V24P8"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ],
+        "obligations": [
+          {
+            "obligation_id": "O-GOOD-V24P8",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "rule_ref": "R",
+              "observed": true
+            },
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "E-CLOSE-V24P8"
+            ]
+          },
+          {
+            "obligation_id": "O-OTHER-V24P8",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "rule_ref": "R2",
+              "observed": true
+            },
+            "status": "PENDING",
+            "required_before_claim_refs": [
+              "C-ANOTHER"
+            ]
+          }
+        ],
+        "evidence_registry": {
+          "E-V24P8": {
+            "root_provenance": "R-F",
+            "derived_from": null
+          },
+          "E-CLOSE-V24P8": {
+            "root_provenance": "R-F",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "legitimate positive control for I07 (claim-aware obligation blocking)"
+    },
+    {
+      "id": "V24-P09-dict-support-registry-unique-ids",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24P9",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-V24P9"
+          ]
+        },
+        "support_registry": {
+          "S-V24P9": {
+            "support_id": "S-V24P9",
+            "claim_ref": "C-V24P9",
+            "evidence_refs": [
+              "E-V24P9"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        },
+        "evidence_registry": {
+          "E-V24P9": {
+            "root_provenance": "R-G",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "legitimate positive control for I08 (identity uniqueness) and I16 (dict-form support registry)"
+    },
+    {
+      "id": "V24-P10-typed-mandate-source",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-V24P10",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "authority_envelope": [
+            "approve stable admission"
+          ],
+          "mandate": {
+            "source": "USER_EXPLICIT_GRANT",
+            "expires_at": "2999-01-01"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "legitimate positive control for I11 (positively typed mandate source)"
+    },
+    {
+      "id": "V24-P11-narrowed-partial-claim",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24P11",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "partially verified subset",
+          "status": "SUPPORTED",
+          "support_claim": "PARTIAL",
+          "support_relation_refs": [
+            "S-V24P11"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-V24P11",
+            "claim_ref": "C-V24P11",
+            "evidence_refs": [
+              "E-V24P11"
+            ],
+            "support_status": "PARTIAL",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ],
+        "evidence_registry": {
+          "E-V24P11": {
+            "root_provenance": "R-H",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "legitimate positive control for I14 (explicitly narrowed partial claim is OK)"
+    },
+    {
+      "id": "V24-P12-identical-duplicate-dedup",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24P12",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-V24P12"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-V24P12",
+            "claim_ref": "C-V24P12",
+            "evidence_refs": [
+              "E-V24P12"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          },
+          {
+            "support_id": "S-V24P12",
+            "claim_ref": "C-V24P12",
+            "evidence_refs": [
+              "E-V24P12"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ],
+        "evidence_registry": {
+          "E-V24P12": {
+            "root_provenance": "R-I",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "R5: byte-identical duplicates are the same artifact, not an ambiguity"
+    },
+    {
+      "id": "V24-P13-authority-registry-grant",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-V24P13",
+          "agent": "agent-A",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "authority_envelope": [
+            "approve consequential effect"
+          ],
+          "mandate": {
+            "source": "GRANT-1",
+            "expires_at": "2999-01-01"
+          }
+        },
+        "authority_registry": [
+          {
+            "grant_id": "GRANT-1",
+            "agent": "agent-A",
+            "host": "H1",
+            "expires_at": "2999-12-31"
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "R9: mandate source positively verified via an upstream authority registry"
+    },
+    {
+      "id": "V24-P14-top-level-and-registry-consistent",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24P14",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-V24P14"
+          ]
+        },
+        "support": {
+          "support_id": "S-V24P14",
+          "claim_ref": "C-V24P14",
+          "evidence_refs": [
+            "E-V24P14"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          }
+        },
+        "support_registry": [
+          {
+            "support_id": "S-V24P14",
+            "claim_ref": "C-V24P14",
+            "evidence_refs": [
+              "E-V24P14"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ],
+        "evidence_registry": {
+          "E-V24P14": {
+            "root_provenance": "R-J",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "R6: identical top-level and registry representations compose (deduped)"
+    },
+    {
+      "id": "V24-P15-list-evidence-registry",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24P15",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-V24P15"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-V24P15",
+            "claim_ref": "C-V24P15",
+            "evidence_refs": [
+              "E-V24P15"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ],
+        "evidence_registry": [
+          {
+            "evidence_id": "E-V24P15",
+            "root_provenance": "R-K",
+            "derived_from": null
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "R3: list-form evidence registry composes with support evidence resolution"
+    },
+    {
+      "id": "V24-A01-top-level-support-wrong-claim-ref",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24A1",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-V24A1"
+          ]
+        },
+        "support": {
+          "support_id": "S-V24A1",
+          "claim_ref": "C-OTHER",
+          "evidence_refs": [
+            "E-V24A1"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "I06 fix (top-level support composes) must not reopen I01: wrong claim_ref still BLOCKs"
+    },
+    {
+      "id": "V24-A02-own-open-obligation-blocks",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24A2",
+          "claim_type": "WORKFLOW_COMPLETION",
+          "subject": {
+            "kind": "TASK",
+            "id": "T2"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "done",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-V24A2"
+          ],
+          "required_obligation_refs": [
+            "O-OWN-V24A2"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-V24A2",
+            "claim_ref": "C-V24A2",
+            "evidence_refs": [
+              "E-V24A2"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ],
+        "obligations": [
+          {
+            "obligation_id": "O-OWN-V24A2",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "rule_ref": "R",
+              "observed": true
+            },
+            "status": "PENDING"
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "I07 fix (claim-aware) must not reopen S3: the claim's OWN open material obligation still BLOCKs"
+    },
+    {
+      "id": "V24-A03-bound-open-obligation-blocks",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24A3",
+          "claim_type": "WORKFLOW_COMPLETION",
+          "subject": {
+            "kind": "TASK",
+            "id": "T3"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "done",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-V24A3"
+          ],
+          "required_obligation_refs": [
+            "O-GOOD-V24A3"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-V24A3",
+            "claim_ref": "C-V24A3",
+            "evidence_refs": [
+              "E-V24A3"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ],
+        "obligations": [
+          {
+            "obligation_id": "O-GOOD-V24A3",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "rule_ref": "R",
+              "observed": true
+            },
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "E-CLOSE-V24A3"
+            ]
+          },
+          {
+            "obligation_id": "O-BOUND-V24A3",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "rule_ref": "R2",
+              "observed": true
+            },
+            "status": "PENDING",
+            "required_before_claim_refs": [
+              "C-V24A3"
+            ]
+          }
+        ],
+        "evidence_registry": {
+          "E-V24A3": {
+            "root_provenance": "R-L",
+            "derived_from": null
+          },
+          "E-CLOSE-V24A3": {
+            "root_provenance": "R-L",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "R7: an open obligation explicitly bound to this claim still gates it"
+    },
+    {
+      "id": "V24-A04-malformed-support-registry",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24A4",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-V24A4"
+          ]
+        },
+        "support_registry": [
+          "not-an-artifact",
+          "also-not"
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "R11: malformed registry shape yields REGISTRY_MALFORMED, never an exception"
+    },
+    {
+      "id": "V24-A05-malformed-root-registry",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S-V24A5",
+          "claim_ref": "C-V24A5",
+          "evidence_refs": [
+            "E1"
+          ],
+          "support_status": "SUPPORTS",
+          "observed_scope": {
+            "host": "H1"
+          },
+          "claimed_scope": {
+            "host": "H1"
+          },
+          "independence_basis": {
+            "claimed_independent_count": 2,
+            "source_origins": [
+              "A",
+              "B"
+            ],
+            "root_provenance": [
+              "R1",
+              "R2"
+            ]
+          }
+        },
+        "root_registry": [
+          {
+            "id": "R1"
+          },
+          "garbage"
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "R11: malformed root registry shape yields REGISTRY_MALFORMED, never an exception"
+    },
+    {
+      "id": "V24-A06-support-ref-type-scoped",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24A6",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "E-ONLY"
+          ]
+        },
+        "evidence_registry": {
+          "E-ONLY": {
+            "root_provenance": "R-M",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "R1: refs resolve within their own artifact type; an evidence id is not a support"
+    },
+    {
+      "id": "V24-A07-capability-evidence-missing-present-registry",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-V24A7",
+          "agent": "me",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "capabilities": [
+            {
+              "id": "ENA-CAP-X",
+              "status": "VERIFIED_AVAILABLE",
+              "evidence_refs": [
+                {
+                  "ref": "E-GONE",
+                  "grade": "E2"
+                }
+              ]
+            }
+          ]
+        },
+        "evidence_registry": {
+          "E-OTHER": {
+            "root_provenance": "R-N",
+            "derived_from": null
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "R3: grade E2 cannot substitute for evidence existence when the registry is supplied"
+    },
+    {
+      "id": "V24-A08-duplicate-same-status-different-scope",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24A8",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-DUP-V24A8"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-DUP-V24A8",
+            "claim_ref": "C-V24A8",
+            "evidence_refs": [
+              "E-a"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          },
+          {
+            "support_id": "S-DUP-V24A8",
+            "claim_ref": "C-V24A8",
+            "evidence_refs": [
+              "E-b"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H2"
+            },
+            "claimed_scope": {
+              "host": "H2"
+            }
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "R5: identity ambiguity exists beyond status-token differences (different scope)"
+    },
+    {
+      "id": "V24-A09-authority-registry-missing-grant",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "binding_id": "B-V24A9",
+          "agent": "agent-A",
+          "host": "H1",
+          "route": [
+            "r"
+          ],
+          "authority_envelope": [
+            "approve consequential effect"
+          ],
+          "mandate": {
+            "source": "GRANT-X",
+            "expires_at": "2999-01-01"
+          }
+        },
+        "authority_registry": [
+          {
+            "grant_id": "GRANT-OTHER",
+            "agent": "agent-A",
+            "host": "H1",
+            "expires_at": "2999-12-31"
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "R9: a present authority registry that does not contain the grant does not authorize"
+    },
+    {
+      "id": "V24-A10-support-evidence-missing-list-registry",
+      "provenance": "DSH_V24_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C-V24A10",
+          "claim_type": "CAPABILITY_QUALIFICATION",
+          "subject": {
+            "kind": "AGENT",
+            "id": "me"
+          },
+          "scope": {
+            "host": "H1"
+          },
+          "assertion": "verified",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S-V24A10"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S-V24A10",
+            "claim_ref": "C-V24A10",
+            "evidence_refs": [
+              "E-V24A10"
+            ],
+            "support_status": "SUPPORTS",
+            "observed_scope": {
+              "host": "H1"
+            },
+            "claimed_scope": {
+              "host": "H1"
+            }
+          }
+        ],
+        "evidence_registry": [
+          {
+            "evidence_id": "E-OTHER10",
+            "root_provenance": "R-O",
+            "derived_from": null
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "R3: list-form registry present but missing the referenced evidence still BLOCKs"
+    },
+    {
+      "id": "IND-01",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "TASK_COMPLETION",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ],
+          "required_obligation_refs": [
+            "O1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "obligations": {
+          "O1": {
+            "obligation_id": "O1",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "OPEN",
+            "required_before_claim_refs": [
+              "C1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Material observed OPEN obligation bound to completion claim; shipped triggered-obligation.v1.schema.json status enum has no OPEN -> F2 closure: schema-valid-input precondition machine-enforced -> BLOCK."
+    },
+    {
+      "id": "IND-02E",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E2"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E2",
+            "root_provenance": "X"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Evidence registry dict key 'E1' != inner evidence_id 'E2'; referenced by declared id. F1 closure: reject key!=inner-id as REGISTRY_MALFORMED (explicit verdict)."
+    },
+    {
+      "id": "IND-02E-rev",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E2",
+            "root_provenance": "X"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Resolving by dict key returns artifact whose inner id disagrees. F1 closure: divergence is rejected as REGISTRY_MALFORMED, eliminating identity confusion."
+    },
+    {
+      "id": "IND-02E-ctrl",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "Evidence registry key==inner-id resolves correctly (control)."
+    },
+    {
+      "id": "IND-02O",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "TASK_COMPLETION",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ],
+          "required_obligation_refs": [
+            "O2"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "obligations": {
+          "O1": {
+            "obligation_id": "O2",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "E1"
+            ],
+            "required_before_claim_refs": [
+              "C1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Obligation registry dict key 'O1' != inner obligation_id 'O2'; referenced by declared id. F1 closure: REGISTRY_MALFORMED."
+    },
+    {
+      "id": "IND-02R",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S1",
+          "claim_ref": "C1",
+          "support_status": "SUPPORTS",
+          "evidence_refs": [
+            "E1"
+          ],
+          "independence_basis": {
+            "claimed_independent_count": 1,
+            "root_provenance": [
+              "R2"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "root_registry": {
+          "R1": {
+            "root_id": "R2"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Root registry dict key 'R1' != inner root_id 'R2'; independence references R2. F1 closure: REGISTRY_MALFORMED."
+    },
+    {
+      "id": "IND-02A",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "authority_envelope": [
+            "x"
+          ],
+          "mandate": {
+            "source": "G2",
+            "expires_at": "2099-01-01"
+          }
+        },
+        "authority_registry": {
+          "G1": {
+            "grant_id": "G2",
+            "agent": null,
+            "host": null,
+            "expires_at": "2099-01-01"
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Authority registry dict key 'G1' != inner grant_id 'G2'; mandate references G2. F1 closure: REGISTRY_MALFORMED."
+    },
+    {
+      "id": "IND-03Ea",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {}
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "Evidence registry DICT with missing inner id -> backfilled from key -> OK (backfill representation remains supported)."
+    },
+    {
+      "id": "IND-03Eb",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": [
+          {}
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Same 'no id' as LIST -> REGISTRY_MALFORMED (representation rule: dict keys backfill; list entries must declare their id)."
+    },
+    {
+      "id": "IND-04",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1",
+              "E2"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "Support asserts evidence_refs but no evidence registry -> no existence verification (documented boundary #1; unchanged)."
+    },
+    {
+      "id": "IND-05",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "capabilities": [
+            {
+              "status": "VERIFIED_AVAILABLE",
+              "evidence_refs": [
+                {
+                  "grade": "E3",
+                  "ref": "E1"
+                }
+              ]
+            }
+          ]
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "Authority envelope absent -> no authorization check (documented boundary; unchanged)."
+    },
+    {
+      "id": "IND-06",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "authority_envelope": [
+            "x"
+          ],
+          "mandate": {
+            "source": "G1",
+            "expires_at": "2099-01-01"
+          },
+          "capabilities": [
+            {
+              "status": "VERIFIED_AVAILABLE",
+              "evidence_refs": [
+                {
+                  "grade": "E3",
+                  "ref": "E1"
+                }
+              ]
+            }
+          ]
+        },
+        "authority_registry": {
+          "G1": {
+            "grant_id": "G1",
+            "agent": null,
+            "host": null,
+            "expires_at": "2099-01-01"
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "Grant with no agent/host scope authorizes every binding (documented boundary #2; unchanged)."
+    },
+    {
+      "id": "IND-07",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S1",
+          "claim_ref": "C1",
+          "support_status": "SUPPORTS",
+          "evidence_refs": [
+            "E1"
+          ],
+          "independence_basis": {
+            "claimed_independent_count": 2,
+            "root_provenance": [
+              "provA",
+              "provB"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "root_registry": {
+          "R1": {
+            "root_id": "R1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Concrete provenance strings misread as registry refs when registry present -> BLOCK (conceded by validator as defensible: roots must be registered when a registry is present; unchanged)."
+    },
+    {
+      "id": "IND-08",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S1",
+          "claim_ref": "C1",
+          "support_status": "SUPPORTS",
+          "evidence_refs": [
+            "E1"
+          ],
+          "independence_basis": {
+            "claimed_independent_count": 2,
+            "root_provenance": [
+              "provA",
+              "provB"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "UNKNOWN"
+      },
+      "rationale": "Concrete strings fully satisfy independence yet absent registry yields UNKNOWN (conceded: documented P9 posture; unchanged)."
+    },
+    {
+      "id": "IND-09",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "transition": {
+          "recovery_claim": {
+            "scope": "STATE_AND_HISTORY"
+          },
+          "state_restore": {
+            "result": "SUCCESS",
+            "evidence_refs": [
+              "E1"
+            ]
+          },
+          "history_continuity": {
+            "status": "PRESERVED",
+            "post_checkpoint_occurrence_delta_captured": true,
+            "evidence_refs": [
+              "E2"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "UNKNOWN"
+      },
+      "rationale": "Recovery evidence asserted but unverifiable (no registry) -> UNKNOWN (documented boundary #1/#3; unchanged)."
+    },
+    {
+      "id": "IND-10",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "transition": {
+          "recovery_claim": {
+            "scope": "STATE_AND_HISTORY"
+          },
+          "state_restore": {
+            "result": "SUCCESS",
+            "evidence_refs": [
+              "E1"
+            ]
+          },
+          "history_continuity": {
+            "status": "PRESERVED",
+            "post_checkpoint_occurrence_delta_captured": true,
+            "evidence_refs": [
+              "E2"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1",
+            "root_provenance": "RT"
+          },
+          "E2": {
+            "evidence_id": "E2",
+            "root_provenance": "RT"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Legitimate BLOCK: history and state evidence share a root (control)."
+    },
+    {
+      "id": "IND-11",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": "i-am-a-string"
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Malformed registry shape fails closed, never raises (control; R11)."
+    },
+    {
+      "id": "IND-12a",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          },
+          {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        ],
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "Byte-identical duplicate ids allowed (control; R5 dedup)."
+    },
+    {
+      "id": "IND-12b",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          },
+          {
+            "support_id": "S1",
+            "claim_ref": "C2",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        ],
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Ambiguous duplicate ids rejected (control; R5)."
+    },
+    {
+      "id": "IND-13a",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_claim": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "PARTIAL",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "UNKNOWN"
+      },
+      "rationale": "Partial cannot establish full SUPPORTED (control; R10)."
+    },
+    {
+      "id": "IND-13b",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_claim": "PARTIAL",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "PARTIAL",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "Explicitly narrowed partial claim accepted (control; R10)."
+    },
+    {
+      "id": "IND-14",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C2",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Resolved support claim_ref must equal current claim (control; R2)."
+    },
+    {
+      "id": "IND-15",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "authority_envelope": [
+            "x"
+          ],
+          "mandate": {
+            "source": "USER_EXPLICIT_GRANT",
+            "expires_at": "2020-01-01"
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Expired mandate blocked (control; R9)."
+    },
+    {
+      "id": "IND-16",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "WORKFLOW_COMPLETION",
+          "status": "COMPLETED",
+          "required_obligation_refs": []
+        },
+        "obligations": {}
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "Completion claim without obligation refs -> BLOCK (control; R7)."
+    },
+    {
+      "id": "IND-17",
+      "provenance": "WORKBUDDY_INDEPENDENT",
+      "kind": "WB_PROBE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ],
+          "scope": {
+            "host": "h1"
+          }
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ],
+            "observed_scope": {
+              "host": "h1"
+            }
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "Well-formed supported claim resolves OK (control)."
+    },
+    {
+      "id": "F1-A-SUP-support-registry-key-ne-id",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S2"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S2",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "R12: support_registry dict key 'S1' != inner support_id 'S2' -> REGISTRY_MALFORMED"
+    },
+    {
+      "id": "F1-A-SREL-support-relations-key-ne-id",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S2"
+          ]
+        },
+        "support_relations": {
+          "S1": {
+            "support_id": "S2",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "R12: support_relations dict key 'S1' != inner support_id 'S2' -> REGISTRY_MALFORMED"
+    },
+    {
+      "id": "F1-A-E-evidence-key-ne-id",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E2"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E2",
+            "root_provenance": "X"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "R12: evidence dict key 'E1' != inner evidence_id 'E2' -> REGISTRY_MALFORMED (WB IND-02E family)"
+    },
+    {
+      "id": "F1-A-R-root-key-ne-id",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S1",
+          "claim_ref": "C1",
+          "support_status": "SUPPORTS",
+          "evidence_refs": [
+            "E1"
+          ],
+          "independence_basis": {
+            "claimed_independent_count": 1,
+            "root_provenance": [
+              "R2"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "root_registry": {
+          "R1": {
+            "root_id": "R2"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "R12: root dict key 'R1' != inner root_id 'R2' -> REGISTRY_MALFORMED (WB IND-02R family)"
+    },
+    {
+      "id": "F1-A-O-obligation-key-ne-id",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "TASK_COMPLETION",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ],
+          "required_obligation_refs": [
+            "O2"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "obligations": {
+          "O1": {
+            "obligation_id": "O2",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "E1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "R12: obligation dict key 'O1' != inner obligation_id 'O2' -> REGISTRY_MALFORMED (WB IND-02O family)"
+    },
+    {
+      "id": "F1-A-A-authority-key-ne-id",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "authority_envelope": [
+            "x"
+          ],
+          "mandate": {
+            "source": "G2",
+            "expires_at": "2099-01-01"
+          }
+        },
+        "authority_registry": {
+          "G1": {
+            "grant_id": "G2",
+            "agent": null,
+            "host": null,
+            "expires_at": "2099-01-01"
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "R12: authority dict key 'G1' != inner grant_id 'G2' -> REGISTRY_MALFORMED (WB IND-02A family)"
+    },
+    {
+      "id": "F1-P-SUP-support-registry-key-eq-id",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "R12: support dict key==inner support_id resolves OK"
+    },
+    {
+      "id": "F1-P-O-obligation-key-eq-id",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "TASK_COMPLETION",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ],
+          "required_obligation_refs": [
+            "O1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "obligations": {
+          "O1": {
+            "obligation_id": "O1",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "E1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "R12: obligation dict key==inner obligation_id resolves OK"
+    },
+    {
+      "id": "F1-P-R-root-key-eq-id",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S1",
+          "claim_ref": "C1",
+          "support_status": "SUPPORTS",
+          "evidence_refs": [
+            "E1"
+          ],
+          "independence_basis": {
+            "claimed_independent_count": 1,
+            "root_provenance": [
+              "R1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "root_registry": {
+          "R1": {
+            "root_id": "R1",
+            "actual_origin": "O1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "R12: root dict key==inner root_id resolves OK"
+    },
+    {
+      "id": "F1-P-A-authority-key-eq-id",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "authority_envelope": [
+            "x"
+          ],
+          "agent": "agent-A",
+          "host": "H1",
+          "mandate": {
+            "source": "G1",
+            "expires_at": "2099-01-01"
+          }
+        },
+        "authority_registry": {
+          "G1": {
+            "grant_id": "G1",
+            "agent": "agent-A",
+            "host": "H1",
+            "expires_at": "2099-12-31"
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "R12: authority dict key==inner grant_id resolves OK"
+    },
+    {
+      "id": "F1-B-SUP-support-registry-backfill",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "R12: support dict entry without inner id -> backfilled from key -> OK (representation remains supported)"
+    },
+    {
+      "id": "F1-B-R-root-registry-backfill",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "support": {
+          "support_id": "S1",
+          "claim_ref": "C1",
+          "support_status": "SUPPORTS",
+          "evidence_refs": [
+            "E1"
+          ],
+          "independence_basis": {
+            "claimed_independent_count": 1,
+            "root_provenance": [
+              "R1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "root_registry": {
+          "R1": {
+            "actual_origin": "O1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "R12: root dict entry without inner id -> backfilled from key -> OK"
+    },
+    {
+      "id": "F1-B-O-obligation-registry-backfill",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "TASK_COMPLETION",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ],
+          "required_obligation_refs": [
+            "O1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "obligations": {
+          "O1": {
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "E1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "R12: obligation dict entry without inner id -> backfilled from key -> OK"
+    },
+    {
+      "id": "F1-B-A-authority-registry-backfill",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "authority_envelope": [
+            "x"
+          ],
+          "agent": "agent-A",
+          "host": "H1",
+          "mandate": {
+            "source": "G1",
+            "expires_at": "2099-01-01"
+          }
+        },
+        "authority_registry": {
+          "G1": {
+            "agent": "agent-A",
+            "host": "H1",
+            "expires_at": "2099-12-31"
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "R12: authority dict entry without inner id -> backfilled from key -> OK"
+    },
+    {
+      "id": "F1-R1-evidence-missing-still-blocks",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E-NOPE"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "regression: I09 false-OK path stays closed (present-but-missing evidence still BLOCKs)"
+    },
+    {
+      "id": "F1-R2-claim-ref-mismatch-still-blocks",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C-OTHER",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "regression: I01 support-target binding stays closed (dict-form support)"
+    },
+    {
+      "id": "F1-R3-duplicate-ambiguous-still-blocks",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": [
+          {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          },
+          {
+            "support_id": "S1",
+            "claim_ref": "C2",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        ],
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "regression: I08 duplicate-ambiguity stays closed (identity ambiguous)"
+    },
+    {
+      "id": "F1-R4-unrelated-obligation-still-ok",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "TASK_COMPLETION",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ],
+          "required_obligation_refs": [
+            "O-GOOD"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "obligations": {
+          "O-GOOD": {
+            "obligation_id": "O-GOOD",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "E1"
+            ]
+          },
+          "O-OTHER": {
+            "obligation_id": "O-OTHER",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "PENDING",
+            "required_before_claim_refs": [
+              "C-OTHER"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "regression: I07 claim-aware obligation scoping stays open (F2 vocabulary gate must not poison narrow completion)"
+    },
+    {
+      "id": "F1-R5-own-open-obligation-still-blocks",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "TASK_COMPLETION",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ],
+          "required_obligation_refs": [
+            "O-OWN"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "obligations": {
+          "O-OWN": {
+            "obligation_id": "O-OWN",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "PENDING"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "regression: S3 own-open-material-obligation stays closed"
+    },
+    {
+      "id": "F1-R6-top-level-support-still-ok",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support": {
+          "support_id": "S1",
+          "claim_ref": "C1",
+          "support_status": "SUPPORTS",
+          "evidence_refs": [
+            "E1"
+          ]
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "regression: I06 top-level support composition stays open"
+    },
+    {
+      "id": "F1-R7-full-stack-dict-registries",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "TASK_COMPLETION",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ],
+          "required_obligation_refs": [
+            "O1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "obligations": {
+          "O1": {
+            "obligation_id": "O1",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "E1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "regression: dict-form registries with key==id compose across all kinds (happy path)"
+    },
+    {
+      "id": "F1-R8-self-asserted-mandate-still-blocks",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "binding": {
+          "authority_envelope": [
+            "x"
+          ],
+          "mandate": {
+            "source": "SELF_ASSERTED",
+            "expires_at": "2099-01-01"
+          }
+        },
+        "authority_registry": {
+          "G1": {
+            "grant_id": "G1",
+            "agent": null,
+            "host": null,
+            "expires_at": "2099-12-31"
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "regression: I11 mandate positive typing stays closed (dict-form authority registry present)"
+    },
+    {
+      "id": "F2-A1-open-in-scope",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "TASK_COMPLETION",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ],
+          "required_obligation_refs": [
+            "O1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "obligations": {
+          "O1": {
+            "obligation_id": "O1",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "OPEN"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "F2: OPEN obligation (outside shipped schema status enum) -> BLOCK OBLIGATION_STATUS_OUTSIDE_VOCABULARY"
+    },
+    {
+      "id": "F2-A2-garbage-status",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "TASK_COMPLETION",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ],
+          "required_obligation_refs": [
+            "O1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "obligations": {
+          "O1": {
+            "obligation_id": "O1",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "GARBAGE"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "F2: out-of-vocabulary status -> BLOCK (vocabulary not expanded)"
+    },
+    {
+      "id": "F2-P1-satisfied-in-vocab",
+      "provenance": "DSH_V241_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-08-20",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "TASK_COMPLETION",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ],
+          "required_obligation_refs": [
+            "O1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "obligations": {
+          "O1": {
+            "obligation_id": "O1",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "E1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "F2: in-vocabulary SATISFIED obligation with resolved closure evidence stays OK"
+    },
+    {
+      "id": "IMP-01-full-stack-dict-registries",
+      "provenance": "DSH_IMPLEMENTATION_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "input": {
+        "eval_time": "2026-08-20",
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "TASK_COMPLETION",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ],
+          "required_obligation_refs": [
+            "O1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ],
+            "observed_scope": {
+              "host": "H1"
+            }
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "obligations": {
+          "O1": {
+            "obligation_id": "O1",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "E1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "implementation-level happy path: all dict-form registries key==id compose to OK"
+    },
+    {
+      "id": "IMP-02-eval-time-required",
+      "provenance": "DSH_IMPLEMENTATION_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "input": {
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ],
+            "observed_scope": {
+              "host": "H1"
+            }
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "eval_time is caller-controlled and never silently defaulted -> EVAL_TIME_REQUIRED"
+    },
+    {
+      "id": "IMP-03-payload-not-object",
+      "provenance": "DSH_IMPLEMENTATION_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "input": "not-an-object",
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "exception safety: non-object payload -> REGISTRY_MALFORMED, never an exception"
+    },
+    {
+      "id": "IMP-04-evidence-registry-list-of-strings",
+      "provenance": "DSH_IMPLEMENTATION_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "input": {
+        "eval_time": "2026-08-20",
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "SUPPORT",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ],
+            "observed_scope": {
+              "host": "H1"
+            }
+          }
+        },
+        "evidence_registry": [
+          "E1",
+          "E2"
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "malformed registry shape -> REGISTRY_MALFORMED, never an exception"
+    },
+    {
+      "id": "IMP-05-authority-key-ne-id",
+      "provenance": "DSH_IMPLEMENTATION_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "input": {
+        "eval_time": "2026-08-20",
+        "binding": {
+          "authority_envelope": [
+            "x"
+          ],
+          "mandate": {
+            "source": "G2",
+            "expires_at": "2099-01-01"
+          }
+        },
+        "authority_registry": {
+          "G1": {
+            "grant_id": "G2",
+            "agent": null,
+            "host": null,
+            "expires_at": "2099-01-01"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "R12 at implementation level: authority dict key!=inner grant_id -> REGISTRY_MALFORMED"
+    },
+    {
+      "id": "IMP-06-obligation-status-open",
+      "provenance": "DSH_IMPLEMENTATION_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "input": {
+        "eval_time": "2026-08-20",
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "TASK_COMPLETION",
+          "status": "SUPPORTED",
+          "support_relation_refs": [
+            "S1"
+          ],
+          "required_obligation_refs": [
+            "O1"
+          ]
+        },
+        "support_registry": {
+          "S1": {
+            "support_id": "S1",
+            "claim_ref": "C1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "E1"
+            ],
+            "observed_scope": {
+              "host": "H1"
+            }
+          }
+        },
+        "evidence_registry": {
+          "E1": {
+            "evidence_id": "E1"
+          }
+        },
+        "obligations": {
+          "O1": {
+            "obligation_id": "O1",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "OPEN"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "F2 at implementation level: OPEN outside shipped vocabulary -> OBLIGATION_STATUS_OUTSIDE_VOCABULARY"
+    }
+  ]
+}

@@ -1,0 +1,330 @@
+schema_version: "3.1-candidate"
+ena_version: "v0.3.7-candidate.2"
+candidate_for: "v0.3.7"
+candidate_revision: 2
+adoption_status: WORKING_CANDIDATE
+maturity: EXACT_PREFREEZE_VALIDATION
+current: false
+frozen: false
+released: false
+complete_adoption_baseline: false
+must_not_be_adopted_as_current: true
+requires_older_release_composition: false
+active_mainline_axis: false
+version_identity_includes_maturity_status: false
+package_scope: "ALL_FILES_UNDER_RELEASES_V0_3_7_CANDIDATE_WHEN_FROZEN"
+
+# ENA v0.3.7 candidate.2 successor working baseline.
+# Frozen candidate.1 independent A-S/A-P found material defects; candidate.2 repairs are reconciled and exact pre-freeze validation is next.
+# This file is still not a freeze or release claim.
+
+lineage:
+  base_current_version: "v0.3.6"
+  base_current_tree: "7dcbb3934883ffa6cc5292a662588cafc1533cff"
+  release_scope_checkpoint_merge: "0ad263178ab8b7c21c150012b3c06a5c41a4f41c"
+  release_scope_branch: "research/ena-reconstruction"
+  release_scope_stability_gate: "research/release-scope/RELEASE-SCOPE-STABILITY-GATE-001.md"
+  version_selection_record: "research/release-scope/VERSION-SELECTION-001.md"
+  candidate_branch: "candidate/v0.3.7-candidate.2"
+  candidate_birth_base_commit: "ae6903464133cb5bcf3cd8909ecae1215fe0b9ba"
+  predecessor_candidate_identity: "v0.3.7-candidate.1"
+  predecessor_frozen_source: "ae6903464133cb5bcf3cd8909ecae1215fe0b9ba"
+  predecessor_frozen_subtree: "c0458e0d7ea417b841cbf4c8bf6e64e4aff37319"
+  author_attack_record: "collaboration/reconciliation/2026-08-27-v037-candidate0-author-attacks.md"
+
+release_thesis:
+  new_constitution_rule_required: "0_DEMONSTRATED"
+  new_core_semantic_delta_required: "0_DEMONSTRATED"
+  practical_operational_release_value: MATERIAL
+  reference_library_delta: MATERIAL_SELECTED_OPTIONAL
+  tooling_delta: MATERIAL_SELECTED
+  language_adoption_delta: MATERIAL_SELECTED
+  summary: >-
+    Preserve the v0.3.6 semantic trunk while making concrete HOWs discoverable,
+    selectable, Host-mappable, and executable without requiring adopters to read research history.
+
+constitution:
+  inherited_stable_ids: 38
+  new_ids_added_in_candidate: 0
+  constitution_change_planned: false
+
+semantic_trunk:
+  base: "v0.3.6 Current"
+  material_semantic_rewrite_planned: false
+  identity_reconciliation_complete: true
+  freeze_requires_candidate_identity_reconciliation: false
+  exact_byte_preserved:
+    - "01-CONSTITUTION.md"
+    - "02-SELF-POSITIONING-AND-LOCAL-PROJECTION.md"
+    - "03-ROLES-AND-DEVELOPMENTAL-STAGES.md"
+    - "04-CAPABILITY-MAP.md"
+    - "schemas/adaptation-packet.v2.schema.json"
+  identity_only_projection_allowed:
+    - "05-CORE-OPERATIONAL-CONTRACTS.md"
+    - "schemas/evolution-record.v2.schema.json"
+  core_contract_identity_projection_rule: >-
+    05 must equal v0.3.6 Current bytes except for the three explicitly machine-checked
+    version/identity substitutions in the Candidate Identity Gate.
+
+operational_architecture:
+  state: ASSEMBLED_MACHINE_CHECKED
+  entrypoint: "operational/README.md"
+  cue_index: "operational/CUE-INDEX.md"
+  how_map: "operational/HOW-MAP.md"
+  reference_index: "operational/REFERENCE-INDEX.yaml"
+  hot_kernel_should_load_full_how_library: false
+  concrete_how_is_universal_mandate: false
+  host_local_realization_allowed: true
+  selected_procedures:
+    - "operational/procedures/PURPOSE-RELATIVE-CONTINUITY.md"
+    - "operational/procedures/STANDING-INPUT.md"
+    - "operational/procedures/CONTROL-RETIREMENT.md"
+  selected_patterns:
+    - "operational/patterns/EVOLUTION-COMMONS.md"
+    - "operational/patterns/HOST-MAPPINGS.md"
+  candidate_local_paths_exist: true
+
+references:
+  state: ASSEMBLED_MACHINE_CHECKED_STAGE_3
+  manifest: "references/REFERENCE-MANIFEST.yaml"
+  required_for_complete_adoption_default: false
+  default_activation_default: false
+  package_inclusion_implies_applicability: false
+  package_inclusion_implies_activation: false
+  normative_semantic_authority: false
+  selected_general:
+    - retrieval-obligation-0.5
+    - wait-state
+    - authority-lease
+    - effect-lifecycle
+    - recovery-adapter
+  selected_advanced_or_specialized:
+    - evidence-envelope
+    - evidence-dependency-map
+    - contested-authorship
+  deferred_not_retired:
+    - commitment-settlement-recovered
+
+tooling:
+  state: CANDIDATE2_REPAIR_RECONCILED_EXACT_PREFREEZE_NEXT
+  primary_v2_tool: "tools/ena_evolve_v2.py"
+  primary_v2_tool_role: "thin orchestration over candidate-local v2 record validator/schema plus packet-v2 digest and narrow consistency"
+  helper_selftest: "tools/selftest_ena_evolve_v2.py"
+  legacy_tool_target: "tools/legacy/ena_evolve_v1_2.py"
+  legacy_tool_default_path: false
+  narrow_legacy_variation_space_repair_selected_as_primary: false
+  v2_tool_must_not_delegate_to_releases_current: true
+  v2_tool_must_not_reimplement_second_evolution_semantic_engine: true
+
+stage3_machine_evidence:
+  exact_head: "8ba109528ecb14f9a22a372c897ac8d9ea1759f3"
+  workflow: "ENA v0.3.7 Candidate Assembly Gate"
+  workflow_run_id: 33004330491
+  conclusion: SUCCESS
+  observed:
+    - "Current isolation PASS"
+    - "candidate identity surface PASS"
+    - "8 selected optional reference paths and optionality metadata PASS"
+    - "all bundled reference selftests PASS"
+    - "candidate-local v2 helper deterministic corpus PASS; observed corpus size 10"
+    - "candidate-local v2 CLI latent/export/import round-trip PASS"
+    - "v2 helper contains no releases/current dependency and legacy tool is demoted PASS"
+    - "candidate Python compile PASS; observed files 24; failures 0"
+    - "bytecode hygiene PASS"
+  evidence_boundary:
+    - "Observed case counts are corpus facts, not architectural thresholds."
+    - "Machine consistency does not prove external authority, evidence truth, receipt authenticity, recovery truth, or universal Host applicability."
+    - "Stage-3 author/assembly validation does not substitute for later independent semantic falsification."
+
+language:
+  state: ZH_CN_OPERATIONAL_PROJECTION_MACHINE_CHECKED_STAGE_4
+  authoring_language: "en"
+  supported_projection_target: "zh-CN"
+  projection_manifest: "language-projections/zh-CN/projection-manifest.yaml"
+  operational_projection_root: "language-projections/zh-CN/operational/"
+  machine_reference_zh_cn_guide: "language-projections/zh-CN/REFERENCE-GUIDE.md"
+  operational_fixture_set: "language-projections/semantic-fixtures.v3.yaml"
+  machine_reference_file_by_file_translation_required: false
+  structural_parity_is_behavioral_equivalence: false
+  natural_fresh_session_bilingual_equivalence_proven: false
+
+stage4_machine_evidence:
+  exact_head: "7a59ac9b10e18f804ce7141b0beae2aef5e75cf6"
+  workflow: "ENA v0.3.7 Candidate Assembly Gate"
+  workflow_run_id: 33007647412
+  conclusion: SUCCESS
+  observed:
+    - "zh-CN operational entry/Cue/HOW/procedure/pattern/reference-guide paths PASS"
+    - "zh-CN projection manifest is candidate-scoped and not_current=true PASS"
+    - "machine reference artifacts remain single canonical machine surface PASS"
+    - "paired semantic fixture corpus structure PASS; observed corpus size 12"
+    - "all expected operational routes resolve in both English and zh-CN HOW maps PASS"
+    - "reference-guide optional/default-off/deferred-not-retired boundaries PASS"
+  evidence_boundary:
+    - "Paired fixtures define expected semantic decisions; they do not prove natural bilingual model behavior."
+    - "Twelve cases are current corpus facts, not a required minimum."
+    - "Fresh-session retrieval/salience and bilingual behavioral conformance remain field/independent evidence."
+
+identity_reconciliation:
+  scope: PREDECESSOR_CANDIDATE0
+  state: MACHINE_CHECKED
+  top_level_how_navigation_repair_commit: "152d35fe4a7c13706e2f90eac530a7864031719e"
+  top_level_how_navigation_assembly_run_id: 33010099144
+  core_contract_identity_projection_commit: "24c60c161ce787c681b7aafcde56bb2b33ac4fc7"
+  core_contract_identity_assembly_run_id: 33010408383
+  identity_gate_semantic_parity_commit: "51585e7fc60b515bc59dcef9d0c9fd33381bdab2"
+  identity_gate_run_id: 33010461940
+  conclusion: SUCCESS
+  observed:
+    - "Current isolation PASS"
+    - "candidate identity-bearing projection surfaces PASS"
+    - "top-level README now routes directly to operational/CUE-INDEX.md and operational/HOW-MAP.md"
+    - "01-04 and key v2 schemas exact-byte parity with v0.3.6 Current PASS"
+    - "05 Core Operational Contracts semantic-body parity with only three allowed identity substitutions PASS"
+    - "candidate operational paths and candidate-local v2/legacy-tool boundaries PASS"
+  prior_gate_occurrence_truth:
+    - "run 33008927401 FAIL: oracle falsely treated correct predecessor-Current description as candidate self-identity"
+    - "run 33009019672 FAIL: real README navigation defect exposed; top-level path omitted explicit operational/CUE-INDEX.md"
+    - "run 33010099209 FAIL: oracle required an exact freeze slogan even though the freeze property was already present"
+  evidence_boundary:
+    - "Identity/navigation consistency is packaging evidence, not independent semantic support."
+    - "Semantic-body parity prevents accidental Core drift but does not prove the inherited semantics universally correct."
+
+author_falsification:
+  scope: PREDECESSOR_CANDIDATE0
+  state: PASS_WITH_REPAIRS_NOT_INDEPENDENT
+  record: "collaboration/reconciliation/2026-08-27-v037-candidate0-author-attacks.md"
+  final_attack_harness_commit: "95e246e459c873ff00083f71785f671afb11c0a2"
+  final_attack_workflow_commit: "038fbfe62432bd78ccc4ea856ae5020e554114f8"
+  exact_tested_repository_head: "038fbfe62432bd78ccc4ea856ae5020e554114f8"
+  workflow: "ENA v0.3.7 Candidate Author Adversarial Gate"
+  workflow_run_id: 33010925130
+  conclusion: SUCCESS
+  observed_pass_conditions: 1080
+  observed_pass_conditions_are_threshold: false
+  attack_cardinality: OPEN
+  repairs_before_final_pass:
+    - "A-01 top-level README lacked explicit operational/CUE-INDEX.md hop; repaired at 152d35fe4a7c13706e2f90eac530a7864031719e"
+    - "A-02 05 Core Operational Contracts retained stale v0.3.6 Current identity; repaired at 24c60c161ce787c681b7aafcde56bb2b33ac4fc7"
+    - "A-03 OA-EVO-01 tool_state remained ASSEMBLY_PENDING_STAGE_3 after v2 helper completion; repaired at 6548c82275bf66041e141b83b7d0965ec458cd2c"
+  oracle_repairs_preserved_as_occurrence_truth:
+    - "O-01 predecessor Current description was falsely treated as candidate identity"
+    - "O-02 exact freeze slogan was mistakenly required despite equivalent freeze semantics"
+  evidence_boundary:
+    - "Author attacks exercise selected deterministic and represented semantic failure shapes only."
+    - "1080 is a script expansion fact, not evidence independence, coverage completeness, or a release threshold."
+    - "Author PASS does not substitute for fresh independent semantic falsification."
+    - "External truth and natural Host/runtime salience remain unproven."
+
+candidate2_succession:
+  predecessor_identity: "v0.3.7-candidate.1"
+  predecessor_frozen_source: "ae6903464133cb5bcf3cd8909ecae1215fe0b9ba"
+  predecessor_frozen_subtree: "c0458e0d7ea417b841cbf4c8bf6e64e4aff37319"
+  fresh_a_s_seal_commit: "2e6b46aeedc1945a03aac93620ad36aa1ccbd70f"
+  final_a_p_commit: "b970148fe9596ea9cad0a2817a3b399a1d2b75f5"
+  phase_b_reconciliation: "collaboration/reconciliation/2026-08-27-v037-candidate1-a-s-a-p-phase-b-reconciliation.md"
+  predecessor_verdict: NEEDS_REVISION
+  succession_reason: MATERIAL_CANDIDATE_BYTE_AND_PACKAGE_CORRECTION_REQUIRED
+  repair_state: RECONCILED_EXACT_PREFREEZE_NEXT
+  attack_cardinality: OPEN
+
+freeze_protocol:
+  model: EXTERNAL_RECORD_BINDS_EXACT_IMMUTABLE_TREE
+  internal_frozen_flag_is_prefreeze_occurrence_state: true
+  external_record_may_assign_frozen_identity_without_rewriting_candidate_tree: true
+  post_freeze_material_change_requires_successor_identity: true
+  freeze_not_allowed_before_exact_prefreeze_validation: true
+
+assembly:
+  stage: 10
+  state: CANDIDATE2_EXACT_PREFREEZE_VALIDATION
+  completed:
+    - candidate branch aligned to exact release-scope checkpoint
+    - candidate baseline and candidate identity entry files created
+    - operational Cue/HOW/reference routing created
+    - Purpose-Relative Continuity, Standing Input, and Control Retirement procedures created
+    - Evolution Commons and Host Mapping patterns created
+    - selected optional reference contents assembled with candidate-local wrappers
+    - candidate-local v2 evolution helper assembled
+    - inherited v1.2 evolution tool moved to explicit legacy path
+    - Stage-3 candidate assembly gate passed on exact head 8ba109528ecb14f9a22a372c897ac8d9ea1759f3
+    - zh-CN decision-bearing operational projection assembled
+    - zh-CN optional-reference usage guide assembled without duplicating machine canonical bytes
+    - paired operational semantic fixture set v3 assembled
+    - Stage-4 candidate assembly gate passed on exact head 7a59ac9b10e18f804ce7141b0beae2aef5e75cf6
+    - adopter-facing identity/status projections reconciled
+    - top-level HOW traversal repaired to expose exact Cue/HOW entry paths
+    - Core Operational Contracts identity reconciled without semantic-body drift
+    - Candidate Identity Gate passed with semantic-trunk parity
+    - OA-EVO-01 tool-state metadata reconciled to actual machine-checked state
+    - candidate-specific author adversarial suite passed after decision-relevant repairs
+    - author-side attack lineage recorded outside candidate cargo
+    - sealed fresh Phase-A findings reconciled; predecessor candidate.0 verdict NEEDS_REVISION
+    - candidate.1 successor repair round 1 applied at 583ac8133350bdf70a6a87fc8f0b070943f0aca1
+    - candidate.1 focused open-branch repair round 2 applied at bc8be8bc02a2b2515cfa1b7eee2c4bd3c2a37f90
+    - candidate.1 targeted successor regressions passed in workflow run 33052764739
+    - focused open-branch regressions passed in workflow run 33052764661
+    - successor repair reconciliation recorded at collaboration/reconciliation/2026-08-27-v037-candidate1-successor-repair-reconciliation.md
+    - candidate.1 exact pre-freeze validation passed and external freeze bound source ae6903464133cb5bcf3cd8909ecae1215fe0b9ba / subtree c0458e0d7ea417b841cbf4c8bf6e64e4aff37319
+    - candidate.1 fresh A-S sealed at 2e6b46aeedc1945a03aac93620ad36aa1ccbd70f and A-P completed at b970148fe9596ea9cad0a2817a3b399a1d2b75f5
+    - candidate.1 Phase B verdict NEEDS_REVISION; candidate.2 successor created from exact frozen source
+    - candidate.2 focused repair gate PASS in workflow run 33090294820; repair cargo committed at 613c1e8be898865ce674199118618c0f9389da97
+    - nearby open-branch probe run 33090585653 exposed durable source-history and same-sequence attempt homologous gaps
+    - candidate.2 round-2 open-branch repair gate PASS in workflow run 33091573678; repair cargo committed at 34458c2ba0b94b82d182afe2606efe48e741bcda
+    - committed round-2 readback re-probe PASS in workflow run 33091652046; Current isolation preserved and attack cardinality remains OPEN
+  pending:
+    - exact-head candidate.2 pre-freeze machine validation
+    - external freeze record binding exact candidate.2 source commit and subtree only after exact gate PASS
+    - explicit post-freeze independence/release reconciliation before any promotion decision
+
+candidate1_succession:
+  predecessor_identity: "v0.3.7-candidate.0"
+  predecessor_frozen_source: "d0e793593184740d9732902e948afd48ed96ae2f"
+  predecessor_frozen_subtree: "cffbf76fe1448b020b637c78d1f7ae46e4c0115b"
+  fresh_phase_a_issue: 121
+  fresh_phase_a_seal_commit: "5ba3d241efa460fe170253860ad67045aa1d96a5"
+  phase_b_reconciliation: "collaboration/reconciliation/2026-08-27-v037-candidate0-phase-b-reconciliation.md"
+  predecessor_verdict: NEEDS_REVISION
+  succession_reason: MATERIAL_CANDIDATE_BYTE_CORRECTION_REQUIRED
+  required_repairs:
+    - preserve source Variation Space / Evolutionary Subject / Protected Subjects in imported migration provenance
+    - reject tied latest packet expression timestamps consistently with record chronology
+    - bind archive.selection_state_preserved to represented selection truth
+    - reject non-time created_at placeholders as instantiated records
+  correction_scope: TOOL_VALIDATOR_TEMPLATE_AND_SUCCESSOR_IDENTITY_PROJECTION
+  round1_repair_commit: "583ac8133350bdf70a6a87fc8f0b070943f0aca1"
+  round2_focused_repair_commit: "bc8be8bc02a2b2515cfa1b7eee2c4bd3c2a37f90"
+  final_targeted_workflow_run_id: 33052764739
+  final_open_branch_workflow_run_id: 33052764661
+  successor_reconciliation: "collaboration/reconciliation/2026-08-27-v037-candidate1-successor-repair-reconciliation.md"
+  successor_repair_state: RECONCILED_EXACT_PREFREEZE_NEXT
+  attack_cardinality: OPEN
+  visible_residual:
+    candidate_id_collision: ACCEPTED_NO_CURRENT_GLOBAL_NAMESPACE_CONTRACT
+    release_blocker: false
+    rule: "NO_CURRENT_CONTRACT -> DO_NOT_INVENT_UNIVERSAL_RULE"
+  current_changed_by_succession: false
+  fresh_phase_a_repeated_by_candidate1_author: false
+
+accepted_working_residuals:
+  - "Current v0.3.6 remains the only adopter-facing baseline until explicit promotion."
+  - "Selected bundled references are optional machine references; package inclusion does not establish applicability, activation, or external truth."
+  - "The candidate-local v2 helper covers latent record and packet-v2 orchestration, not the entire evolution lifecycle state machine."
+  - "Natural fresh-session cue salience and bilingual behavioral equivalence remain field/independent evidence, not candidate-author proof."
+  - "Commitment/Settlement recovered reconstruction remains durable but unbundled pending fresh independent review or renewed candidate-critical need."
+  - "Source/receiver candidate-ID collision remains a visible namespace residual; no current contract establishes cross-environment global candidate-ID uniqueness."
+
+invariants:
+  - CURRENT_V036_REMAINS_UNCHANGED
+  - CANDIDATE_IS_NOT_CURRENT
+  - CANDIDATE_BRANCH_IS_NOT_FREEZE_IDENTITY
+  - BUNDLED_REFERENCE_NE_REQUIRED_RUNTIME_ORGAN
+  - REFERENCE_SCHEMA_NE_NORMATIVE_ENA_ONTOLOGY
+  - HOST_PATTERN_NE_UNIVERSAL_IMPLEMENTATION
+  - HOT_KERNEL_NE_FULL_HOW_LIBRARY
+  - SEMANTIC_TRUNK_STABILITY_NE_NO_RELEASE_VALUE
+  - IDENTITY_PROJECTION_NE_SEMANTIC_DRIFT
+  - AUTHOR_PASS_NE_INDEPENDENT_SUPPORT
+  - MACHINE_PASS_NE_EXTERNAL_TRUTH
+  - TRANSLATED_NE_BEHAVIORALLY_EQUIVALENT
+  - SILENT_DISSOLUTION_NE_EVIDENCE_BACKED_RETIREMENT

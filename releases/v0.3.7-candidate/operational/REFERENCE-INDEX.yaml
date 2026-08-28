@@ -1,0 +1,200 @@
+schema_version: "1.0-candidate"
+candidate: "v0.3.7-candidate.2"
+status: WORKING_OPERATIONAL_REFERENCE_INDEX
+
+rules:
+  reference_exists_implies_applicable: false
+  reference_exists_implies_required: false
+  host_native_equivalent_allowed: true
+  missing_reference_may_route_to_host_pattern_or_honest_residual: true
+
+routes:
+  OA-RT-01:
+    what: runtime routing and salience
+    primary:
+      - "../RUNTIME-ADOPTION-KERNEL.md"
+      - "CUE-INDEX.md"
+    host_patterns:
+      - semantic router
+      - event hook
+      - skill router
+      - memory/index search
+    evidence: FIELD_SALIENCE_OPEN
+
+  OA-MEM-01:
+    what: memory metabolism
+    primary:
+      - "HOW-MAP.md#oa-mem-01--memory-metabolism"
+      - "general retrieval reference via OA-RET-01"
+    host_patterns:
+      - compile-and-archive
+      - native memory blocks
+      - bounded skill library
+      - exact-source archive plus compiled projection
+    evidence: FIELD_LONG_RUN_OPEN
+
+  OA-RET-01:
+    what: retrieval obligation
+    primary:
+      - "../references/general/retrieval-obligation/"
+    fallback:
+      - Host semantic search/index
+      - exact-path lookup
+      - scope registry/discovery
+    applicability: CONTEXT_DEPENDENT
+
+  OA-PROJ-01:
+    what: projection and compaction
+    primary:
+      - "HOW-MAP.md#oa-proj-01--projection--compaction--lineage-survival"
+    composition:
+      - OA-RET-01
+    host_patterns:
+      - dependency-aware projection
+      - cold lineage refs
+      - source rehydration
+
+  OA-WAIT-01:
+    what: wait and bounded patience
+    primary:
+      - "../references/general/wait-state/"
+    host_patterns:
+      - callback
+      - interrupt
+      - durable workflow wait
+      - bounded polling/backoff
+    applicability: CONTEXT_DEPENDENT
+
+  OA-AUTH-01:
+    what: authority binding
+    primary:
+      - "../references/general/authority-lease/"
+    host_patterns:
+      - RBAC
+      - capability token
+      - workload identity
+      - scoped mandate
+      - policy decision point
+    non_applicable_route: NOT_REQUIRED
+
+  OA-EFF-01:
+    what: effect lifecycle
+    primary:
+      - "../references/general/effect-lifecycle/"
+    host_patterns:
+      - idempotency key
+      - fencing token
+      - optimistic conditional write
+      - status query
+      - compensation
+      - WAIT
+
+  OA-COM-01:
+    what: commitment and settlement
+    primary:
+      - "HOW-MAP.md#oa-com-01--commitment--settlement"
+    composition:
+      - OA-AUTH-01
+      - OA-EFF-01
+    deferred_reference: commitment-settlement-recovered
+    deferred_reason: FRESH_INDEPENDENT_REVIEW_REQUIRED_BEFORE_FIRST_CANDIDATE_BUNDLING
+
+  OA-REC-01:
+    what: recovery and safe resume
+    primary:
+      - "../references/general/recovery-adapter/"
+    composition:
+      - OA-AUTH-01
+      - OA-EFF-01
+    host_patterns:
+      - checkpoint
+      - watchdog
+      - independent rescue when required
+      - restore drill when required
+
+  OA-ID-01:
+    what: purpose-relative continuity
+    primary:
+      - "procedures/PURPOSE-RELATIVE-CONTINUITY.md"
+    host_patterns:
+      - account/key/address accountability identity
+      - version/epoch only when material
+      - fork lineage
+
+  OA-AUTHOR-01:
+    what: contested authorship
+    primary:
+      - "../references/advanced/contested-authorship/"
+    host_patterns:
+      - Git revision lineage
+      - state revision plus before/diff/proposer
+    non_applicable_route: OUT_OF_SCOPE_FOR_CONTESTED_AUTHORSHIP
+
+  OA-STAND-01:
+    what: standing input
+    primary:
+      - "procedures/STANDING-INPUT.md"
+    fallback:
+      - ordinary evidence/support intake
+    non_applicable_route: NO_FORMAL_STANDING
+
+  OA-EVID-01:
+    what: evidence and dependency
+    primary:
+      - "../references/advanced/evidence-envelope/"
+      - "../references/advanced/evidence-dependency-map/"
+    host_patterns:
+      - provenance/attestation
+      - tracing/activity evidence
+      - failure-domain witness
+    applicability: MATERIAL_EVIDENCE_CONTEXT_ONLY_FOR_ADVANCED_REFERENCES
+
+  OA-EVO-01:
+    what: evolution and variation
+    primary:
+      - "../schemas/evolution-record.v2.schema.json"
+      - "../tools/validate_evolution_record_v2.py"
+      - "../tools/ena_evolve_v2.py"
+    fallback:
+      - direct schema/template plus validator
+      - Host-native variation store
+    tool_state: ASSEMBLED_MACHINE_CHECKED_STAGE_3
+
+  OA-MIG-01:
+    what: migration and Commons
+    primary:
+      - "../schemas/adaptation-packet.v2.schema.json"
+      - "patterns/EVOLUTION-COMMONS.md"
+    host_patterns:
+      - Git repository
+      - OCI-style registry
+      - object store plus index
+      - direct transfer
+      - A2A/live task protocol
+
+  OA-ECO-01:
+    what: ecology and control retirement
+    primary:
+      - "procedures/CONTROL-RETIREMENT.md"
+    host_patterns:
+      - quotas
+      - leases
+      - rate limits
+      - backoff
+      - shadow observation
+    field_residuals:
+      - culture
+      - specialization
+      - reputation rehabilitation
+      - resource pressure
+      - verification markets
+
+  OA-ADOPT-01:
+    what: adoption language and release
+    primary:
+      - "../AGENT-ADOPTION-INSTRUCTION.md"
+      - "../LITE-ADOPTION-INSTRUCTION.md"
+      - "../10-LANGUAGE-PORTABILITY.md"
+      - "../language-projections/zh-CN/"
+      - "../references/REFERENCE-MANIFEST.yaml"
+    evidence: LANGUAGE_BEHAVIORAL_EQUIVALENCE_OPEN

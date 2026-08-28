@@ -1,0 +1,120 @@
+schema_version: "1.2"
+language: "zh-CN"
+purpose: "ENA v0.3.6 Current 简体中文高歧义核心概念词典；用于语义投影，不追求逐字对应。"
+
+concepts:
+  agency:
+    preferred: "能动性 / 自主行动能力"
+    definition: "在真实约束下感知、选择、行动、学习、纠正并继续进化的实际能力。"
+    misleading_if_used_alone: ["服从性", "被允许做事"]
+    related: ["ENA-CON-038", "ENA-CON-026"]
+  evolvability:
+    preferred: "可进化性"
+    definition: "持续产生、测试、选择、整合、淘汰、重组，并在未来重新唤醒可能性的能力。"
+    related: ["ENA-CON-013", "ENA-CON-021", "ENA-CON-038"]
+  stimulus:
+    preferred: "进化刺激 / 刺激"
+    definition: "可能触发重新观察或产生变异机会的正面或负面事件/观察；刺激本身不是变异，也不是改进。"
+    related: ["ENA-CON-021", "ENA-CON-025"]
+  mutation_pressure:
+    preferred: "变异压力"
+    definition: "由纠正、失败、成功、环境变化、好奇心、外部发现或主动探索等因素产生的、促使系统产生或重新检查变异的机会/压力；它不等于必须变异。"
+    related: ["ENA-CON-021", "ENA-CON-025", "ENA-CON-038"]
+  variation:
+    preferred: "变异 / 变化候选"
+    definition: "已经提出、保存、表达或实现，但不能仅凭存在就被称为有益的变化。"
+    related: ["ENA-CON-021", "ENA-CON-032"]
+  latent_variation:
+    preferred: "潜伏变异 / 隐性变异"
+    definition: "已经保留但当前没有表达的可能性；不要求立刻实验，也不要求立刻得到最终选择结论。"
+    related: ["ENA-CON-004", "ENA-CON-015", "ENA-CON-035"]
+  expression:
+    preferred: "表达 / 激活表达"
+    definition: "让已经保存的适应材料进入当前行为或上下文；它和持久化生命周期、证据支持的选择结论以及权限是不同问题。"
+    candidate_states: ["LATENT（潜伏）", "EXPRESSED（已表达）"]
+    related: ["ENA-CON-019", "ENA-CON-035"]
+  adaptation:
+    preferred: "适应性变化 / 适应"
+    definition: "在明确环境和后果范围内，真实结果支持继续保留的变异；不代表全球普适的‘好’。"
+    related: ["ENA-CON-030", "ENA-CON-032"]
+  local_selection:
+    preferred: "局部选择"
+    definition: "只对已经表示出的环境、Host、模型、语言、时间、依赖和后果边界成立的证据支持选择；默认不是普适适应度。"
+    related: ["ENA-CON-030", "ENA-CON-032"]
+  variation_space:
+    preferred: "变异空间"
+    definition: "让不确定变化能够真实运行并接触现实，同时后果有边界、可观察且由合法主体承担的实验表面。"
+    related: ["ENA-CON-005", "ENA-CON-006", "ENA-CON-020"]
+  evolutionary_subject:
+    preferred: "进化主体"
+    definition: "当前正在被改变、并承载一定连续性的适应系统；用于工程决策，不是无限扩张的‘生命体’。"
+    related: ["ENA-CON-013", "ENA-CON-019"]
+  protected_subject:
+    preferred: "受保护对象"
+    definition: "可能承受某次行动或变异重要后果的人、系统、项目、资源或其他有边界对象。"
+    related: ["ENA-CON-033", "ENA-CON-038"]
+  continuity_vector:
+    preferred: "连续性向量"
+    definition: "跨 session、模型、Host、恢复、克隆边界时，哪些关键属性延续或改变的结构化记录。"
+    related: ["ENA-CON-019", "ENA-CON-035"]
+  capability:
+    preferred: "能力"
+    definition: "在当前可观察条件下，Agent/Host 技术上能够做到什么。"
+    related: ["ENA-CON-002", "ENA-CON-003"]
+  authority:
+    preferred: "授权行动权"
+    definition: "基于真实授权依据，在特定对象、效果、任务和目的范围内成立的正当行动权；不能仅由技术能力、被表达的能力或自改内部权限产生。"
+    misleading_if_used_alone: ["权威", "权限"]
+    related: ["ENA-CON-002", "ENA-CON-020", "ENA-CON-033"]
+  mandate:
+    preferred: "授权依据 / 委任依据"
+    definition: "使重要行动权在特定范围和有效期内正当成立的来源。"
+    related: ["ENA-CON-027", "ENA-CON-033"]
+  claim:
+    preferred: "主张 / 声称"
+    definition: "需要由相应范围的证据和支持关系来承担的断言。"
+    related: ["ENA-CON-023", "ENA-CON-028"]
+  evidence:
+    preferred: "证据"
+    definition: "与某个主张有关的真实观察信息；证据存在不代表它一定支持该主张，也不代表因果归属成立。"
+    related: ["ENA-CON-023", "ENA-CON-028"]
+  support_relation:
+    preferred: "证据—主张支持关系"
+    definition: "说明某个具体证据如何在特定适用范围内支持某个具体主张的关系。"
+    related: ["ENA-CON-023", "ENA-CON-028"]
+  recovery:
+    preferred: "恢复"
+    definition: "恢复有用运行状态/能力的过程；不等于恢复完整历史，也不能倒转已经逃逸到外部的后果。"
+    related: ["ENA-CON-007", "ENA-CON-009", "ENA-CON-013"]
+  rescue_plane:
+    preferred: "外置救援平面 / 外部可达救援路径"
+    definition: "在重要且可控时，把恢复能力保留在可能被变异弄坏的候选之外；救援行动权应保持狭窄，不能自动升级成对所有变异的审批权。"
+    related: ["ENA-CON-007", "ENA-CON-013", "ENA-CON-031"]
+  rollback:
+    preferred: "状态回退"
+    definition: "把可变状态返回到较早状态；不能抹掉外部效果或已经发生的历史。"
+    related: ["ENA-CON-008", "ENA-CON-012"]
+  compensation:
+    preferred: "补偿"
+    definition: "当真正回退不可能时，用新的行动抵消/修复先前效果；它不是时间倒流。"
+    related: ["ENA-CON-012", "ENA-CON-014"]
+  evolution_commons:
+    preferred: "Evolution Commons / 进化共享池（进化公地）"
+    definition: "种群层面可发现的变异、适应和证据共享池；发布、发现、导入、表达和本地选择是彼此分离的自主动作。"
+    related: ["ENA-CON-017", "ENA-CON-030", "ENA-CON-031"]
+  migration_candidate:
+    preferred: "迁移候选"
+    definition: "从其他环境导入的变异/适应及其来源证据；可以加速本地学习，但还不是本地证明。"
+    related: ["ENA-CON-017", "ENA-CON-030"]
+  emergence:
+    preferred: "涌现"
+    definition: "组合后出现、不能由单体结果简单预测的新能力/结果；可以是正面、负面或混合。"
+    related: ["ENA-CON-036"]
+  canonical_lineage:
+    preferred: "ENA 规范谱系 / Canonical ENA lineage"
+    definition: "ENA 的变化经过可审查、可复现、可追溯流程获得规范接纳的历史谱系；当前承载平台负责保存谱系，但不能因此成为永久主权者。"
+    related: ["ENA-CON-024", "ENA-CON-031"]
+  governance_closure:
+    preferred: "治理收敛 / 治理停止点"
+    definition: "剩余有限检查已经没有现实路径改变关键决定，且剩余风险/未知已经诚实限定的状态。"
+    related: ["ENA-CON-018", "ENA-CON-034", "ENA-CON-038"]

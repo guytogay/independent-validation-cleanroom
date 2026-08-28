@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.1",
+  "status": "RESEARCH_REFERENCE_CONTRACT / NOT_CURRENT",
+  "purpose_values": [
+    "MATERIAL_CORROBORATION",
+    "RECURRENCE_ONLY",
+    "DESCRIPTIVE"
+  ],
+  "relations": [
+    "SAME_MODEL_OR_CHECKPOINT",
+    "SAME_PROMPT_LINEAGE",
+    "SHARED_SOURCE_EVIDENCE",
+    "SHARED_RETRIEVAL_INDEX",
+    "SHARED_FIXTURE_OR_ORACLE",
+    "SHARED_TOOLCHAIN",
+    "SHARED_CODE_UNDER_TEST",
+    "SHARED_HOST_OR_FAILURE_DOMAIN",
+    "SHARED_WITNESS",
+    "DERIVED_FROM",
+    "COPIED_SUMMARY",
+    "COMMON_REVIEWER",
+    "UNKNOWN_COMMON_CAUSE"
+  ],
+  "forbidden_scalar_fields": [
+    "independence_score",
+    "independent_support_count"
+  ],
+  "shared_dimension_relation_map": {
+    "producer.model_checkpoint_ref": "SAME_MODEL_OR_CHECKPOINT",
+    "producer.prompt_lineage_ref": "SAME_PROMPT_LINEAGE",
+    "inputs.evidence_source_refs": "SHARED_SOURCE_EVIDENCE",
+    "inputs.fixture_or_task_ref": "SHARED_FIXTURE_OR_ORACLE",
+    "execution.toolchain_refs": "SHARED_TOOLCHAIN",
+    "execution.code_or_validator_ref": "SHARED_CODE_UNDER_TEST",
+    "execution.host_ref": "SHARED_HOST_OR_FAILURE_DOMAIN",
+    "execution.witness_ref": "SHARED_WITNESS"
+  },
+  "claim_boundary": [
+    "KNOWN_EDGE != TOTAL_DEPENDENCE",
+    "NO_KNOWN_EDGE != INDEPENDENT",
+    "CONNECTED_COMPONENT_COUNT != INDEPENDENT_SUPPORT_COUNT",
+    "SAME_MODEL != NO_USEFUL_CORROBORATION",
+    "CURRENT_CHANGE = NO"
+  ]
+}

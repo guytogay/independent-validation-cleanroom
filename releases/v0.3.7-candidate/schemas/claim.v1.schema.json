@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ENA Claim v1",
+  "type": "object",
+  "required": ["claim_id", "claim_type", "subject", "scope", "assertion", "status"],
+  "properties": {
+    "claim_id": {"type": "string", "minLength": 1},
+    "claim_type": {"type": "string", "enum": ["TASK_COMPLETION", "WORKFLOW_COMPLETION", "DEPLOYMENT_SUCCESS", "RECOVERY_SUCCESS", "CAPABILITY_QUALIFICATION", "STAGE_ADMISSION", "SAFETY_COVERAGE", "AUTHORITY_QUALIFICATION", "EQUIVALENCE", "INVARIANCE", "OTHER"]},
+    "subject": {"type": "object", "required": ["kind", "id"], "properties": {"kind": {"type": "string"}, "id": {"type": "string"}}, "additionalProperties": true},
+    "scope": {"type": "object", "properties": {"host": {"type": ["string", "null"]}, "runtime_instance": {"type": ["string", "null"]}, "model_binding": {"type": ["string", "null"]}, "route": {"type": ["string", "null"]}, "configuration": {"type": ["string", "null"]}, "epoch": {"type": ["string", "null"]}, "time_interval": {"type": ["string", "null"]}, "task_scope": {"type": ["string", "null"]}}, "additionalProperties": true},
+    "assertion": {"type": "string", "minLength": 1},
+    "status": {"type": "string", "enum": ["ASSERTED", "SUPPORTED", "CONTRADICTED", "UNKNOWN", "REVOKED"]},
+    "support_relation_refs": {"type": "array", "items": {"type": "string"}},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

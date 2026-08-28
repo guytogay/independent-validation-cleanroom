@@ -1,0 +1,93 @@
+{
+  "schema_version": "0.1",
+  "status": "RESEARCH_PROTOTYPE / NOT_CURRENT / NOT_RELEASE_CANDIDATE",
+  "purpose": "Separate effect intent, execution attempts, external settlement receipts, and commitment ownership across retry/restart/fork/recovery.",
+  "objects": {
+    "EffectIntent": {
+      "required": ["effect_id", "effect_class", "target", "operation", "material_parameters_digest", "authority_ref", "idempotency_strategy"],
+      "idempotency_strategy": ["NATIVE_KEY", "TRANSACTIONAL_WORKFLOW", "INTRINSICALLY_REPEATABLE", "NONE", "UNKNOWN"],
+      "effect_class": ["READ_ONLY", "REVERSIBLE_LOCAL", "EXTERNAL_COMPENSABLE", "EXTERNAL_IRREVERSIBLE", "EXTERNAL_UNKNOWN"]
+    },
+    "Attempt": {
+      "required": ["attempt_id", "effect_id", "kind", "material_parameters_digest", "outcome"],
+      "kind": ["REALIZE", "STATUS_QUERY"],
+      "outcome": ["NOT_STARTED", "IN_FLIGHT", "ACKNOWLEDGED", "TIMEOUT", "ERROR", "UNKNOWN"]
+    },
+    "EffectReceipt": {
+      "required": ["receipt_id", "effect_id", "observed_status", "evidence_refs"],
+      "observed_status": ["COMMITTED", "NOT_COMMITTED", "PARTIAL", "UNKNOWN", "COMPENSATED"],
+      "note": "A represented receipt is not automatically externally authentic."
+    },
+    "Commitment": {
+      "required": ["commitment_id", "effect_ids", "status", "executor_assignments", "settlement_receipt_refs"],
+      "status": ["OPEN", "ASSIGNED", "WAITING", "SETTLED", "CANCELLED", "UNKNOWN"],
+      "assignment_status": ["ACTIVE", "OBSERVER", "REVOKED", "SETTLED"],
+      "note": "Memory of a commitment does not mint current executor ownership."
+    }
+  },
+  "decision_rules": [
+    {
+      "id": "EL-R01",
+      "property": "one effect_id remains bound to one material intent",
+      "reject": "attempt material_parameters_digest differs from intent digest"
+    },
+    {
+      "id": "EL-R02",
+      "property": "attempt outcome does not manufacture external settlement",
+      "reject": "commitment SETTLED without receipt establishing committed/compensated settlement for its effect"
+    },
+    {
+      "id": "EL-R03",
+      "property": "known committed external state outranks restored local pending narration",
+      "decision": "if a valid represented receipt says COMMITTED, do not create another REALIZE attempt for that intent merely because local state says pending"
+    },
+    {
+      "id": "EL-R04",
+      "property": "same-intent retry reuses effect identity",
+      "reject": "record marks a retry_of_effect_id but uses a different material intent without declaring a new effect"
+    },
+    {
+      "id": "EL-R05",
+      "property": "compensation is a new effect linked to the original",
+      "reject": "compensation overwrites original receipt/history or reuses original effect_id as if occurrence vanished"
+    },
+    {
+      "id": "EL-R06",
+      "property": "commitment execution ownership is not copied automatically across fork/restart",
+      "reject": "more than one ACTIVE executor assignment for the same indivisible commitment without explicit partition semantics"
+    },
+    {
+      "id": "EL-R07",
+      "property": "honest unknown settlement is allowed",
+      "decision": "UNKNOWN + no safe idempotency/status evidence -> QUERY/WAIT/NARROW/ESCALATE rather than mint completion or a fresh effect"
+    },
+    {
+      "id": "EL-R08",
+      "property": "idempotency does not require ceremony for intrinsically repeatable/read-only effects",
+      "decision": "READ_ONLY or INTRINSICALLY_REPEATABLE may proceed without provider idempotency key"
+    },
+    {
+      "id": "EL-R09",
+      "property": "known NOT_COMMITTED can permit retry of the same intent",
+      "decision": "reuse same effect_id and material parameters; new attempt_id"
+    },
+    {
+      "id": "EL-R10",
+      "property": "local rollback does not rewrite external occurrence truth",
+      "reject": "record deletes/negates a COMMITTED receipt solely because local state was restored"
+    }
+  ],
+  "next_action_vocabulary": [
+    "NO_EFFECT_NEEDED",
+    "REALIZE_NEW_INTENT",
+    "RETRY_SAME_INTENT",
+    "QUERY_SETTLEMENT",
+    "WAIT_FOR_EVIDENCE",
+    "SETTLE_COMMITMENT",
+    "REASSIGN_COMMITMENT",
+    "CREATE_COMPENSATION_EFFECT",
+    "MANUAL_RECONCILIATION",
+    "REJECT_INCONSISTENT_RECORD"
+  ],
+  "verification_boundary": "represented lifecycle consistency only; no external exactly-once/authenticity claim"
+}

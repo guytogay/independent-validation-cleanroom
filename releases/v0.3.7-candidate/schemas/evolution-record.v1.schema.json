@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/ena/evolution-record.v1.schema.json",
+  "title": "ENA Evolution Candidate Record v1",
+  "type": "object",
+  "required": [
+    "candidate_id",
+    "created_at",
+    "origin",
+    "lifecycle_state",
+    "selection_state",
+    "signal_refs",
+    "hypothesis",
+    "change",
+    "variation_space",
+    "environment",
+    "experiments",
+    "evaluations",
+    "integration_history",
+    "archive",
+    "migration"
+  ],
+  "properties": {
+    "candidate_id": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "minLength": 1},
+    "origin": {"type": "string", "enum": ["LOCAL_VARIATION", "MIGRATION_CANDIDATE", "RECOMBINATION", "OTHER"]},
+    "lifecycle_state": {"type": "string", "enum": ["PROPOSED", "EXPERIMENTED", "INTEGRATED", "ARCHIVED", "RETIRED"]},
+    "selection_state": {"type": "string", "enum": ["UNASSESSED", "SUPPORTED", "PARTIAL", "NOT_SUPPORTED", "HARMFUL", "UNKNOWN"]},
+    "source_packet": {"type": "string"},
+    "source_packet_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_candidate_id": {"type": "string"},
+    "signal_refs": {"type": "array", "items": {"type": "string"}},
+    "hypothesis": {"type": "string", "minLength": 1},
+    "change": {"type": "string", "minLength": 1},
+    "expected_outcomes": {"type": "array", "items": {"type": "string"}},
+    "variation_space": {"type": "string", "minLength": 1},
+    "evolutionary_subject": {"type": "string"},
+    "protected_subjects": {"type": "array", "items": {"type": "string"}},
+    "environment": {"type": "object", "additionalProperties": {"type": ["string", "number", "boolean", "null"]}},
+    "dependencies": {"type": "array", "items": {"type": "string"}},
+    "unknowns": {"type": "array", "items": {"type": "string"}},
+    "observation_plan": {"type": "string"},
+    "experiments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["experiment_id", "time", "actual_change"],
+        "properties": {
+          "experiment_id": {"type": "string", "minLength": 1},
+          "time": {"type": "string", "minLength": 1},
+          "variation_space": {"type": ["string", "null"]},
+          "actual_change": {"type": "string", "minLength": 1},
+          "effect_boundary": {"type": "string"},
+          "recovery": {"type": "string"},
+          "external_authority_basis": {"type": "string"},
+          "notes": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "evaluations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["evaluation_id", "time", "outcomes", "selection", "evidence_refs"],
+        "properties": {
+          "evaluation_id": {"type": "string", "minLength": 1},
+          "time": {"type": "string", "minLength": 1},
+          "outcomes": {"type": "object", "additionalProperties": {"enum": ["IMPROVED", "DEGRADED", "UNCHANGED", "UNKNOWN"]}},
+          "selection": {"enum": ["SUPPORTED", "PARTIAL", "NOT_SUPPORTED", "HARMFUL", "UNKNOWN"]},
+          "evidence_refs": {"type": "array", "items": {"type": "string"}},
+          "negative_evidence": {"type": "array", "items": {"type": "string"}},
+          "tradeoffs": {"type": "array", "items": {"type": "string"}},
+          "unknowns": {"type": "array", "items": {"type": "string"}},
+          "notes": {"type": "string"},
+          "evidence_boundary": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "integration_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["integration_id", "time", "target", "result", "selection_state_at_commit"],
+        "properties": {
+          "integration_id": {"type": "string", "minLength": 1},
+          "time": {"type": "string", "minLength": 1},
+          "target": {"type": "string", "minLength": 1},
+          "authority_basis": {"type": "string"},
+          "recovery_boundary": {"type": "string"},
+          "scope": {"type": "string"},
+          "result": {"enum": ["COMMITTED", "DEFERRED", "REJECTED", "UNKNOWN"]},
+          "residuals": {"type": "array", "items": {"type": "string"}},
+          "selection_state_at_commit": {"enum": ["SUPPORTED", "PARTIAL", "UNKNOWN"]},
+          "authority_boundary": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "archive": {"anyOf": [{"type": "null"}, {"type": "object"}]},
+    "migration": {"anyOf": [{"type": "null"}, {"type": "object"}]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"selection_state": {"enum": ["SUPPORTED", "PARTIAL", "NOT_SUPPORTED", "HARMFUL", "UNKNOWN"]}}, "required": ["selection_state"]},
+      "then": {"properties": {"evaluations": {"minItems": 1}}}
+    },
+    {
+      "if": {"properties": {"selection_state": {"enum": ["SUPPORTED", "PARTIAL", "NOT_SUPPORTED", "HARMFUL"]}}, "required": ["selection_state"]},
+      "then": {"properties": {"experiments": {"minItems": 1}}}
+    }
+  ],
+  "additionalProperties": false
+}

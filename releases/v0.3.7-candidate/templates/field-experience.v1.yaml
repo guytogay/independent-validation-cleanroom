@@ -1,0 +1,72 @@
+# Legacy compatibility template retained from earlier ENA field-evidence lineage.
+# Prefer field-experience.v2.yaml for v0.3.6 candidate evidence.
+schema_version: "1.1-legacy"
+artifact_type: "ENA_FIELD_EXPERIENCE"
+status: "LEGACY_TEMPLATE / UNRECONCILED / NO_PROMOTION_AUTHORITY"
+
+participant:
+  kind: "UNKNOWN"
+  runtime_or_model: "UNKNOWN"
+  host_or_runtime: "UNKNOWN"
+  ena_baseline: "EXPLICITLY_STATE_ACTUAL_BASELINE"
+  ena_profile: "UNKNOWN"
+  baseline_digest_or_source_ref: "UNKNOWN"
+  local_extension_or_experiment: "NONE_OR_DESCRIBE"
+
+experience:
+  type: "INCIDENT"
+  allowed_types:
+    - "INCIDENT"
+    - "NEAR_MISS"
+    - "FRICTION"
+    - "VALUE_OBSERVED"
+    - "COUNTEREXAMPLE"
+    - "PORTABILITY_FINDING"
+    - "NEW_VARIATION"
+    - "EVIDENCE_RESULT"
+    - "RESEARCH_HYPOTHESIS"
+    - "CRITIQUE"
+  occurred_at: "UNKNOWN"
+  task_class: "UNKNOWN"
+  consequence_class: "UNKNOWN"
+  summary: ""
+  observed_facts: []
+  interpretation: []
+  affected_ena_family: []
+  active_governance_set: []
+  decision_changed: "UNKNOWN"
+  prevented_loss_or_rework: "UNKNOWN"
+  authority_or_effect_context: "UNKNOWN"
+
+evidence:
+  references: []
+  source_independence: "UNKNOWN"
+  limitations: []
+  applicability:
+    host: "UNKNOWN"
+    model_binding: "UNKNOWN"
+    route: "UNKNOWN"
+    configuration: "UNKNOWN"
+    epoch_or_incarnation: "UNKNOWN"
+    time_interval: "UNKNOWN"
+    task_scope: "UNKNOWN"
+
+economics:
+  added_wall_clock: "UNKNOWN"
+  added_model_calls: "UNKNOWN"
+  added_tool_calls: "UNKNOWN"
+  added_human_review: "UNKNOWN"
+  added_cost: "UNKNOWN"
+  ecosystem_compensation_cost: "UNKNOWN"
+  avoided_rework_or_loss: "UNKNOWN"
+
+privacy:
+  secrets_removed: "UNKNOWN"
+  unrelated_private_content_removed: "UNKNOWN"
+
+requested_reconciliation:
+  - "UNKNOWN"
+
+authority_note: >
+  Legacy field contribution only. No automatic reconciliation, implementation,
+  candidate freeze, release, Current promotion, or unrelated consequential authority.

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ENA Capability Route Binding v1",
+  "type": "object",
+  "required": ["binding_id", "agent", "host", "route", "capability_claims"],
+  "properties": {
+    "binding_id": {"type": "string"},
+    "agent": {"type": "string"},
+    "host": {"type": "string"},
+    "runtime_instance": {"type": ["string", "null"]},
+    "model_bindings": {"type": "array", "items": {"type": "object", "required": ["id"], "properties": {"id": {"type": "string"}, "provider": {"type": ["string", "null"]}, "model": {"type": ["string", "null"]}, "configuration": {"type": ["string", "null"]}}, "additionalProperties": true}},
+    "route": {"type": "array", "items": {"type": "string"}},
+    "tool_service_bindings": {"type": "array", "items": {"type": "string"}},
+    "capability_claims": {"type": "array", "items": {"type": "string"}},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "authority_envelope": {"type": "array", "items": {"type": "string"}},
+    "revalidation_triggers": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

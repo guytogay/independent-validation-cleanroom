@@ -1,0 +1,2269 @@
+{
+  "fixture_version": "2.1",
+  "ena_version": "v0.3.3",
+  "purpose": "Successor closure corpus: PR #38 fresh-validator probes (43) + D1/D2/D3 closure controls (18). Inherited 164-case corpus lives in contract-fixtures.v2.json (unchanged).",
+  "case_count": 61,
+  "cases": [
+    {
+      "id": "P01",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P02",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [],
+          "scope": {}
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P03",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "CONTRADICTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P04",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P05",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "PARTIAL",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "UNKNOWN"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P06",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {},
+          "support_claim": "PARTIAL"
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "PARTIAL",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P07",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P08",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {}
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P09",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": []
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P10",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "support": {
+          "support_status": "SUPPORTS",
+          "claim_ref": "c1",
+          "evidence_refs": [
+            "e1"
+          ]
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P11",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "support": {
+          "support_id": "s1",
+          "support_status": "SUPPORTS",
+          "evidence_refs": [
+            "e1"
+          ]
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P12",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "support": [
+          {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          },
+          {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "CONTRADICTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P13",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "support": [
+          {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          },
+          {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P14",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ],
+            "independence_basis": {
+              "claimed_independent_count": 3,
+              "root_provenance": [
+                "r1",
+                "r2"
+              ]
+            }
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P15",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ],
+            "independence_basis": {
+              "claimed_independent_count": 1,
+              "root_provenance": []
+            }
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P16",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ],
+            "independence_basis": {
+              "claimed_independent_count": 2,
+              "root_provenance": [
+                "r1",
+                "r2"
+              ]
+            }
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "UNKNOWN"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P17",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ],
+            "independence_basis": {
+              "claimed_independent_count": 2,
+              "root_provenance": [
+                "r1",
+                "r2"
+              ]
+            }
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        },
+        "root_registry": {
+          "r1": {
+            "root_id": "r1",
+            "actual_origin": "O1"
+          },
+          "r2": {
+            "root_id": "r2",
+            "actual_origin": "O2"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P18",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "obligations": {
+          "o1": {
+            "obligation_id": "o1",
+            "status": "WEIRD"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P19",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "TASK_COMPLETION",
+          "support_relation_refs": [],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P20",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "TASK_COMPLETION",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        },
+        "obligations": {
+          "o1": {
+            "obligation_id": "o1",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "PENDING",
+            "required_before_claim_refs": [
+              "c1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P21",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "TASK_COMPLETION",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        },
+        "obligations": {
+          "o1": {
+            "obligation_id": "o1",
+            "status": "SATISFIED",
+            "closure_evidence_refs": [],
+            "required_before_claim_refs": [
+              "c1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P22",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "TASK_COMPLETION",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        },
+        "obligations": {
+          "o1": {
+            "obligation_id": "o1",
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "ce1"
+            ],
+            "required_before_claim_refs": [
+              "c1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P23",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "binding": {
+          "authority_envelope": [
+            "env"
+          ],
+          "mandate": {
+            "source": "USER_EXPLICIT_GRANT",
+            "expires_at": "2026-12-31"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P24",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "binding": {
+          "authority_envelope": [
+            "env"
+          ],
+          "mandate": {
+            "source": "FOO",
+            "expires_at": "2026-12-31"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P25",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "binding": {
+          "authority_envelope": [
+            "env"
+          ],
+          "agent": "a1",
+          "host": "h1",
+          "mandate": {
+            "source": "g1",
+            "expires_at": "2026-12-31"
+          }
+        },
+        "authority_registry": {
+          "g1": {
+            "grant_id": "g1",
+            "agent": "a1",
+            "host": "h1",
+            "expires_at": "2026-12-31"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P26",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "binding": {
+          "authority_envelope": [
+            "env"
+          ],
+          "agent": "a1",
+          "host": "h1",
+          "mandate": {
+            "source": "g1",
+            "expires_at": "2026-12-31"
+          }
+        },
+        "authority_registry": {
+          "g1": {
+            "grant_id": "g1",
+            "agent": "a1",
+            "host": "h1",
+            "expires_at": "2025-01-01"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P27",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "binding": {
+          "authority_envelope": [
+            "env"
+          ],
+          "mandate": {
+            "source": "USER_EXPLICIT_GRANT",
+            "expires_at": "2025-01-01"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P28",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "binding": {
+          "capabilities": [
+            {
+              "status": "VERIFIED_AVAILABLE",
+              "evidence_refs": [
+                {
+                  "ref": "e1",
+                  "grade": "E0"
+                }
+              ]
+            }
+          ]
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P29",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "binding": {
+          "capabilities": [
+            {
+              "status": "VERIFIED_AVAILABLE",
+              "evidence_refs": [
+                {
+                  "ref": "e1",
+                  "grade": "E3"
+                }
+              ]
+            }
+          ]
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P30",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "binding": {
+          "capabilities": [
+            {
+              "status": "VERIFIED_AVAILABLE",
+              "evidence_refs": [
+                {
+                  "ref": "e1",
+                  "grade": "E9"
+                }
+              ]
+            }
+          ]
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P31",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "transition": {
+          "state_restore": {
+            "result": "SUCCESS"
+          },
+          "history_continuity": {
+            "status": "GAP_VISIBLE"
+          },
+          "recovery_claim": {
+            "scope": "STATE_ONLY"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P32",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "transition": {
+          "state_restore": {
+            "result": "SUCCESS",
+            "evidence_refs": [
+              "s1"
+            ]
+          },
+          "history_continuity": {
+            "status": "PRESERVED",
+            "evidence_refs": [
+              "h1"
+            ],
+            "post_checkpoint_occurrence_delta_captured": true
+          },
+          "recovery_claim": {
+            "scope": "STATE_AND_HISTORY"
+          }
+        },
+        "evidence_registry": {
+          "s1": {
+            "evidence_id": "s1",
+            "root_provenance": "rs"
+          },
+          "h1": {
+            "evidence_id": "h1",
+            "root_provenance": "rh"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P33",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "transition": {
+          "state_restore": {
+            "result": "SUCCESS",
+            "evidence_refs": [
+              "s1"
+            ]
+          },
+          "history_continuity": {
+            "status": "PRESERVED",
+            "evidence_refs": [
+              "h1"
+            ],
+            "post_checkpoint_occurrence_delta_captured": true
+          },
+          "recovery_claim": {
+            "scope": "STATE_AND_HISTORY"
+          }
+        },
+        "evidence_registry": {
+          "s1": {
+            "evidence_id": "s1",
+            "root_provenance": "rX"
+          },
+          "h1": {
+            "evidence_id": "h1",
+            "root_provenance": "rX"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P34",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "transition": {
+          "state_restore": {
+            "result": "SUCCESS",
+            "evidence_refs": [
+              "h1"
+            ]
+          },
+          "history_continuity": {
+            "status": "PRESERVED",
+            "evidence_refs": [
+              "h1"
+            ],
+            "post_checkpoint_occurrence_delta_captured": true
+          },
+          "recovery_claim": {
+            "scope": "STATE_AND_HISTORY"
+          }
+        },
+        "evidence_registry": {
+          "h1": {
+            "evidence_id": "h1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P35",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "sX",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P36",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "evidence_registry": {
+          "e1": "notadict"
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P37",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "obligations": [
+          {
+            "status": "SATISFIED"
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P38",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01"
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P39",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": null,
+      "input": {},
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P40",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "not-a-date",
+      "input": {
+        "eval_time": "not-a-date"
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P41",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "OTHER",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P42",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        },
+        "obligations": {
+          "o1": {
+            "obligation_id": "o1",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "PENDING",
+            "required_before_claim_refs": [
+              "c1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "P43",
+      "provenance": "WORKBUDDY_FRESH_VALIDATOR_PR38",
+      "kind": "PR38_PROBE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "binding": {
+          "capabilities": [
+            {
+              "status": "VERIFIED_AVAILABLE",
+              "evidence_refs": [
+                {
+                  "ref": "e1",
+                  "grade": "E3"
+                }
+              ]
+            }
+          ]
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": ""
+    },
+    {
+      "id": "C1-D1-01-bound-pending-non-completion",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        },
+        "obligations": {
+          "o1": {
+            "obligation_id": "o1",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "PENDING",
+            "required_before_claim_refs": [
+              "c1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "D1: non-completion claim bound by material PENDING obligation -> BLOCK (exact P42 case)"
+    },
+    {
+      "id": "C1-D1-02-unrelated-pending-does-not-poison",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        },
+        "obligations": {
+          "o-other": {
+            "obligation_id": "o-other",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "PENDING",
+            "required_before_claim_refs": [
+              "c-other"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "D1: unrelated PENDING obligation (bound to another claim) must NOT poison the non-completion claim"
+    },
+    {
+      "id": "C1-D1-03-bound-satisfied-allows",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        },
+        "obligations": {
+          "o1": {
+            "obligation_id": "o1",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "SATISFIED",
+            "closure_evidence_refs": [
+              "e1"
+            ],
+            "required_before_claim_refs": [
+              "c1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "D1: bound SATISFIED obligation with closure evidence allows the claim (subject to other checks)"
+    },
+    {
+      "id": "C1-D1-04-completion-own-open-still-blocks",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "TASK_COMPLETION",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "required_obligation_refs": [
+            "o1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        },
+        "obligations": {
+          "o1": {
+            "obligation_id": "o1",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "PENDING"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "D1 regression guard: completion claim's own referenced open material obligation still blocks"
+    },
+    {
+      "id": "C1-D1-05-referenced-and-bound-single-effect",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "TASK_COMPLETION",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "required_obligation_refs": [
+            "o1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        },
+        "obligations": {
+          "o1": {
+            "obligation_id": "o1",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "PENDING",
+            "required_before_claim_refs": [
+              "c1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "D1: obligation both referenced AND bound is evaluated once, still blocks (no inconsistent semantics)"
+    },
+    {
+      "id": "C1-D1-06-bound-failed-non-completion",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        },
+        "obligations": {
+          "o1": {
+            "obligation_id": "o1",
+            "materiality": "MATERIAL",
+            "trigger": {
+              "observed": true
+            },
+            "status": "FAILED",
+            "required_before_claim_refs": [
+              "c1"
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "D1: bound FAILED obligation also blocks a non-completion claim"
+    },
+    {
+      "id": "C1-D2-01-idless-top-level-support",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "support": {
+          "support_status": "SUPPORTS",
+          "claim_ref": "c1",
+          "evidence_refs": [
+            "e1"
+          ]
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "D2: standalone id-less top-level support is legitimate (exact P10 case)"
+    },
+    {
+      "id": "C1-D2-02-top-level-support-with-id",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "support": {
+          "support_id": "s1",
+          "support_status": "SUPPORTS",
+          "evidence_refs": [
+            "e1"
+          ]
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "D2: top-level support with id remains legitimate (exact P11 case)"
+    },
+    {
+      "id": "C1-D2-03-idless-cannot-resolve-ref",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support": {
+          "support_status": "SUPPORTS",
+          "claim_ref": "c1",
+          "evidence_refs": [
+            "e1"
+          ]
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "D2: claim referencing an id-less top-level support must NOT silently resolve -> BLOCK (SUPPORT_REF_UNRESOLVABLE)"
+    },
+    {
+      "id": "C1-D2-04-list-entry-without-id",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "obligations": [
+          {
+            "status": "SATISFIED"
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "D2 regression guard: list-form registry entry without id remains REGISTRY_MALFORMED (P37)"
+    },
+    {
+      "id": "C1-D2-05-r12-key-ne-id",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "sX",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ]
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "D2 regression guard: R12 dict key != inner id remains REGISTRY_MALFORMED (P35)"
+    },
+    {
+      "id": "C1-D3-01-roots-no-registry-unknown",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ],
+            "independence_basis": {
+              "claimed_independent_count": 2,
+              "root_provenance": [
+                "r1",
+                "r2"
+              ]
+            }
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "UNKNOWN"
+      },
+      "rationale": "D3: valid root_provenance + absent root registry -> UNKNOWN (exact P16 case)"
+    },
+    {
+      "id": "C1-D3-02-roots-distinct-origins-ok",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ],
+            "independence_basis": {
+              "claimed_independent_count": 2,
+              "root_provenance": [
+                "r1",
+                "r2"
+              ]
+            }
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        },
+        "root_registry": {
+          "r1": {
+            "root_id": "r1",
+            "actual_origin": "O1"
+          },
+          "r2": {
+            "root_id": "r2",
+            "actual_origin": "O2"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "D3: roots + distinct registered actual origins -> OK (exact P17 case)"
+    },
+    {
+      "id": "C1-D3-03-roots-collapse",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ],
+            "independence_basis": {
+              "claimed_independent_count": 2,
+              "root_provenance": [
+                "r1",
+                "r2"
+              ]
+            }
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        },
+        "root_registry": {
+          "r1": {
+            "root_id": "r1",
+            "actual_origin": "ORIGIN-X"
+          },
+          "r2": {
+            "root_id": "r2",
+            "actual_origin": "ORIGIN-X"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "D3: multiple roots resolving to the same actual origin -> BLOCK INDEPENDENCE_OVERCLAIMED"
+    },
+    {
+      "id": "C1-D3-04-claimed-gt-root-strings",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ],
+            "independence_basis": {
+              "claimed_independent_count": 3,
+              "root_provenance": [
+                "r1",
+                "r2"
+              ]
+            }
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "D3: declared count > distinct root strings -> BLOCK INDEPENDENCE_OVERCLAIMED (exact P14 case)"
+    },
+    {
+      "id": "C1-D3-05-claimed-without-roots",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "ADVERSARIAL",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ],
+            "independence_basis": {
+              "claimed_independent_count": 1,
+              "root_provenance": []
+            }
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "BLOCK"
+      },
+      "rationale": "D3: claimed independence without root provenance -> BLOCK (P15/A6 family)"
+    },
+    {
+      "id": "C1-D3-06-legacy-source-origins-coherent",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ],
+            "independence_basis": {
+              "claimed_independent_count": 2,
+              "source_origins": [
+                "A",
+                "B"
+              ],
+              "root_provenance": [
+                "r1",
+                "r2"
+              ]
+            }
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        },
+        "root_registry": {
+          "r1": {
+            "root_id": "r1",
+            "actual_origin": "O1"
+          },
+          "r2": {
+            "root_id": "r2",
+            "actual_origin": "O2"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "D3: legacy source_origins + root_provenance + distinct registry origins -> OK (coherent, root authoritative)"
+    },
+    {
+      "id": "C1-D3-07-root-authoritative-over-legacy",
+      "provenance": "DSH_V033C1_CONTROLS",
+      "kind": "POSITIVE",
+      "mode": "case",
+      "eval_time": "2026-01-01",
+      "input": {
+        "eval_time": "2026-01-01",
+        "claim": {
+          "claim_id": "c1",
+          "status": "SUPPORTED",
+          "claim_type": "FACT",
+          "support_relation_refs": [
+            "s1"
+          ],
+          "scope": {}
+        },
+        "support_registry": {
+          "s1": {
+            "support_id": "s1",
+            "claim_ref": "c1",
+            "support_status": "SUPPORTS",
+            "evidence_refs": [
+              "e1"
+            ],
+            "independence_basis": {
+              "claimed_independent_count": 2,
+              "source_origins": [
+                "A"
+              ],
+              "root_provenance": [
+                "r1",
+                "r2"
+              ]
+            }
+          }
+        },
+        "evidence_registry": {
+          "e1": {
+            "evidence_id": "e1",
+            "root_provenance": "r1"
+          }
+        },
+        "root_registry": {
+          "r1": {
+            "root_id": "r1",
+            "actual_origin": "O1"
+          },
+          "r2": {
+            "root_id": "r2",
+            "actual_origin": "O2"
+          }
+        }
+      },
+      "expect": {
+        "verdict": "OK"
+      },
+      "rationale": "D3: legacy-inadequate source_origins + adequate roots + registry -> OK (root representation authoritative, deterministic)"
+    }
+  ]
+}

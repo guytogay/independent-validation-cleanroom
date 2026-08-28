@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ENA Composed Case v1 (v0.3.3)",
+  "description": "Input shape contract for validate_contracts.validate_case(): a self-contained claim pack carrying claims, support (top-level and/or registries), evidence/root/obligation/authority registries, authority binding, and recovery transition. Structural shape only — semantic enforcement (typed resolution, registry identity rule R12, tri-state resolution, evidence existence, claim-aware obligations, positive mandate typing, obligation-status vocabulary) is performed by the validator, NOT by this schema. R12 note: for dict-form registries the dict key is the authoritative identity; an explicit inner id (support_id/obligation_id/evidence_id/root_id/grant_id) must equal the key, otherwise the registry is REGISTRY_MALFORMED; missing inner ids are backfilled from the key.",
+  "type": "object",
+  "properties": {
+    "eval_time": {"type": "string", "description": "Explicit evaluation date (ISO YYYY-MM-DD); caller-controlled; REQUIRED by validate_case when not passed as a parameter."},
+    "claim": {"type": "object", "description": "The claim under evaluation; may reference support relations and obligations."},
+    "support": {"oneOf": [{"type": "object"}, {"type": "array", "items": {"type": "object"}}], "description": "Top-level support artifact(s) (composition representation R6)."},
+    "support_registry": {"$ref": "#/$defs/registry", "description": "Support relations keyed by support_id or listed with inner support_id."},
+    "support_relations": {"$ref": "#/$defs/registry", "description": "Alias registry for support relations."},
+    "evidence_registry": {"$ref": "#/$defs/registry", "description": "Evidence artifacts keyed by evidence_id or listed with inner evidence_id."},
+    "root_registry": {"$ref": "#/$defs/registry", "description": "Root provenance entries keyed by root_id or listed with inner root_id (each entry may carry actual_origin)."},
+    "obligations": {"$ref": "#/$defs/registry", "description": "Triggered obligations keyed by obligation_id or listed with inner obligation_id. Status must be within the shipped triggered-obligation.v1.schema.json enum."},
+    "authority_registry": {"$ref": "#/$defs/registry", "description": "Upstream authority grants keyed by grant_id or listed with inner grant_id (each entry may carry agent/host/expires_at)."},
+    "binding": {"type": "object", "description": "Authority/capability binding (authority_envelope, mandate, capabilities)."},
+    "transition": {"type": "object", "description": "Recovery transition (state_restore, history_continuity, recovery_claim)."}
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "registry": {
+      "description": "Registry container: dict {id: artifact-object} OR array of artifact-objects. Dict entries with an explicit inner id must agree with the dict key (R12).",
+      "oneOf": [
+        {"type": "object", "additionalProperties": {"type": "object"}},
+        {"type": "array", "items": {"type": "object"}}
+      ]
+    }
+  }
+}

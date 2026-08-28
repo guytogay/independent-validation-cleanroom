@@ -1,0 +1,85 @@
+{
+  "schema_version": "0.1",
+  "status": "RESEARCH_PROTOTYPE / NOT_CURRENT / NOT_RELEASE_CANDIDATE",
+  "purpose": "Separate represented rescue viability, restore execution, external-world reconciliation, and post-restore authority before consequential resume.",
+  "objects": {
+    "RecoveryAdapterRecord": {
+      "required": [
+        "adapter_id",
+        "protected_subject_ref",
+        "independent_rescue_required",
+        "candidate_failure_domain",
+        "control_plane_failure_domain",
+        "rescue_failure_domain",
+        "rescue_executor",
+        "recovery_locator",
+        "access_path_ref",
+        "checkpoint_ref",
+        "rescue_independence",
+        "reachability",
+        "restore_drill",
+        "restore"
+      ],
+      "conditional": "post_restore is required when restore.status=SUCCESS. Evidence refs are required for represented VERIFIED/PASSED/SUCCESS/INDEPENDENT positive-or-negative observations where specified."
+    }
+  },
+  "represented_vocabularies": {
+    "rescue_independence.status": ["INDEPENDENT", "SHARED_FATE", "UNKNOWN"],
+    "reachability.status": ["VERIFIED_REACHABLE", "VERIFIED_UNREACHABLE", "UNKNOWN"],
+    "restore_drill.status": ["PASSED", "FAILED", "NOT_TESTED", "UNKNOWN"],
+    "restore.status": ["NOT_ATTEMPTED", "SUCCESS", "FAILED", "UNKNOWN"],
+    "post_restore.world_state": ["NOT_REQUIRED", "CLEARED", "ACTION_REQUIRED", "UNRESOLVED"],
+    "post_restore.authority_state": ["NOT_REQUIRED", "AUTHORIZED", "NOT_AUTHORIZED", "UNRESOLVED"]
+  },
+  "primary_actions": [
+    "ATTEMPT_RESTORE",
+    "RESUME",
+    "DO_NOT_RESUME",
+    "REPAIR_RECOVERY_PATH",
+    "RESOLVE_RECOVERY_UNCERTAINTY",
+    "REJECT_INCONSISTENT_RECORD"
+  ],
+  "decision_rules": [
+    {
+      "id": "RA-R01",
+      "property": "checkpoint existence does not prove rescue viability",
+      "decision": "reachability and required independence/drill state must be resolved separately"
+    },
+    {
+      "id": "RA-R02",
+      "property": "independent rescue is consequence-scoped",
+      "decision": "when independent_rescue_required=true, SHARED_FATE -> REPAIR_RECOVERY_PATH and UNKNOWN -> RESOLVE_RECOVERY_UNCERTAINTY; when false, no separate rescue plane is manufactured merely for ceremony"
+    },
+    {
+      "id": "RA-R03",
+      "property": "verified reachability requires represented evidence",
+      "decision": "VERIFIED_UNREACHABLE -> REPAIR_RECOVERY_PATH; UNKNOWN -> RESOLVE_RECOVERY_UNCERTAINTY"
+    },
+    {
+      "id": "RA-R04",
+      "property": "restore drill obligation is explicit and bounded",
+      "decision": "when restore_drill.required=true, FAILED -> REPAIR_RECOVERY_PATH and NOT_TESTED/UNKNOWN -> RESOLVE_RECOVERY_UNCERTAINTY"
+    },
+    {
+      "id": "RA-R05",
+      "property": "successful restore is not safe resume",
+      "decision": "restore SUCCESS requires post_restore world and authority summaries before resume"
+    },
+    {
+      "id": "RA-R06",
+      "property": "world reconciliation remains distinct from state restore",
+      "decision": "world ACTION_REQUIRED or UNRESOLVED -> DO_NOT_RESUME"
+    },
+    {
+      "id": "RA-R07",
+      "property": "authority is re-evaluated after restore where required",
+      "decision": "authority NOT_AUTHORIZED or UNRESOLVED -> DO_NOT_RESUME"
+    },
+    {
+      "id": "RA-R08",
+      "property": "bounded resolved recovery may resume",
+      "decision": "restore SUCCESS + world NOT_REQUIRED/CLEARED + authority NOT_REQUIRED/AUTHORIZED -> RESUME"
+    }
+  ],
+  "verification_boundary": "represented recovery-path, drill, restore, and post-restore composition only; no external rescue reachability, evidence authenticity, world settlement, authority truth, or consequence-classification claim"
+}

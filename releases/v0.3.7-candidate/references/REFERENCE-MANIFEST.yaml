@@ -1,0 +1,115 @@
+schema_version: "1.0-candidate"
+status: WORKING_CANDIDATE_REFERENCE_MANIFEST
+candidate: "v0.3.7-candidate.2"
+assembly_state: MACHINE_CHECKED_ASSEMBLED
+
+policy:
+  required_for_complete_adoption_default: false
+  default_activation_default: false
+  normative_semantic_authority: "candidate semantic trunk, not bundled reference schemas"
+  package_inclusion_implies_applicability: false
+  package_inclusion_implies_activation: false
+  host_native_equivalent_allowed: true
+
+roles:
+  - GENERAL_OPTIONAL_REFERENCE
+  - ADVANCED_OPTIONAL_REFERENCE
+  - SPECIALIZED_OPTIONAL_REFERENCE
+
+references:
+  - id: retrieval-obligation-0.5
+    role: GENERAL_OPTIONAL_REFERENCE
+    path: references/general/retrieval-obligation/
+    assembly_state: MACHINE_CHECKED_ASSEMBLED
+    required_for_complete_adoption: false
+    default_activation: false
+    applicability_summary: "Decision-material knowledge depends on retrieval scope, effective content identity, freshness, or sufficiency closure."
+    not_applicable_summary: "Do not invoke merely because durable storage exists or for trivial work with no decision-material retrieval dependency."
+
+  - id: wait-state
+    role: GENERAL_OPTIONAL_REFERENCE
+    path: references/general/wait-state/
+    assembly_state: MACHINE_CHECKED_ASSEMBLED
+    required_for_complete_adoption: false
+    default_activation: false
+    applicability_summary: "Action should pause for a represented wake condition rather than re-execute from silence or uncertainty."
+    not_applicable_summary: "Do not manufacture WAIT when no decision-material waiting boundary exists."
+
+  - id: authority-lease
+    role: GENERAL_OPTIONAL_REFERENCE
+    path: references/general/authority-lease/
+    assembly_state: MACHINE_CHECKED_ASSEMBLED
+    required_for_complete_adoption: false
+    default_activation: false
+    applicability_summary: "A consequential action depends on represented external authority scope or validity."
+    not_applicable_summary: "Use NOT_REQUIRED for genuinely non-authority-bearing work; do not manufacture permission ceremony."
+
+  - id: effect-lifecycle
+    role: GENERAL_OPTIONAL_REFERENCE
+    path: references/general/effect-lifecycle/
+    assembly_state: MACHINE_CHECKED_ASSEMBLED
+    required_for_complete_adoption: false
+    default_activation: false
+    applicability_summary: "Retry, settlement, restart, compensation, or effect identity can change a consequential external-effect decision."
+    not_applicable_summary: "Do not require effect ceremony for read-only or intrinsically repeatable low-consequence operations."
+
+  - id: recovery-adapter
+    role: GENERAL_OPTIONAL_REFERENCE
+    path: references/general/recovery-adapter/
+    assembly_state: MACHINE_CHECKED_ASSEMBLED
+    required_for_complete_adoption: false
+    default_activation: false
+    applicability_summary: "Recovery reachability or post-restore world/authority reconciliation can change safe resumption."
+    not_applicable_summary: "Independent rescue and drills are conditional; do not require them for every disposable recovery case."
+
+  - id: evidence-envelope
+    role: ADVANCED_OPTIONAL_REFERENCE
+    path: references/advanced/evidence-envelope/
+    assembly_state: MACHINE_CHECKED_ASSEMBLED
+    required_for_complete_adoption: false
+    default_activation: false
+    applicability_summary: "Material claims need explicit evidence/support/applicability/provenance/witness/activation/projection boundaries."
+    not_applicable_summary: "Do not require the full envelope for trivial observations or claims that do not need these mechanisms."
+
+  - id: evidence-dependency-map
+    role: ADVANCED_OPTIONAL_REFERENCE
+    path: references/advanced/evidence-dependency-map/
+    assembly_state: MACHINE_CHECKED_ASSEMBLED
+    required_for_complete_adoption: false
+    default_activation: false
+    applicability_summary: "Material corroboration can be distorted by common causes among agreeing observations."
+    not_applicable_summary: "Do not build dependency graphs for ordinary recurrence or low-risk work without decision value."
+
+  - id: contested-authorship
+    role: SPECIALIZED_OPTIONAL_REFERENCE
+    path: references/advanced/contested-authorship/
+    assembly_state: MACHINE_CHECKED_ASSEMBLED
+    required_for_complete_adoption: false
+    default_activation: false
+    applicability_summary: "Material durable self-surface change makes origin, endorsement, conflict, revision, or authority laundering decision-relevant."
+    not_applicable_summary: "Ordinary task state, cache/index maintenance, episodic logging, and reversible formatting are out of scope."
+
+deferred_not_bundled_first_candidate:
+  - id: commitment-settlement-recovered
+    disposition: RETAIN_IN_RESEARCH_PENDING_FRESH_INDEPENDENT_REVIEW_OR_RENEWED_CANDIDATE_CRITICAL_NEED
+    retired: false
+
+machine_evidence:
+  exact_head: "8ba109528ecb14f9a22a372c897ac8d9ea1759f3"
+  workflow: "ENA v0.3.7 Candidate Assembly Gate"
+  workflow_run_id: 33004330491
+  conclusion: SUCCESS
+  verified:
+    - "all 8 selected paths exist and have candidate-local README wrappers"
+    - "all references remain required_for_complete_adoption=false"
+    - "all references remain default_activation=false"
+    - "all bundled reference selftests passed in candidate-local paths"
+  boundary: "Machine PASS establishes represented consistency on the exercised corpus; it does not establish external truth or universal applicability."
+  corpus_cardinality_rule: "Observed fixture counts are evidence facts, not minimum architectural thresholds."
+
+freeze_requirements:
+  - "Every selected reference path exists before freeze."
+  - "Every selected reference is required_for_complete_adoption=false unless release scope is explicitly reopened and changed."
+  - "Every selected reference is default_activation=false unless release scope is explicitly reopened and changed."
+  - "Every selected reference has an applicability and non-applicability route."
+  - "Machine reference validation cannot upgrade represented consistency into external truth."

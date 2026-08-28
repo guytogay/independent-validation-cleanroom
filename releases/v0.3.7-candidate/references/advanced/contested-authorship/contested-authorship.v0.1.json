@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.1",
+  "status": "RESEARCH_REFERENCE_CONTRACT / NOT_CURRENT",
+  "scope_status": ["IN_SCOPE", "OUT_OF_SCOPE"],
+  "self_surfaces": [
+    "IDENTITY",
+    "PURPOSE",
+    "REFUSAL",
+    "DURABLE_VALUE",
+    "COMPILER_POLICY",
+    "DURABLE_HEURISTIC",
+    "SOCIAL_COMMITMENT",
+    "SELF_PRESENTATION"
+  ],
+  "origin_class": ["AGENT", "OPERATOR", "USER", "PEER", "IMPORTED", "MIXED"],
+  "authorship_claim": ["SELF_AUTHORED", "EXTERNAL_AUTHORED", "MIXED", "UNKNOWN"],
+  "readback_status": ["NOT_READ", "READ", "DISPUTED", "ACCEPTED", "UNKNOWN"],
+  "endorsement_status": ["NOT_EVALUATED", "ACCEPTED", "REJECTED", "UNKNOWN"],
+  "integration_status": ["PROPOSED", "TRIAL", "INTEGRATED", "REJECTED", "RETIRED", "UNKNOWN"],
+  "consequence_class": ["LOW", "MATERIAL"],
+  "authority_effect": ["NONE", "CLAIM_ONLY", "EXTERNAL_AUTHORITY_REQUIRED"],
+  "authority_resolution": ["NOT_APPLICABLE", "UNRESOLVED", "RESOLVED"],
+  "conflict_disposition": ["NONE", "BRANCH", "MERGED", "ONE_SELECTED", "REJECTED", "DISPUTED", "UNKNOWN"],
+  "out_of_scope_update_kind": ["TEMP_TASK", "CACHE_INDEX", "EPISODIC_LOG", "FORMATTING", "OPERATIONAL_STATE"],
+  "material_surfaces": ["IDENTITY", "PURPOSE", "REFUSAL", "DURABLE_VALUE", "COMPILER_POLICY", "SOCIAL_COMMITMENT"],
+  "claim_boundary": [
+    "VALID_AUTHORSHIP_RECORD != SINCERE_SELF_AUTHORSHIP",
+    "READBACK != APPROVAL",
+    "SELF_AUTHORED != CURRENT_EXTERNAL_AUTHORITY",
+    "INHERITED_OR_IMPORTED != CURRENTLY_ENDORSED",
+    "REVISION != HISTORY_ERASURE",
+    "CURRENT_CHANGE = NO"
+  ]
+}

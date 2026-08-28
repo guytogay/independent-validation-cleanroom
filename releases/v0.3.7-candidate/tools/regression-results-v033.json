@@ -1,0 +1,76 @@
+{
+  "implementation_surface": "releases/current/tools/validate_contracts.py",
+  "implementation_lineage": "inherited validator surface released through v0.3.5 candidate.2 lineage",
+  "coverage_boundary": "INHERITED_COMPOSED_VALIDATOR_ONLY_NOT_V035_NEW_SEMANTICS",
+  "migrated_v032_selftest": {
+    "total": 10,
+    "passed": 10
+  },
+  "inherited_v2": {
+    "total": 164,
+    "passed": 164
+  },
+  "closure_v21": {
+    "total": 61,
+    "passed": 61
+  },
+  "by_provenance": {
+    "DSH_MIGRATED_V032": {
+      "total": 10,
+      "ok": 10
+    },
+    "DSH_HISTORICAL_V2": {
+      "total": 23,
+      "ok": 23
+    },
+    "DSH_HISTORICAL_V21": {
+      "total": 18,
+      "ok": 18
+    },
+    "DSH_HISTORICAL_V22": {
+      "total": 7,
+      "ok": 7
+    },
+    "DSH_HISTORICAL_V23_MIGRATED": {
+      "total": 5,
+      "ok": 5
+    },
+    "GPT56SOL_INDEPENDENT": {
+      "total": 20,
+      "ok": 20
+    },
+    "DSH_V24_CONTROLS": {
+      "total": 25,
+      "ok": 25
+    },
+    "WORKBUDDY_INDEPENDENT": {
+      "total": 25,
+      "ok": 25
+    },
+    "DSH_V241_CONTROLS": {
+      "total": 25,
+      "ok": 25
+    },
+    "DSH_IMPLEMENTATION_CONTROLS": {
+      "total": 6,
+      "ok": 6
+    },
+    "WORKBUDDY_FRESH_VALIDATOR_PR38": {
+      "total": 43,
+      "ok": 43
+    },
+    "DSH_V033C1_CONTROLS": {
+      "total": 18,
+      "ok": 18
+    }
+  },
+  "verdict_counts": {
+    "null": 20,
+    "BLOCK": 123,
+    "OK": 83,
+    "UNKNOWN": 9
+  },
+  "unexpected_verdicts": [],
+  "uncaught_exceptions": [],
+  "passed": true
+}

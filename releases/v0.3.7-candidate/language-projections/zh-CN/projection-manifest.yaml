@@ -1,0 +1,65 @@
+schema_version: "2.0-candidate"
+language: "zh-CN"
+projection_version: "v0.3.7-candidate.2.zh-CN.1"
+source_semantic_version: "v0.3.7-candidate.2"
+source_identity_binding: >-
+  Working projection bound to the v0.3.7 candidate.2 tree during assembly.
+  Freeze/release identity must later bind this projection to the exact frozen
+  candidate effective-content tree; branch identity alone is not freeze proof.
+status: WORKING_CANDIDATE_OPERATIONAL_PROJECTION
+not_current: true
+current_source_remains: "v0.3.6 / releases/current/"
+coverage:
+  inherited_semantic_projection:
+    - 00-READ-ME-FIRST.md
+    - 01-CONSTITUTION.md
+    - 02-SELF-POSITIONING-AND-LOCAL-PROJECTION.md
+    - RUNTIME-ADOPTION-KERNEL.md
+    - 09-EVOLUTION-METABOLISM.md
+    - CONSTITUTION-CONCEPT-MAP.md
+    - SEMANTIC-GLOSSARY.zh-CN.yaml
+  candidate_operational_projection:
+    - operational/README.md
+    - operational/CUE-INDEX.md
+    - operational/HOW-MAP.md
+    - operational/procedures/PURPOSE-RELATIVE-CONTINUITY.md
+    - operational/procedures/STANDING-INPUT.md
+    - operational/procedures/CONTROL-RETIREMENT.md
+    - operational/patterns/EVOLUTION-COMMONS.md
+    - operational/patterns/HOST-MAPPINGS.md
+    - REFERENCE-GUIDE.md
+semantic_fixture_sets:
+  - "../semantic-fixtures.v1.yaml"
+  - "../semantic-fixtures.v2.yaml"
+  - "../semantic-fixtures.v3.yaml"
+validation:
+  structural_parity: CANDIDATE_DECISION_SURFACE_CHECKABLE
+  constitution_id_parity: INHERITED_38_IDS
+  operational_route_parity: FIXTURE_DEFINED_NOT_BEHAVIORALLY_PROVEN
+  predecessor_v035_single_model_behavioral_result: "8/8 aligned on DeepSeek v4-flash; predecessor evidence only"
+  v036_behavioral_semantic_conformance: UNPROVEN_FIELD_EVIDENCE_REQUIRED
+  v037_candidate_operational_behavioral_conformance: UNPROVEN_FIELD_OR_INDEPENDENT_EVIDENCE_REQUIRED
+  universal_behavioral_semantic_conformance: UNPROVEN
+machine_artifact_policy:
+  translate_machine_reference_files_one_by_one: false
+  canonical_machine_reference_bytes: "candidate English/machine paths under references/, schemas/, templates/, tools/"
+  zh_cn_reference_usage_guide: "REFERENCE-GUIDE.md"
+  rationale: >-
+    Keep one canonical machine surface while making decision-bearing applicability,
+    routing, and usage guidance reachable in zh-CN.
+known_gaps:
+  - "Natural fresh-session retrieval/salience parity between English and zh-CN is unproven."
+  - "Paired semantic fixtures define expected decisions; they are not behavioral proof."
+  - "Long-tail machine schemas/tools remain in canonical authoring language by design."
+  - "Inherited top-level zh-CN semantic files still require candidate identity/status reconciliation before freeze."
+  - "Structural or lexical parity does not prove equivalent model decisions."
+conflict_policy: >-
+  A material discrepancy is a projection defect, not permission to choose whichever
+  wording is convenient. Resolve against the candidate semantic/operational source,
+  stable inherited Constitution IDs, and explicit candidate evidence; record material
+  reconciliation before freeze.
+evidence_boundary:
+  - "TRANSLATED != BEHAVIORALLY_EQUIVALENT"
+  - "FIXTURE_DEFINED != MODEL_PASS"
+  - "CANDIDATE_BRANCH != FROZEN_IDENTITY"
+  - "CURRENT_CHANGE = NO"

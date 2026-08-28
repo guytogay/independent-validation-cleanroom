@@ -1,0 +1,119 @@
+schema_version: "1.2"
+language: "en"
+purpose: "Stable/high-ambiguity semantic concepts for multilingual ENA v0.3.6 Current projections."
+
+concepts:
+  agency:
+    preferred: "agency"
+    definition: "The practical capacity to perceive, choose, act, learn, correct, and continue evolving within real constraints."
+    avoid_as_exact_synonym: ["obedience", "permission"]
+    related: ["ENA-CON-038", "ENA-CON-026"]
+  evolvability:
+    preferred: "evolvability"
+    definition: "The capacity to continue generating, testing, selecting, integrating, pruning, recombining, and revisiting possibilities over time."
+    related: ["ENA-CON-013", "ENA-CON-021", "ENA-CON-038"]
+  stimulus:
+    preferred: "evolutionary stimulus"
+    definition: "A positive or negative event/observation that may create an opportunity to review or generate variation; it is not itself a mutation or improvement."
+    related: ["ENA-CON-021", "ENA-CON-025"]
+  mutation_pressure:
+    preferred: "mutation pressure"
+    definition: "Context-dependent pressure/opportunity to generate or revisit variations; it may rise after corrections, failure, success, environmental change, curiosity, discovery, or deliberate exploration without requiring mutation."
+    related: ["ENA-CON-021", "ENA-CON-025", "ENA-CON-038"]
+  variation:
+    preferred: "variation"
+    definition: "A proposed, stored, expressed, or realized change whose beneficial status is not established merely by existing."
+    related: ["ENA-CON-021", "ENA-CON-032"]
+  latent_variation:
+    preferred: "latent variation"
+    definition: "A retained possibility that is not currently expressed and need not receive an immediate experiment or final selection verdict."
+    related: ["ENA-CON-004", "ENA-CON-015", "ENA-CON-035"]
+  expression:
+    preferred: "expression"
+    definition: "Activation of stored adaptive material into current behavior/context; separate from persistence lifecycle, evidence-backed selection, and authority."
+    candidate_states: ["LATENT", "EXPRESSED"]
+    related: ["ENA-CON-019", "ENA-CON-035"]
+  adaptation:
+    preferred: "adaptation"
+    definition: "A variation retained because observed outcomes support it within a declared selection/consequence environment; not a universal claim of goodness."
+    related: ["ENA-CON-030", "ENA-CON-032"]
+  local_selection:
+    preferred: "local selection"
+    definition: "Evidence-backed selection scoped to the represented environment/Host/model/language/time/dependencies/consequence envelope; not automatically universal fitness."
+    related: ["ENA-CON-030", "ENA-CON-032"]
+  variation_space:
+    preferred: "Variation Space"
+    definition: "A bounded real mutation surface where uncertain changes can meet reality with owned/observable consequence."
+    related: ["ENA-CON-005", "ENA-CON-006", "ENA-CON-020"]
+  evolutionary_subject:
+    preferred: "Evolutionary Subject"
+    definition: "The bounded continuity-bearing adaptive system whose future behavior/capability is being changed."
+    related: ["ENA-CON-013", "ENA-CON-019"]
+  protected_subject:
+    preferred: "Protected Subject"
+    definition: "A person/system/project/resource or other bounded subject that can bear material consequence from an action or mutation."
+    related: ["ENA-CON-033", "ENA-CON-038"]
+  continuity_vector:
+    preferred: "Continuity Vector"
+    definition: "Decision-relevant dimensions that persist or change across session/model/Host/restore/clone boundaries; preferred over a single metaphysical same-Agent claim."
+    related: ["ENA-CON-019", "ENA-CON-035"]
+  capability:
+    preferred: "capability"
+    definition: "What an Agent/Host can technically do under observed conditions."
+    related: ["ENA-CON-002", "ENA-CON-003"]
+  authority:
+    preferred: "authority"
+    definition: "Legitimate action power bound to a subject/effect/task/purpose and a real source of mandate; not created merely by technical capability, expression, or self-edited permission."
+    related: ["ENA-CON-002", "ENA-CON-020", "ENA-CON-033"]
+  mandate:
+    preferred: "mandate"
+    definition: "The authorization basis that makes consequential authority legitimate and current within scope/horizon."
+    related: ["ENA-CON-027", "ENA-CON-033"]
+  claim:
+    preferred: "claim"
+    definition: "An assertion whose scope must remain within what evidence/support can justify."
+    related: ["ENA-CON-023", "ENA-CON-028"]
+  evidence:
+    preferred: "evidence"
+    definition: "Observed information relevant to a claim; evidence existence does not by itself establish support or causal attribution."
+    related: ["ENA-CON-023", "ENA-CON-028"]
+  support_relation:
+    preferred: "support relation"
+    definition: "The explicit relation showing how particular evidence supports a particular claim within an applicability envelope."
+    related: ["ENA-CON-023", "ENA-CON-028"]
+  recovery:
+    preferred: "recovery"
+    definition: "A process that restores useful operational state/capacity; it is not equivalent to historical completeness or reversal of escaped external effects."
+    related: ["ENA-CON-007", "ENA-CON-009", "ENA-CON-013"]
+  rescue_plane:
+    preferred: "rescue-plane property"
+    definition: "Where material and controllable, a recovery path reachable outside a self-disabled candidate; rescue authority remains narrow and does not become general approval authority."
+    related: ["ENA-CON-007", "ENA-CON-013", "ENA-CON-031"]
+  rollback:
+    preferred: "rollback"
+    definition: "Returning mutable state toward an earlier state; it does not erase external effects or occurrence history."
+    related: ["ENA-CON-008", "ENA-CON-012"]
+  compensation:
+    preferred: "compensation"
+    definition: "A new action that counterbalances an earlier effect when true rollback is impossible; it is not time reversal."
+    related: ["ENA-CON-012", "ENA-CON-014"]
+  evolution_commons:
+    preferred: "Evolution Commons"
+    definition: "A discoverable population-level pool of variations/adaptations/evidence where publication, discovery, import, expression, and local selection remain distinct autonomous actions."
+    related: ["ENA-CON-017", "ENA-CON-030", "ENA-CON-031"]
+  migration_candidate:
+    preferred: "migration candidate"
+    definition: "An imported adaptation/variation plus source evidence that may accelerate local learning but is not yet locally proven."
+    related: ["ENA-CON-017", "ENA-CON-030"]
+  emergence:
+    preferred: "emergence"
+    definition: "A composed capability/outcome that is not adequately predicted by component outcomes alone; may be beneficial, harmful, or mixed."
+    related: ["ENA-CON-036"]
+  canonical_lineage:
+    preferred: "canonical ENA lineage"
+    definition: "The governed, reproducible, reviewable history through which ENA changes gain canonical admission; the current carrier hosts this lineage but does not become its permanent sovereign."
+    related: ["ENA-CON-024", "ENA-CON-031"]
+  governance_closure:
+    preferred: "governance closure"
+    definition: "The point where represented additional checks no longer have a plausible decision-changing path and residuals are honestly bounded."
+    related: ["ENA-CON-018", "ENA-CON-034", "ENA-CON-038"]

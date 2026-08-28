@@ -1,0 +1,59 @@
+{
+  "schema_version": "0.1",
+  "status": "RESEARCH_PROTOTYPE / NEXT_RELEASE_INPUT / NOT_CURRENT / NOT_RELEASE_CANDIDATE",
+  "purpose": "Represent deliberate evidence-dependent waiting with explicit wake/cancel/timeout boundaries while keeping effect retry and authority revalidation separate.",
+  "wake_types": ["EVIDENCE", "EVENT", "TIME", "MANUAL"],
+  "resolution_states": ["WAITING", "WAKE_READY", "TIMEOUT_REACHED", "CANCELLED", "INVALID_RECORD"],
+  "required_fields": ["wait_id", "reason", "entered_at", "wake_condition"],
+  "optional_fields": ["deadline_at", "wake_observation", "cancelled_at", "related_effect_refs", "related_authority_refs", "note"],
+  "decision_rules": [
+    {
+      "id": "WS-R01",
+      "property": "waiting is an active lifecycle truth, not completion",
+      "decision": "no wake/cancel/timeout -> WAITING"
+    },
+    {
+      "id": "WS-R02",
+      "property": "wake requires represented satisfaction of the declared wake condition",
+      "decision": "matching observed wake -> WAKE_READY"
+    },
+    {
+      "id": "WS-R03",
+      "property": "timeout ends the wait horizon but does not authorize retry",
+      "decision": "now >= deadline before wake -> TIMEOUT_REACHED"
+    },
+    {
+      "id": "WS-R04",
+      "property": "explicit cancellation is not completion",
+      "decision": "cancelled_at <= now -> CANCELLED"
+    },
+    {
+      "id": "WS-R05",
+      "property": "time-based wake uses the declared wake time rather than inventing an external observation",
+      "decision": "wake_condition.type=TIME and now >= wake_condition.at -> WAKE_READY unless cancellation already occurred"
+    },
+    {
+      "id": "WS-R06",
+      "property": "wake and deadline ordering is occurrence-sensitive",
+      "decision": "an observed wake before/equal deadline may become WAKE_READY even when evaluated later; a wake observed after the deadline resolves TIMEOUT_REACHED unless Host policy explicitly creates a new wait"
+    },
+    {
+      "id": "WS-R07",
+      "property": "wake does not imply effect settlement or current authority",
+      "decision": "WAKE_READY posture is REVALIDATE_DEPENDENCIES_BEFORE_RESUME"
+    },
+    {
+      "id": "WS-R08",
+      "property": "open-ended waits are representable without universal timeout ceremony",
+      "decision": "deadline_at may be absent; whether that is acceptable is a caller/Host consequence boundary"
+    }
+  ],
+  "postures": {
+    "WAITING": "DO_NOT_REEXECUTE_JUST_BECAUSE_NOTHING_HAPPENED",
+    "WAKE_READY": "REVALIDATE_DEPENDENCIES_BEFORE_RESUME",
+    "TIMEOUT_REACHED": "APPLY_TIMEOUT_POLICY_NO_IMPLICIT_RETRY",
+    "CANCELLED": "STOP_WAIT_WITHOUT_COMPLETION_CLAIM",
+    "INVALID_RECORD": "REJECT_INCONSISTENT_WAIT_RECORD"
+  },
+  "verification_boundary": "represented wait/wake/time consistency only; no external event authenticity, timer liveness, settlement, current authority, or timeout-policy correctness claim"
+}

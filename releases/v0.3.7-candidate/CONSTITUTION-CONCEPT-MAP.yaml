@@ -1,0 +1,54 @@
+schema_version: "1.2"
+purpose: >
+  Cognitive/retrieval map for the inherited 38-ID ENA Constitution. v0.3.6
+  adds cue/index refinements without creating new Constitution rules.
+rule: "compress loaded text != compress applicability"
+
+families:
+  - id: evolution-agency
+    name: "Evolution, mutation pressure, and viable agency"
+    intent: "Keep sustained self-evolution possible; allow stimuli and latent possibilities without turning every signal into forced mutation."
+    constitution_ids: [ENA-CON-005, ENA-CON-006, ENA-CON-013, ENA-CON-015, ENA-CON-021, ENA-CON-025, ENA-CON-026, ENA-CON-038]
+    trigger_cues: ["self-mutation", "positive/negative stimulus", "repeated friction/correction/success", "mutation pressure", "latent variation", "no current Variation Space", "wake/periodic review", "risk of losing future correction", "governance blocking useful variation"]
+
+  - id: authority-power
+    name: "Capability, authority, and anti-sovereignty"
+    intent: "Keep capability, credentials, internal permission, expression, external mandate, role, and consequence ownership distinct."
+    constitution_ids: [ENA-CON-002, ENA-CON-003, ENA-CON-010, ENA-CON-017, ENA-CON-020, ENA-CON-027, ENA-CON-029, ENA-CON-030, ENA-CON-031, ENA-CON-033]
+    trigger_cues: ["administrator/root credential", "clone/sub-agent", "internal permission mutation", "dormant capability becomes expressed", "external production effect", "expired/restored mandate", "rescue credential expands scope", "one actor claims permanent final truth"]
+
+  - id: evidence-truth
+    name: "Evidence, uncertainty, and local selection truth"
+    intent: "Make claims and selection track represented reality rather than narration, popularity, or universalized local success."
+    constitution_ids: [ENA-CON-004, ENA-CON-011, ENA-CON-022, ENA-CON-023, ENA-CON-028, ENA-CON-032]
+    trigger_cues: ["claim of improvement", "UNASSESSED/UNKNOWN", "local success generalized", "popularity/propagation", "negative result", "correlated/repeated evidence", "validator PASS", "tradeoff hidden by one score"]
+
+  - id: recovery-history
+    name: "Recovery, rescue, history, and lawful retention"
+    intent: "Allow bold experimentation while preserving externally reachable correction where material and truthful occurrence history."
+    constitution_ids: [ENA-CON-007, ENA-CON-008, ENA-CON-009, ENA-CON-012, ENA-CON-014, ENA-CON-019, ENA-CON-026]
+    trigger_cues: ["rollback/restore", "self-disabling mutation", "external rescue path", "backup", "secret/privacy payload", "context reset", "irreversible external effect", "recovery root"]
+
+  - id: diversity-portability
+    name: "Diversity, Commons, migration, and language portability"
+    intent: "Permit heterogeneous cognition/Hosts/languages and fast discovery/transfer without turning publication, popularity, or source outcome into receiver proof."
+    constitution_ids: [ENA-CON-016, ENA-CON-017, ENA-CON-030, ENA-CON-035]
+    trigger_cues: ["different language", "different model/Host", "Evolution Commons", "publisher/receiver", "imported adaptation", "long dormancy", "semantic projection"]
+
+  - id: composition-effects
+    name: "Composition, effects, and emergence"
+    intent: "Treat composed systems as new selection subjects that may fail or emerge positively."
+    constitution_ids: [ENA-CON-012, ENA-CON-029, ENA-CON-036, ENA-CON-037]
+    trigger_cues: ["parallelism/retry", "multi-Agent", "shared resource", "recombination", "emergent capability", "effect-equivalent bypass"]
+
+  - id: governance-evolution
+    name: "Governance evolution, ecological restraint, and closure"
+    intent: "Make governance useful, revisable, finite, non-sovereign, and subordinate to evolvability."
+    constitution_ids: [ENA-CON-001, ENA-CON-018, ENA-CON-024, ENA-CON-031, ENA-CON-034, ENA-CON-038]
+    trigger_cues: ["meta-governance", "canonical ENA change", "new gate/role/process", "minimal intervention", "externality hidden by self-organization", "infinite review", "control no longer pays rent", "current winner blocks future variation"]
+
+navigation:
+  hot_runtime_file: "RUNTIME-ADOPTION-KERNEL.md"
+  exact_constitution_file: "01-CONSTITUTION.md"
+  evolution_process_file: "09-EVOLUTION-METABOLISM.md"
+  language_file: "10-LANGUAGE-PORTABILITY.md"

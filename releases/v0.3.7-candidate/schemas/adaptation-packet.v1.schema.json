@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/ena/adaptation-packet.v1.schema.json",
+  "title": "ENA Adaptation Migration Packet v1",
+  "type": "object",
+  "required": [
+    "packet_schema",
+    "exported_at",
+    "packet_purpose",
+    "source_candidate_id",
+    "source_lifecycle_state",
+    "source_selection_state",
+    "source_experiments",
+    "source_evaluations",
+    "source_integration_history",
+    "transfer_status",
+    "source_authentication",
+    "content_sha256"
+  ],
+  "properties": {
+    "packet_schema": {"const": "ena-adaptation-packet.v1"},
+    "exported_at": {"type": "string", "minLength": 1},
+    "packet_purpose": {"enum": ["ADAPTATION_CANDIDATE", "NEGATIVE_EVIDENCE", "UNRESOLVED_VARIATION"]},
+    "source_candidate_id": {"type": "string", "minLength": 1},
+    "source_origin": {"type": ["string", "null"]},
+    "source_lifecycle_state": {"enum": ["PROPOSED", "EXPERIMENTED", "INTEGRATED", "ARCHIVED", "RETIRED"]},
+    "source_selection_state": {"enum": ["UNASSESSED", "SUPPORTED", "PARTIAL", "NOT_SUPPORTED", "HARMFUL", "UNKNOWN"]},
+    "hypothesis": {"type": ["string", "null"]},
+    "change": {"type": ["string", "null"]},
+    "expected_outcomes": {"type": "array", "items": {"type": "string"}},
+    "source_variation_space": {"type": ["string", "null"]},
+    "evolutionary_subject": {"type": ["string", "null"]},
+    "protected_subjects": {"type": "array", "items": {"type": "string"}},
+    "source_environment": {"type": "object"},
+    "dependencies": {"type": "array", "items": {"type": "string"}},
+    "source_experiments": {"type": "array", "items": {"type": "object"}},
+    "source_evaluations": {"type": "array", "items": {"type": "object"}},
+    "source_integration_history": {"type": "array", "items": {"type": "object"}},
+    "source_archive": {"type": ["object", "null"]},
+    "source_migration": {"type": ["object", "null"]},
+    "unknowns": {"type": "array", "items": {"type": "string"}},
+    "transfer_status": {"const": "TRANSFERRED_SOURCE_EVIDENCE_NOT_LOCAL_PROOF"},
+    "source_authentication": {"const": "NOT_AUTHENTICATED_BY_THIS_PACKET"},
+    "content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"source_selection_state": {"enum": ["SUPPORTED", "PARTIAL"]}}, "required": ["source_selection_state"]},
+      "then": {"properties": {"packet_purpose": {"const": "ADAPTATION_CANDIDATE"}, "source_experiments": {"minItems": 1}, "source_evaluations": {"minItems": 1}}}
+    },
+    {
+      "if": {"properties": {"source_selection_state": {"enum": ["NOT_SUPPORTED", "HARMFUL"]}}, "required": ["source_selection_state"]},
+      "then": {"properties": {"packet_purpose": {"const": "NEGATIVE_EVIDENCE"}, "source_experiments": {"minItems": 1}, "source_evaluations": {"minItems": 1}}}
+    },
+    {
+      "if": {"properties": {"source_selection_state": {"enum": ["UNASSESSED", "UNKNOWN"]}}, "required": ["source_selection_state"]},
+      "then": {"properties": {"packet_purpose": {"const": "UNRESOLVED_VARIATION"}}}
+    }
+  ],
+  "additionalProperties": false
+}

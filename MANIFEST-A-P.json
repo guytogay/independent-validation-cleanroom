@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "stage": "A-P",
+  "target_identity": "v0.3.7-candidate.2",
+  "frozen_source": "bda470e0a6b170cec61225a905957a501454a2fe",
+  "frozen_candidate_subtree": "d5fefc8c786d7e40b3e9a59211ee7045bccee5bf",
+  "package_path": "releases/v0.3.7-candidate/",
+  "package_semantics": "EXACT_FROZEN_PACKAGE",
+  "actual_prior_a_s_cleanroom_commit": "28dde50c9caaeee3b5c269e28a7be5f07ac29ae5",
+  "actual_prior_a_s_cleanroom_tree": "42debebed620bd05e6e2635409057f20b57bfa9e",
+  "a_s_seal_sha256": "0e6bb214cc3398b34c13fc6a3bebd1f548ae00ea067b4c338e8ce88f42ad955f",
+  "a_s_seal_persisted_before_a_p_exposure": true,
+  "phase_b_exposed": false,
+  "attack_cardinality": "OPEN"
+}

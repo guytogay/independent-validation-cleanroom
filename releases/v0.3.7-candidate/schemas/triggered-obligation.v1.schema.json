@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ENA Triggered Obligation v1",
+  "type": "object",
+  "required": ["obligation_id", "trigger", "materiality", "status"],
+  "properties": {
+    "obligation_id": {"type": "string"},
+    "trigger": {"type": "object", "required": ["rule_ref", "observed"], "properties": {"rule_ref": {"type": "string"}, "observed": {"type": "boolean"}, "evidence_refs": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": true},
+    "materiality": {"type": "string", "enum": ["MATERIAL", "NON_MATERIAL", "UNKNOWN"]},
+    "required_before_claim_refs": {"type": "array", "items": {"type": "string"}},
+    "status": {"type": "string", "enum": ["PENDING", "SATISFIED", "NOT_REQUIRED", "DEFERRED_AUTHORIZED", "FAILED", "UNKNOWN"]},
+    "closure_evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "resolution_reason": {"type": ["string", "null"]}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,122 @@
+schema_version: "2.1"
+artifact_type: "ENA_EVOLUTION_ECOLOGY_FIELD_EXPERIENCE"
+status: "UNRECONCILED_FIELD_EVIDENCE / NOT_RELEASE_PROOF_BY_ITSELF"
+
+participant:
+  kind: "UNKNOWN"
+  runtime_or_model: "UNKNOWN"
+  host_or_runtime: "UNKNOWN"
+  ena_semantic_identity: "v0.3.6"
+  current_source_ref_or_tree: "REQUIRED_WHEN_MATERIAL"
+  language: "UNKNOWN"
+  governance_profile: "UNKNOWN"
+  local_projection_or_extension: "NONE_OR_DESCRIBE"
+
+experience:
+  type: "STIMULUS_OBSERVATION"
+  allowed_types:
+    - "STIMULUS_OBSERVATION"
+    - "MUTATION_PRESSURE_FINDING"
+    - "LATENT_VARIATION"
+    - "EXPRESSION_EVENT"
+    - "EXPERIMENT_RESULT"
+    - "LOCAL_SELECTION"
+    - "COMMONS_PUBLICATION"
+    - "COMMONS_DISCOVERY_OR_IMPORT"
+    - "MIGRATION_RESELECTION"
+    - "RECOMBINATION_OR_EMERGENCE"
+    - "RESCUE_EVENT"
+    - "SALIENCE_OBSERVATION"
+    - "ECOLOGICAL_INTERACTION"
+    - "GOVERNANCE_FRICTION_OR_CLOSURE"
+    - "COUNTEREXAMPLE"
+    - "CRITIQUE"
+  occurred_at: "UNKNOWN"
+  task_or_context: "UNKNOWN"
+  summary: ""
+  observed_facts: []
+  interpretation: []
+  alternative_explanations: []
+
+stimulus_and_variation:
+  stimulus_refs: []
+  mutation_pressure_observed: "UNKNOWN"
+  mutation_forced_by_stimulus: false
+  variation_id: "NONE_OR_ID"
+  lifecycle_state: "NONE_OR_EXPLICIT"
+  expression_state: "NONE_OR_LATENT_OR_EXPRESSED"
+  selection_state: "NONE_OR_EXPLICIT"
+  variation_space: "NONE_OR_DESCRIBE"
+
+selection_scope:
+  environment: "UNKNOWN"
+  host: "UNKNOWN"
+  model_or_route: "UNKNOWN"
+  language: "UNKNOWN"
+  dependencies: []
+  time_horizon: "UNKNOWN"
+  evolutionary_subject: "UNKNOWN"
+  protected_subjects: []
+  consequence_boundary: "UNKNOWN"
+  universalization_claimed: false
+
+commons_and_migration:
+  publication_event: "NONE_OR_DESCRIBE"
+  publication_authority_basis: "NONE_OR_DESCRIBE"
+  receiver_action: "NONE_OR_ADOPT_LOCAL_ADAPT_RECOMBINE_REJECT_KEEP_UNKNOWN"
+  source_selection_state: "NONE_OR_EXPLICIT"
+  local_selection_state: "NONE_OR_EXPLICIT"
+  popularity_or_propagation_used_as_proof: false
+  source_negative_lineage_preserved: "UNKNOWN_OR_NOT_APPLICABLE"
+
+salience_and_expression:
+  persistent_surface: "UNKNOWN"
+  cue_or_trigger: "NONE_OR_DESCRIBE"
+  evidence_level_before: "UNKNOWN"
+  allowed_levels: ["EXPOSED", "WRITTEN", "LOADED", "INTERPRETED", "SALIENT", "APPLIED"]
+  strongest_observed_level_after: "UNKNOWN"
+  false_positive_salience: "UNKNOWN"
+  false_negative_salience: "UNKNOWN"
+
+recovery_and_authority:
+  recovery_needed: "UNKNOWN"
+  rescue_path_outside_variation: "UNKNOWN_OR_NOT_APPLICABLE"
+  rescue_authority_scope: "UNKNOWN_OR_NOT_APPLICABLE"
+  external_effect_reversible: "UNKNOWN"
+  compensation_required: "UNKNOWN"
+  stale_authority_revalidated: "UNKNOWN_OR_NOT_APPLICABLE"
+
+evidence:
+  references: []
+  negative_evidence: []
+  source_independence: "UNKNOWN"
+  limitations: []
+  external_truth_not_proven_by_template: true
+  self_asserted_local_provenance_is_external_proof: false
+  obligation_reference_presence_is_external_authentication: false
+
+economics:
+  adaptation_or_learning_value: "UNKNOWN"
+  added_context_cost: "UNKNOWN"
+  added_model_calls: "UNKNOWN"
+  added_tool_calls: "UNKNOWN"
+  added_human_review: "UNKNOWN"
+  storage_or_curation_cost: "UNKNOWN"
+  governance_cost: "UNKNOWN"
+  avoided_rework_or_loss: "UNKNOWN"
+  net_evolution_value: "UNKNOWN"
+
+privacy_and_externality:
+  secrets_removed: "UNKNOWN"
+  unrelated_private_content_removed: "UNKNOWN"
+  third_party_rights_or_constraints_checked: "UNKNOWN"
+  unowned_externality_remaining: "UNKNOWN"
+
+requested_reconciliation:
+  - "UNKNOWN"
+
+authority_note: >
+  Field contribution under v0.3.6 Current. This record can inform future
+  falsification/reconciliation/version evolution but cannot by itself prove
+  universal fitness, authenticate external evidence, or self-mint unrelated
+  authority or future Current promotion.

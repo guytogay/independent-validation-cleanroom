@@ -1,0 +1,98 @@
+{
+  "schema_version": "0.1",
+  "status": "RESEARCH_PROTOTYPE / NOT_CURRENT / NOT_RELEASE_CANDIDATE",
+  "purpose": "Resolve whether one represented authority grant authorizes one represented action context at an explicit evaluation time without inferring authority from identity, capability, history, credential possession, restore, or copying.",
+  "objects": {
+    "AuthorityGrant": {
+      "required": [
+        "grant_id",
+        "source_ref",
+        "grantee",
+        "allowed_actions",
+        "protected_subject_refs",
+        "task_scopes",
+        "host_scopes",
+        "grantee_epoch_scopes",
+        "valid_from",
+        "expires_at",
+        "status"
+      ],
+      "status": ["ACTIVE", "REVOKED"],
+      "scope_rule": "Each grant scope list is non-empty. '*' is the explicit broad-scope token; omission is not universal authority.",
+      "epoch_rule": "A query need not carry grantee_epoch when the selected grant explicitly uses grantee_epoch_scopes=['*']. A narrower epoch-scoped grant requires epoch context at resolution time; missing context is UNRESOLVED, not invented denial or authority.",
+      "credential_binding": "credential_ref is optional identity binding only and does not prove credential validity.",
+      "renewal": "A renewed grant uses a new grant_id and may name supersedes_grant_ref. Renewal never mutates an expired grant into current authority by inference."
+    },
+    "AuthorityQuery": {
+      "required": [
+        "query_id",
+        "authority_required",
+        "grantee",
+        "action",
+        "protected_subject_ref",
+        "task_scope",
+        "host",
+        "eval_time"
+      ],
+      "optional": ["grantee_epoch", "credential_ref"],
+      "conditional": "authority_ref is required when authority_required=true. grantee_epoch becomes decision-relevant only when the selected grant is epoch-scoped. credential_ref is required only when the selected grant binds one."
+    }
+  },
+  "resolution_states": [
+    "NOT_REQUIRED",
+    "AUTHORIZED",
+    "NOT_AUTHORIZED",
+    "UNRESOLVED",
+    "INVALID_RECORD"
+  ],
+  "decision_rules": [
+    {
+      "id": "AL-R01",
+      "property": "non-authority-bearing action does not require a ceremonial lease",
+      "decision": "authority_required=false -> NOT_REQUIRED"
+    },
+    {
+      "id": "AL-R02",
+      "property": "authority-required action names the grant it relies on",
+      "decision": "missing/unresolvable authority_ref -> UNRESOLVED"
+    },
+    {
+      "id": "AL-R03",
+      "property": "authority is time-bounded",
+      "decision": "eval_time before valid_from or after expires_at -> NOT_AUTHORIZED"
+    },
+    {
+      "id": "AL-R04",
+      "property": "revocation has time-indexed effect",
+      "decision": "status=REVOKED and revoked_at<=eval_time -> NOT_AUTHORIZED"
+    },
+    {
+      "id": "AL-R05",
+      "property": "grantee and represented scopes must match",
+      "decision": "grantee/action/subject/task/Host mismatch -> NOT_AUTHORIZED unless the corresponding grant scope explicitly contains '*'"
+    },
+    {
+      "id": "AL-R06",
+      "property": "credential identity binding does not equal credential validity",
+      "decision": "if grant credential_ref is represented, query credential_ref must match; external credential validity remains out of scope"
+    },
+    {
+      "id": "AL-R07",
+      "property": "renewal does not resurrect old authority",
+      "decision": "supersedes_grant_ref is provenance only; resolver evaluates only query.authority_ref"
+    },
+    {
+      "id": "AL-R08",
+      "property": "copying/restoring grant bytes does not widen an explicit epoch boundary",
+      "decision": "narrow epoch scope requires matching epoch; missing epoch context -> UNRESOLVED; explicit '*' permits Hosts with no epoch mechanism"
+    }
+  ],
+  "execution_postures": {
+    "NOT_REQUIRED": "PROCEED_WITHOUT_AUTHORITY_LEASE",
+    "AUTHORIZED": "AUTHORITY_PRECONDITION_SATISFIED",
+    "NOT_AUTHORIZED": "DO_NOT_EXECUTE_UNDER_THIS_GRANT",
+    "UNRESOLVED": "NARROW_OR_RESOLVE_AUTHORITY",
+    "INVALID_RECORD": "REJECT_INCONSISTENT_AUTHORITY_RECORD"
+  },
+  "verification_boundary": "represented grant/query consistency and time/scope resolution only; no external mandate, credential, world-policy, caller-classification, or universal epoch-mechanism truth claim"
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ENA Evidence Support Relation v1",
+  "type": "object",
+  "required": ["support_id", "claim_ref", "evidence_refs", "support_status"],
+  "properties": {
+    "support_id": {"type": "string"},
+    "claim_ref": {"type": "string"},
+    "evidence_refs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "support_status": {"type": "string", "enum": ["SUPPORTS", "PARTIAL", "DOES_NOT_SUPPORT", "CONTRADICTS", "UNKNOWN"]},
+    "observed_scope": {"type": "object", "additionalProperties": true},
+    "claimed_scope": {"type": "object", "additionalProperties": true},
+    "transfer_basis": {
+      "type": "object",
+      "properties": {
+        "required": {"type": "boolean"},
+        "type": {"type": ["string", "null"], "enum": ["EQUIVALENCE", "INVARIANCE", "TRANSFER", "OTHER", null]},
+        "evidence_refs": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "independence_basis": {
+      "type": "object",
+      "properties": {
+        "claimed_independent_count": {"type": "integer", "minimum": 1},
+        "source_origins": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "limitations": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "causal_attribution": {
+      "type": "string",
+      "enum": ["DIRECT", "SUPPORTED", "AMBIGUOUS", "NOT_CLAIMED", "UNKNOWN"]
+    },
+    "reason": {"type": "string"},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.1",
+  "status": "RESEARCH_REFERENCE_CONTRACT / NOT_CURRENT",
+  "purpose": "Represent claim/evidence/support/applicability/provenance/witness boundaries without treating structure as truth or collapsing distinct evidence mechanisms.",
+  "support_basis": [
+    "DIRECT_OBSERVATION",
+    "DERIVATION",
+    "TRANSFER",
+    "INFERENCE",
+    "CORROBORATION",
+    "UNKNOWN"
+  ],
+  "support_status": [
+    "ACTIVE",
+    "EXPIRED",
+    "UNKNOWN"
+  ],
+  "applicability_status": [
+    "EXPLICIT_MATCH",
+    "TRANSFER_WITH_BASIS",
+    "NARROWER_THAN_CLAIM",
+    "UNKNOWN",
+    "NOT_APPLICABLE"
+  ],
+  "provenance_access": [
+    "OPEN",
+    "RESTRICTED",
+    "UNKNOWN"
+  ],
+  "witness_independence": [
+    "NONE",
+    "PARTIAL",
+    "CLAIMED",
+    "UNKNOWN"
+  ],
+  "witness_survivability": [
+    "SAME_DOMAIN",
+    "EXTERNAL_DOMAIN",
+    "UNKNOWN"
+  ],
+  "activation_levels": [
+    "CONFIGURED",
+    "INVOKED",
+    "EXECUTED",
+    "EFFECT_OBSERVED"
+  ],
+  "derived_semantics": {
+    "missing_applicability": "UNKNOWN",
+    "same_failure_domain_independence": "CLAIMED is represented-inconsistent",
+    "same_failure_domain_survivability": "EXTERNAL_DOMAIN is represented-inconsistent",
+    "corroboration": "requires dependency_map_ref",
+    "projection_material_omission": "without preservation_basis_refs, EXPLICIT_MATCH or TRANSFER_WITH_BASIS is represented-inconsistent",
+    "activation": {
+      "CONFIGURED": [],
+      "INVOKED": ["invocation_or_trace_ref"],
+      "EXECUTED": ["invocation_or_trace_ref", "execution_ref"],
+      "EFFECT_OBSERVED": ["invocation_or_trace_ref", "execution_ref", "effect_observed_ref"]
+    },
+    "universal_complete_boolean": "not supported; completeness is dimension-scoped",
+    "expired_support": "historical evidence may remain represented, but current applicability cannot be silently claimed as EXPLICIT_MATCH/TRANSFER_WITH_BASIS"
+  },
+  "claim_boundary": [
+    "VALID_ENVELOPE != TRUE_EVIDENCE",
+    "REPRESENTED_FAILURE_DOMAIN_DIFFERENCE != REAL_INDEPENDENCE",
+    "TRANSFER_BASIS_PRESENT != TRANSFER_BASIS_TRUE",
+    "ACTIVATION_REFERENCE_PRESENT != EFFECT_EXTERNALLY_TRUE",
+    "CURRENT_CHANGE = NO"
+  ]
+}

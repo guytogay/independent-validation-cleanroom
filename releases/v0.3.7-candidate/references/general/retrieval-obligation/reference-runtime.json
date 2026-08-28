@@ -1,0 +1,10 @@
+{
+  "schema_version": "memory-retrieval-obligation-research-0.5",
+  "decisions": [{"decision_id":"d1","consequence":"MATERIAL","disposition":"READY","uncertainty_declared":false}],
+  "trigger_events": [{"trigger_id":"t1","decision_id":"d1","basis":"GENERIC_REFLEX","resolver_ref":"resolver:logical"}],
+  "retrieval_intents": [{"intent_id":"i1","decision_id":"d1","trigger_ids":["t1"],"resolver_ref":"resolver:logical","decision_context_snapshot_ref":"ctx:d1:v1","need_basis":"DURABLE_STATE_MAY_CHANGE_DECISION"}],
+  "obligations": [{"obligation_id":"o1","decision_id":"d1","intent_id":"i1","resolver_ref":"resolver:logical","state":"CLOSED","closure":{"disposition":"RETRIEVAL_SUFFICIENCY_RESOLVED","basis_discovery_id":"sd1","basis_attempt_ids":["a1"],"sufficiency_resolution_ref":"suff:1"}}],
+  "scope_discoveries": [{"discovery_id":"sd1","obligation_id":"o1","sequence":1,"resolver_ref":"resolver:logical","registry_snapshot_ref":"registry:v1","selected_scope_refs":["scope:A","scope:B"],"outcome":"SCOPES_SELECTED","coverage":"PARTIAL","subject_relevance":"DECISION_MATERIAL","receipt_ref":"disc:1"}],
+  "attempts": [{"attempt_id":"a1","obligation_id":"o1","discovery_id":"sd1","scope_ref":"scope:A","sequence":1,"resolver_ref":"resolver:logical","outcome":"HIT","coverage":"PARTIAL","subject_relevance":"DECISION_MATERIAL","returned_results":[{"record_ref":"M1","content_identity_ref":"sha256:V1"},{"record_ref":"M2","content_identity_ref":"sha256:V1"}],"receipt_ref":"ret:1"}],
+  "sufficiency_resolutions": [{"resolution_ref":"suff:1","subject_fingerprint":"f126d9f7a3e029edd2c98833031268a3972e9e20b4ac8b247c6d7ea832f76b9c","receipt_ref":"receipt:suff:1"}]
+}

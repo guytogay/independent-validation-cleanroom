@@ -1,0 +1,92 @@
+{
+  "fixture_version": "1.1",
+  "ena_version": "v0.3.2",
+  "purpose": "Structurally complete deterministic positive/negative fixtures for decision-changing semantic checks in validate_contracts.py.",
+  "cases": [
+    {
+      "id": "support-direct-pass",
+      "mode": "support",
+      "input": {
+        "claim": {"claim_id": "C1", "claim_type": "OTHER", "subject": {"kind": "TASK", "id": "T1"}, "scope": {"host": "H1", "task_scope": "T1"}, "assertion": "Direct support applies to this host/task.", "status": "ASSERTED"},
+        "support": {"support_id": "S1", "claim_ref": "C1", "evidence_refs": ["E1"], "support_status": "SUPPORTS", "observed_scope": {"host": "H1", "task_scope": "T1"}, "claimed_scope": {"host": "H1", "task_scope": "T1"}}
+      },
+      "expect": {"ok": true, "code": "SUPPORT_SCOPE_DIRECT_MATCH"}
+    },
+    {
+      "id": "support-transfer-required-fail",
+      "mode": "support",
+      "input": {
+        "claim": {"claim_id": "C2", "claim_type": "OTHER", "subject": {"kind": "HOST", "id": "H2"}, "scope": {"host": "H2"}, "assertion": "Evidence observed on H1 supports H2.", "status": "ASSERTED"},
+        "support": {"support_id": "S2", "claim_ref": "C2", "evidence_refs": ["E2"], "support_status": "SUPPORTS", "observed_scope": {"host": "H1"}, "claimed_scope": {"host": "H2"}}
+      },
+      "expect": {"ok": false, "code": "TRANSFER_EVIDENCE_REQUIRED"}
+    },
+    {
+      "id": "support-transfer-declared-pass",
+      "mode": "support",
+      "input": {
+        "claim": {"claim_id": "C3", "claim_type": "OTHER", "subject": {"kind": "HOST", "id": "H2"}, "scope": {"host": "H2"}, "assertion": "Transfer evidence supports H1 to H2 applicability.", "status": "ASSERTED"},
+        "support": {"support_id": "S3", "claim_ref": "C3", "evidence_refs": ["E3"], "support_status": "SUPPORTS", "observed_scope": {"host": "H1"}, "claimed_scope": {"host": "H2"}, "transfer_basis": {"required": true, "type": "TRANSFER", "evidence_refs": ["E-TRANSFER-1"]}}
+      },
+      "expect": {"ok": true, "code": "SUPPORT_SCOPE_TRANSFER_DECLARED"}
+    },
+    {
+      "id": "support-derivative-independence-fail",
+      "mode": "support",
+      "input": {
+        "claim": {"claim_id": "C4", "claim_type": "OTHER", "subject": {"kind": "TASK", "id": "T4"}, "scope": {"host": "H1"}, "assertion": "Three independent sources corroborate the claim.", "status": "ASSERTED"},
+        "support": {"support_id": "S4", "claim_ref": "C4", "evidence_refs": ["E-A", "E-B", "E-C"], "support_status": "SUPPORTS", "observed_scope": {"host": "H1"}, "claimed_scope": {"host": "H1"}, "independence_basis": {"claimed_independent_count": 3, "source_origins": ["ORIGIN-A", "ORIGIN-A", "ORIGIN-A"]}}
+      },
+      "expect": {"ok": false, "code": "INDEPENDENCE_OVERCLAIMED"}
+    },
+    {
+      "id": "support-independent-origins-pass",
+      "mode": "support",
+      "input": {
+        "claim": {"claim_id": "C5", "claim_type": "OTHER", "subject": {"kind": "TASK", "id": "T5"}, "scope": {"host": "H1"}, "assertion": "Two independent sources corroborate the claim.", "status": "ASSERTED"},
+        "support": {"support_id": "S5", "claim_ref": "C5", "evidence_refs": ["E-A", "E-B"], "support_status": "SUPPORTS", "observed_scope": {"host": "H1"}, "claimed_scope": {"host": "H1"}, "independence_basis": {"claimed_independent_count": 2, "source_origins": ["ORIGIN-A", "ORIGIN-B"]}}
+      },
+      "expect": {"ok": true, "code": "SUPPORT_SCOPE_DIRECT_MATCH"}
+    },
+    {
+      "id": "obligation-material-pending-fail",
+      "mode": "obligation",
+      "input": {
+        "obligation": {"obligation_id": "O1", "materiality": "MATERIAL", "trigger": {"rule_ref": "R1", "observed": true, "evidence_refs": ["E-TRIGGER"]}, "status": "PENDING", "required_before_claim_refs": ["C-COMPLETE"]}
+      },
+      "expect": {"ok": false, "code": "MATERIAL_OBLIGATION_BLOCKS_CLAIM"}
+    },
+    {
+      "id": "obligation-satisfied-without-evidence-fail",
+      "mode": "obligation",
+      "input": {
+        "obligation": {"obligation_id": "O2", "materiality": "MATERIAL", "trigger": {"rule_ref": "R2", "observed": true}, "status": "SATISFIED", "closure_evidence_refs": []}
+      },
+      "expect": {"ok": false, "code": "SATISFIED_WITHOUT_CLOSURE_EVIDENCE"}
+    },
+    {
+      "id": "obligation-satisfied-pass",
+      "mode": "obligation",
+      "input": {
+        "obligation": {"obligation_id": "O3", "materiality": "MATERIAL", "trigger": {"rule_ref": "R3", "observed": true}, "status": "SATISFIED", "closure_evidence_refs": ["E-CLOSE-1"]}
+      },
+      "expect": {"ok": true, "code": "OBLIGATION_STATE_ACCEPTABLE"}
+    },
+    {
+      "id": "recovery-state-only-pass",
+      "mode": "recovery",
+      "input": {
+        "transition": {"transition_id": "RT1", "state_restore": {"target_checkpoint": "CP1", "result": "SUCCESS", "evidence_refs": ["E-RESTORE"]}, "history_continuity": {"status": "GAP_VISIBLE", "known_gap": "post-checkpoint events unavailable"}, "recovery_claim": {"claim_ref": "C-RECOVERY-1", "scope": "STATE_ONLY"}}
+      },
+      "expect": {"ok": true, "code": "STATE_ONLY_RECOVERY_SUPPORTED"}
+    },
+    {
+      "id": "recovery-full-history-fail",
+      "mode": "recovery",
+      "input": {
+        "transition": {"transition_id": "RT2", "state_restore": {"target_checkpoint": "CP2", "result": "SUCCESS"}, "history_continuity": {"status": "PARTIAL", "known_gap": "some post-checkpoint events missing"}, "recovery_claim": {"claim_ref": "C-RECOVERY-2", "scope": "STATE_AND_HISTORY"}}
+      },
+      "expect": {"ok": false, "code": "FULL_RECOVERY_REQUIRES_PRESERVED_HISTORY"}
+    }
+  ]
+}

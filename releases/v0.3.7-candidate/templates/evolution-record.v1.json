@@ -1,0 +1,29 @@
+{
+  "candidate_id": "var-example",
+  "created_at": "2026-08-23T00:00:00+00:00",
+  "origin": "LOCAL_VARIATION",
+  "lifecycle_state": "PROPOSED",
+  "selection_state": "UNASSESSED",
+  "signal_refs": ["sig-example"],
+  "hypothesis": "Describe why this variation may improve a material outcome.",
+  "change": "Describe the concrete mutation.",
+  "expected_outcomes": ["quality"],
+  "variation_space": "Describe the bounded real environment where it can meet reality.",
+  "evolutionary_subject": "Describe the continuity-bearing adaptive subject if decision-relevant.",
+  "protected_subjects": [],
+  "environment": {
+    "host": "UNKNOWN",
+    "model": "UNKNOWN",
+    "language": "zh-CN",
+    "configuration": "UNKNOWN",
+    "ena_identity": "v0.3.5"
+  },
+  "dependencies": [],
+  "unknowns": [],
+  "observation_plan": "Describe how outcomes will be observed.",
+  "experiments": [],
+  "evaluations": [],
+  "integration_history": [],
+  "archive": null,
+  "migration": null
+}
